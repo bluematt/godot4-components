@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://o3c76la4qkay"]
+[gd_scene load_steps=4 format=3 uid="uid://o3c76la4qkay"]
 
 [ext_resource type="PackedScene" uid="uid://00ojm0dql7dm" path="res://components/stat_health.tscn" id="1_7csi2"]
 [ext_resource type="Script" path="res://examples/stat_health_example.gd" id="1_tjnr4"]
+[ext_resource type="PackedScene" uid="uid://dchpolls7pytd" path="res://components/stat_auto_heal.tscn" id="3_qquyk"]
 
 [node name="StatHealthExample" type="Control"]
 layout_mode = 3
@@ -14,7 +15,11 @@ script = ExtResource("1_tjnr4")
 
 [node name="StatHealth" parent="." instance=ExtResource("1_7csi2")]
 unique_name_in_owner = true
-autoheal_enabled = true
+
+[node name="StatAutoHeal" parent="StatHealth" instance=ExtResource("3_qquyk")]
+unique_name_in_owner = true
+health_stat_node = NodePath("..")
+enabled = true
 autoheal_amount = 1.0
 autoheal_rate = 0.1
 autoheal_delay = 3.0
@@ -55,7 +60,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Delay: ?s"
 
-[node name="DeadLabel" type="Label" parent="CenterContainer/VBoxContainer/InfoBox"]
+[node name="StatusLabel" type="Label" parent="CenterContainer/VBoxContainer/InfoBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -108,21 +113,21 @@ layout_mode = 2
 disabled = true
 text = "Revive to 50%"
 
-[node name="Autoheal" type="CheckBox" parent="CenterContainer/VBoxContainer/ButtonBox"]
+[node name="AutohealCheckbox" type="CheckBox" parent="CenterContainer/VBoxContainer/ButtonBox"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Autoheal?"
 
-[connection signal="autohealing_counting_down" from="StatHealth" to="." method="_on_stat_health_autohealing_counting_down"]
-[connection signal="autohealing_enabled" from="StatHealth" to="." method="_on_stat_health_autohealing_enabled"]
-[connection signal="autohealing_started" from="StatHealth" to="." method="_on_stat_health_autohealing_started"]
-[connection signal="autohealing_stopped" from="StatHealth" to="." method="_on_stat_health_autohealing_stopped"]
 [connection signal="changed" from="StatHealth" to="." method="_on_stat_health_changed"]
 [connection signal="died" from="StatHealth" to="." method="_on_stat_health_died"]
 [connection signal="revived" from="StatHealth" to="." method="_on_stat_health_revived"]
+[connection signal="autohealing_counting_down" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_counting_down"]
+[connection signal="autohealing_enabled" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_enabled"]
+[connection signal="autohealing_started" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_started"]
+[connection signal="autohealing_stopped" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_stopped"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Damage10Button" to="." method="_on_damage_10_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Damage25Button" to="." method="_on_damage_25_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Heal10Button" to="." method="_on_heal_10_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/HealAllButton" to="." method="_on_heal_all_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Revive50Percent" to="." method="_on_revive_50_percent_pressed"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/ButtonBox/Autoheal" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/ButtonBox/AutohealCheckbox" to="." method="_on_check_box_toggled"]
