@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://dni17rgfnxpe6"]
+
+[ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://icon.svg" id="1_q7upl"]
+[ext_resource type="Script" path="res://examples/SimpleStateMachine.gd" id="3_4yy22"]
+
+[node name="SimpleStateMachineExample" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("1_q7upl")
+
+[node name="SimpleStateMachine" type="Node" parent="Sprite2D"]
+script = ExtResource("3_4yy22")
+initial_state = "idle"
+method_prefix = "spr_rotate_"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -26.0
+offset_right = 159.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="State" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "State: <undefined>"
+horizontal_alignment = 1
+
+[node name="Instruction" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Press [SPACE] to toggle idle/rotate states."
+horizontal_alignment = 1
+
+[connection signal="state_entered" from="Sprite2D/SimpleStateMachine" to="Sprite2D/SimpleStateMachine" method="_on_state_entered"]
