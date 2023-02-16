@@ -1,3 +1,7 @@
 # godot4-components
 
 Simple components for Godot 4
+
+## Current components
+
+- `SimpleStateMachine` - A simple state machine implementation that uses ordinary, specifically-named methods to manage state.
