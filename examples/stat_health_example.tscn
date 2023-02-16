@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://o3c76la4qkay"]
+
+[ext_resource type="PackedScene" uid="uid://00ojm0dql7dm" path="res://components/stat_health.tscn" id="1_7csi2"]
+[ext_resource type="Script" path="res://examples/stat_health_example.gd" id="1_tjnr4"]
+
+[node name="StatHealthExample" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tjnr4")
+
+[node name="StatHealth" parent="." instance=ExtResource("1_7csi2")]
+unique_name_in_owner = true
+autoheal_enabled = true
+autoheal_amount = 1.0
+autoheal_rate = 0.1
+autoheal_delay = 3.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="InfoBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RateLabel" type="Label" parent="CenterContainer/VBoxContainer/InfoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rate: ?/?s"
+horizontal_alignment = 1
+
+[node name="DelayRemaining" type="ProgressBar" parent="CenterContainer/VBoxContainer/InfoBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="DelayLabel" type="Label" parent="CenterContainer/VBoxContainer/InfoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delay: ?s"
+
+[node name="DeadLabel" type="Label" parent="CenterContainer/VBoxContainer/InfoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Status: Alive"
+horizontal_alignment = 1
+
+[node name="HealthBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HealthLabel" type="Label" parent="CenterContainer/VBoxContainer/HealthBox"]
+layout_mode = 2
+text = "Health:"
+
+[node name="HealthProgress" type="ProgressBar" parent="CenterContainer/VBoxContainer/HealthBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 13.72
+show_percentage = false
+
+[node name="ButtonBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Damage10Button" type="Button" parent="CenterContainer/VBoxContainer/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Damage 10"
+
+[node name="Damage25Button" type="Button" parent="CenterContainer/VBoxContainer/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Damage 25"
+
+[node name="Heal10Button" type="Button" parent="CenterContainer/VBoxContainer/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Heal 10"
+
+[node name="HealAllButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Heal 100%"
+
+[node name="Revive50Percent" type="Button" parent="CenterContainer/VBoxContainer/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Revive to 50%"
+
+[node name="Autoheal" type="CheckBox" parent="CenterContainer/VBoxContainer/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Autoheal?"
+
+[connection signal="autohealing_counting_down" from="StatHealth" to="." method="_on_stat_health_autohealing_counting_down"]
+[connection signal="autohealing_enabled" from="StatHealth" to="." method="_on_stat_health_autohealing_enabled"]
+[connection signal="autohealing_started" from="StatHealth" to="." method="_on_stat_health_autohealing_started"]
+[connection signal="autohealing_stopped" from="StatHealth" to="." method="_on_stat_health_autohealing_stopped"]
+[connection signal="changed" from="StatHealth" to="." method="_on_stat_health_changed"]
+[connection signal="died" from="StatHealth" to="." method="_on_stat_health_died"]
+[connection signal="revived" from="StatHealth" to="." method="_on_stat_health_revived"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Damage10Button" to="." method="_on_damage_10_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Damage25Button" to="." method="_on_damage_25_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Heal10Button" to="." method="_on_heal_10_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/HealAllButton" to="." method="_on_heal_all_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Revive50Percent" to="." method="_on_revive_50_percent_pressed"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/ButtonBox/Autoheal" to="." method="_on_check_box_toggled"]
