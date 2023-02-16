@@ -126,7 +126,8 @@ func _ready() -> void:
 	revived.connect(func():
 		__initiate_autohealing())
 
-## Apply an amount of healing.
+## Apply an amount of healing.  If [i]will_revive[/i] is true, the health can be
+## from a "dead" state.
 func heal(amount: float, will_revive: bool = false) -> void:
 	if is_dead() and not will_revive: return
 
@@ -188,23 +189,31 @@ func __stop_autohealing() -> void:
 	__autoheal_timer.stop()
 	autohealing_stopped.emit()
 
+# Disable autohealing on death. 
 func __die() -> void:
 	autoheal_enabled = false
+	__prevent_autohealing()
+	__stop_autohealing()
 	died.emit()
 	
+## Return whether the health should be considered "dead".
 func is_dead() -> bool:
 	return not is_alive()
 	
+## Return whether the health should be considered "alive".
 func is_alive() -> bool:
 	return health > 0.0
 	
+## Return whether the health is maxed out.
 func is_maxed() -> bool:
 	return health >= max_health
 
+## Revive the health from "dead" state.
 func revive(amount: float) -> void:
 	heal(amount, true)
 	revived.emit()
 
+# Update the amount of time remaining on the autoheal delay timer.
 func _process(_delta: float) -> void:
 	if not __autoheal_delay_timer.is_stopped():
 		autohealing_counting_down.emit(__autoheal_delay_timer.time_left)
