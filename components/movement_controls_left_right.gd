@@ -7,8 +7,10 @@ extends Node
 
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
+
 ## The input action to move left.
 @export var input_action_left:InputEventAction
+
 ## The input action to move right.
 @export var input_action_right:InputEventAction
 
