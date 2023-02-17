@@ -1,4 +1,4 @@
-# StatHealth
+# StatHealth component
 
 A node for managing a health-like stat.
 

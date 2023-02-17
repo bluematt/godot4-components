@@ -1,4 +1,4 @@
-# StatAutoRecover
+# StatAutoRecover component
 
 A node to automatically recover a `Stat` node.
 

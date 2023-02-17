@@ -14,13 +14,13 @@ extends Node
 ## 2. Create methods in your script to handle the game loop and events.  For
 ## example, to manage the state "[code]idle[/code]", define methods such as:
 ##
-## [codeblock]
-## extends SimpleStateMachine
-## func idle_process(delta): ...
-## func idle_physics_process(delta): ...
-## func idle_unhandled_input(event): ...
-## # and so on.
-## [/codeblock] [br]
+##     [codeblock]
+##     extends SimpleStateMachine
+##     func idle_process(delta): ...
+##     func idle_physics_process(delta): ...
+##     func idle_unhandled_input(event): ...
+##     # and so on.
+##     [/codeblock] [br]
 ##
 ## The game loop events that are handled are [member Node._process],
 ## [member Node._physics_process], [member Node._input],
@@ -44,10 +44,10 @@ extends Node
 ## from one state to another: [code]<state>_enter()[/code] and
 ## [code]<state>_exit()[/code].
 ##
-## [codeblock]
-## func idle_exit(): ...
-## func idle_enter(): ...
-## [/codeblock]  [br]
+##     [codeblock]
+##     func idle_exit(): ...
+##     func idle_enter(): ...
+##     [/codeblock]  [br]
 ##
 ## These are activated once per transition, if they are defined. [br][br]
 ##
@@ -56,13 +56,13 @@ extends Node
 ## name all of your methods appropriately, e.g. using the prefix
 ## "[code]my_prefix_[/code]":
 ##
-## [codeblock]
-## func my_prefix_idle_enter(): ...
-## func my_prefix_idle_process(delta): ...
-## func my_prefix_idle_unhandled_input(delta): ...
-## func my_prefix_idle_exit(): ...
-## # and so on.
-## [/codeblock] [br]
+##     [codeblock]
+##     func my_prefix_idle_enter(): ...
+##     func my_prefix_idle_process(delta): ...
+##     func my_prefix_idle_unhandled_input(delta): ...
+##     func my_prefix_idle_exit(): ...
+##     # and so on.
+##     [/codeblock] [br]
 ##
 ## Finally, don't forget to set the [member initial_state]!
 
@@ -75,12 +75,14 @@ signal state_entered(state:String)
 ## Emitted when a state is exited.
 signal state_exited(state:String)
 
+@export_category("SimpleStateMachine")
+
 ## The initial state.
-@export_placeholder("Initial state") var initial_state:String
+@export_placeholder("some_state") var initial_state:String
 
 ## Optional method prefix (e.g. [code]my_state_machine_[/code]) to help 
 ## separate methods.
-@export var method_prefix:String = ""
+@export_placeholder("my_prefix_") var method_prefix:String = ""
 
 ## Enable debugging to warn about expected (but missing) methods.  [b]Note:[/b]
 ## enabling this can generate a [i]lot[/i] of warnings.

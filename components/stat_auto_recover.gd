@@ -48,10 +48,10 @@ signal autorecovery_counting_down(time_left: float)
 ## A delay before any autorecovery, in seconds.
 @export var autorecover_delay := 0.0
 
-# A timer to determine when auto-healing can start.
+# A timer to determine when autorecovery can start.
 @onready var __delay_timer := %DelayTimer
 
-# A timer to determine when auto-healing occurs.
+# A timer to determine when autorecovery occurs.
 @onready var __recovery_timer := %RecoveryTimer
 
 # The [Stat] node to operate on.
@@ -81,18 +81,18 @@ func _ready() -> void:
 		__stop_autorecovery()
 		__prevent_autorecovery())
 
-# Initiate the autohealing process timer.
+# Initiate the autorecovery process timer.
 func __initiate_autorecovery() -> void:
 	if not enabled: return
 	if __stat.is_maxed(): return
 	
 	__delay_timer.start(autorecover_delay)
 	
-# Prevent the autohealing process.
+# Prevent the autorecovery process.
 func __prevent_autorecovery() -> void:
 	__delay_timer.stop()
 
-# Start autohealing.
+# Start autorecovery.
 func __start_autorecovery() -> void:
 	if not enabled: return
 	if __stat.is_exhausted(): return
@@ -100,12 +100,12 @@ func __start_autorecovery() -> void:
 	__recovery_timer.start(autorecover_rate)
 	autorecovery_started.emit()
 
-# Stop autohealing.
+# Stop autorecovery.
 func __stop_autorecovery() -> void:
 	__recovery_timer.stop()
 	autorecovery_stopped.emit()
 
-# Update the amount of time remaining on the autoheal delay timer.
+# Update the amount of time remaining on the delay timer.
 func _process(_delta: float) -> void:
 	if not __delay_timer.is_stopped():
 		autorecovery_counting_down.emit(__delay_timer.time_left)

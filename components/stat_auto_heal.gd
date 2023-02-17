@@ -48,10 +48,10 @@ signal autohealing_counting_down(time_left: float)
 ## A delay before any autohealing, in seconds.
 @export var autoheal_delay := 0.0
 
-# A timer to determine when auto-healing can start.
+# A timer to determine when autohealing can start.
 @onready var __delay_timer := %DelayTimer
 
-# A timer to determine when auto-healing occurs.
+# A timer to determine when autohealing occurs.
 @onready var __heal_timer := %HealTimer
 
 # The [StatHealth] node to operate on.
@@ -71,12 +71,12 @@ func _ready() -> void:
 		if enabled:
 			__health.heal(autoheal_amount))
 	
-	# Stop auto-healing on damage, and start the autohealing timer.
+	# Stop autohealing on damage, and start the autohealing timer.
 	__health.damaged.connect(func(_amount:float):
 		__stop_autohealing()
 		__initiate_autohealing())
 
-	# Stop auto-healing on death, and prevent further autohealing.
+	# Stop autohealing on death, and prevent further autohealing.
 	__health.died.connect(func():
 		__stop_autohealing()
 		__prevent_autohealing())
