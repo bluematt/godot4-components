@@ -5,6 +5,18 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatAutoRecover.md
 
+# The default autorecover amount.
+const __DEFAULT_AUTORECOVER_AMOUNT := 0.0
+
+# The default autorecover rate.
+const __DEFAULT_AUTORECOVER_RATE := 0.0
+
+# The default autorecover delay.
+const __DEFAULT_AUTORECOVER_DELAY := 0.0
+
+# The autorecover rate which triggers autorecovery.
+const __TRIGGER_LIMIT_AUTORECOVER_RATE := 0.0
+
 ## Emitted when autorecovery starts.
 signal autorecovery_started()
 
@@ -36,13 +48,13 @@ signal autorecovery_counting_down(time_left: float)
 @export_group("Autorecovery", "autorecover_")
 
 ## The amount of autorecovery per autorecover_rate` tick.
-@export var autorecover_amount := 0.0
+@export var autorecover_amount := __DEFAULT_AUTORECOVER_AMOUNT
 
 ## The rate of autorecovery, in seconds.
-@export var autorecover_rate := 0.0
+@export var autorecover_rate := __DEFAULT_AUTORECOVER_RATE
 
 ## A delay before any autorecovery, in seconds.
-@export var autorecover_delay := 0.0
+@export var autorecover_delay := __DEFAULT_AUTORECOVER_DELAY
 
 # A timer to determine when autorecovery can start.
 @onready var __delay_timer := %DelayTimer
@@ -59,7 +71,7 @@ func _ready() -> void:
 	
 	# Start the recovery timer when the delay timer times out.
 	__delay_timer.timeout.connect(func():
-		if enabled and autorecover_rate > 0.0:
+		if enabled and autorecover_rate > __TRIGGER_LIMIT_AUTORECOVER_RATE:
 			__start_autorecovery())
 
 	# Recover when the recovery timer times out.

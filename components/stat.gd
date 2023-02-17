@@ -5,6 +5,12 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/Stat.md
 
+# The default maximum stat.
+const __DEFAULT_MAX_STAT := 100.0
+
+# The lowest the stat can be.
+const __LOWEST_LIMIT_STAT := 0.0
+
 ## Emitted when the stat changes.
 signal changed(value: float)
 
@@ -16,10 +22,6 @@ signal recovered(amount: float)
 ## recovery.
 signal recovered_raw(amount: float)
 
-## Emitted when the stat is recovered.  Passes in the percentage of recovery
-## of [member max_stat].
-signal recovered_percentage(percentage: float)
-
 ## Emitted when fully recovered.
 signal recovered_fully()
 
@@ -29,9 +31,6 @@ signal expended(amount: float)
 
 ## Emitted when the stat is expended.  Passes in the raw amount of expenditure.
 signal expended_raw(amount: float)
-
-## Emitted when the stat is expended.  Passes in the percentage of expenditure.
-signal expended_percentage(percentage: float)
 
 ## Emitted when the stat reaches 0.
 signal exhausted()
@@ -47,7 +46,7 @@ signal failed(deficit: float)
 @export_category("Stat")
 
 ## The maximum allowed stat.
-@export var max_stat := 100.0
+@export var max_stat := __DEFAULT_MAX_STAT
 
 ## The current stat.
 @onready var stat := max_stat:
@@ -63,7 +62,6 @@ func recover(amount: float) -> void:
 		stat = max_stat
 
 	recovered_raw.emit(amount)
-	recovered_percentage.emit((amount / max_stat) * 100)
 	recovered.emit(stat - old_stat)
 	changed.emit(stat)
 
@@ -80,11 +78,10 @@ func expend(amount: float) -> bool:
 	var old_stat := stat
 
 	stat -= amount
-	if stat <= 0:
-		stat = 0.0
+	if stat <= __LOWEST_LIMIT_STAT:
+		stat = __LOWEST_LIMIT_STAT
 
 	expended_raw.emit(amount)
-	expended_percentage.emit((amount / max_stat) * 100)
 	expended.emit(stat - old_stat)
 	changed.emit(stat)
 		
@@ -102,7 +99,7 @@ func expend(amount: float) -> bool:
 
 ## Return whether the stat has been exhausted.
 func is_exhausted() -> bool:
-	return stat <= 0.0
+	return stat <= __LOWEST_LIMIT_STAT
 	
 ## Return whether the stat is maxed out.
 func is_maxed() -> bool:

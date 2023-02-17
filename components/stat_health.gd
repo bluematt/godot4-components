@@ -5,6 +5,12 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatHealth.md
 
+# The default maximum health.
+const __DEFAULT_MAX_HEALTH := 100.0
+
+# The lowest health can be.
+const __LOWEST_LIMIT_HEALTH := 0.0
+
 ## Emitted when health changes.
 signal changed(value: float)
 
@@ -15,10 +21,6 @@ signal healed(amount: float)
 ## Emitted when healing takes place.  Passes in the raw amount of healing.
 signal healed_raw(amount: float)
 
-## Emitted when healing takes place.  Passes in the percentage healing of 
-## [member max_health].
-signal healed_percentage(percentage: float)
-
 ## Emitted when fully healed.
 signal healed_fully()
 
@@ -27,9 +29,6 @@ signal damaged(amount:float)
 
 ## Emitted when damage takes place.  Passes in the raw amount of damage.
 signal damaged_raw(amount:float)
-
-## Emitted when damage takes place.  Passes in the percentage of damage.
-signal damaged_percentage(percentage: float)
 
 ## Emitted when health reaches 0.
 signal died()
@@ -40,7 +39,7 @@ signal revived()
 @export_category("StatHealth")
 
 ## The maximum allowed health.
-@export var max_health := 100.0
+@export var max_health := __DEFAULT_MAX_HEALTH
 
 ## The current health.
 @onready var health := max_health:
@@ -59,7 +58,6 @@ func heal(amount: float, will_revive: bool = false) -> void:
 		health = max_health
 
 	healed_raw.emit(amount)
-	healed_percentage.emit((amount / max_health) * 100)
 	healed.emit(health - old_heath)
 	changed.emit(health)
 
@@ -75,11 +73,10 @@ func damage(amount: float) -> void:
 	var old_heath := health
 
 	health -= amount
-	if health <= 0:
-		health = 0.0
+	if health <= __LOWEST_LIMIT_HEALTH:
+		health = __LOWEST_LIMIT_HEALTH
 
 	damaged_raw.emit(amount)
-	damaged_percentage.emit((amount / max_health) * 100)
 	damaged.emit(health - old_heath)
 	changed.emit(health)
 		
@@ -92,7 +89,7 @@ func is_dead() -> bool:
 	
 ## Return whether the health should be considered "alive".
 func is_alive() -> bool:
-	return health > 0.0
+	return health > __LOWEST_LIMIT_HEALTH
 	
 ## Return whether the health is maxed out.
 func is_maxed() -> bool:
