@@ -3,15 +3,7 @@ extends Node
 
 ## A node for managing a health-like stat.
 ##
-## [b]How to use[/b] [br][br]
-##
-## 1. Attach a node instance of [StatHealth]. [br]
-## 2. Set [member max_health]. [br]
-## 3. Use [member heal], [member heal_fully], and [member damage] methods to
-## manipulate the health stat. [br][br]
-##
-## Use the various state methods to determine the current health, and the
-## signals to respond to health changing events.
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatHealth.md
 
 ## Emitted when health changes.
 signal changed(value: float)

@@ -3,14 +3,7 @@ extends Node
 
 ## A node to automatically recover a [Stat] node.
 ##
-## [b]How to use[/b] [br][br]
-##
-## 1. Attach a node instance of [StatAutoRecover].  A good place is as a 
-## child of the [Stat] you want to autorecover. [br]
-## 2. Select the [Stat] node to manipulate in [member stat_node].
-## [br]
-## 3. Set the various autorecover properties to your liking. [br]
-## 4. Enable the component to allow autorecovery.
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatAutoRecover.md
 
 ## Emitted when autorecovery starts.
 signal autorecovery_started()

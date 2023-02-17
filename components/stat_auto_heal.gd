@@ -3,14 +3,7 @@ extends Node
 
 ## A node to automatically heal a [StatHealth] node.
 ##
-## [b]How to use[/b] [br][br]
-##
-## 1. Attach a node instance of [StatAutoHeal].  A good place is as a 
-## child of the [StatHealth] you want to autoheal. [br]
-## 2. Select the [StatHealth] node to manipulate in [member health_stat_node].
-## [br]
-## 3. Set the various autoheal properties to your liking. [br]
-## 4. Enable the component to allow autohealing.
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatAutoHeal.md
 
 ## Emitted when autohealing starts.
 signal autohealing_started()
