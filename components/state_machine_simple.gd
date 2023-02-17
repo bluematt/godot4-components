@@ -3,68 +3,7 @@ extends Node
 
 ## A simple state machine for Godot 4.
 ##
-## A simple state machine implementation that uses ordinary, specifically-
-## named methods to manage state. [br][br]
-##
-## [b]How to use[/b] [br][br]
-##
-## 1. Create a [Node], attach a script, and extend from
-## [SimpleStateMachine]. [br][br]
-##
-## 2. Create methods in your script to handle the game loop and events.  For
-## example, to manage the state "[code]idle[/code]", define methods such as:
-##
-##     [codeblock]
-##     extends SimpleStateMachine
-##     func idle_process(delta): ...
-##     func idle_physics_process(delta): ...
-##     func idle_unhandled_input(event): ...
-##     # and so on.
-##     [/codeblock] [br]
-##
-## The game loop events that are handled are [member Node._process],
-## [member Node._physics_process], [member Node._input],
-## [member Node._shortcut_input], [member Node._unhandled_input] and
-## [member Node._unhandled_key_input]. [br][br]
-##
-## [b]Note:[/b] Only names that would result in valid identifiers are allowed as
-## state names. [br][br]
-##
-## You do not need to define methods to handle all of these. Any that do not
-## exist are simply ignored.  You can see what methods are called by setting the
-## [member debug] option to [code]true[/code]. [br][br]
-##
-## [b]Transitioning between states[/b] [br][br]
-##
-## To transition to another state, use [member transition_to]. You do not need
-## to prepend the [member method_prefix] if you have specified one (see below).
-## [br][br]
-##
-## Two special methods can also be defined which are called when transitioning
-## from one state to another: [code]<state>_enter()[/code] and
-## [code]<state>_exit()[/code].
-##
-##     [codeblock]
-##     func idle_exit(): ...
-##     func idle_enter(): ...
-##     [/codeblock]  [br]
-##
-## These are activated once per transition, if they are defined. [br][br]
-##
-## The [member method_prefix] property allows you to "namespace" your
-## state-related methods.  If you set [member method_prefix], you will need to
-## name all of your methods appropriately, e.g. using the prefix
-## "[code]my_prefix_[/code]":
-##
-##     [codeblock]
-##     func my_prefix_idle_enter(): ...
-##     func my_prefix_idle_process(delta): ...
-##     func my_prefix_idle_unhandled_input(delta): ...
-##     func my_prefix_idle_exit(): ...
-##     # and so on.
-##     [/codeblock] [br]
-##
-## Finally, don't forget to set the [member initial_state]!
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/SimpleStateMachine.md
 
 ## No state
 const UNINITIALISED_STATE := StringName("")

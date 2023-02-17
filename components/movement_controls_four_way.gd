@@ -1,6 +1,10 @@
 class_name MovementControlsFourWay
 extends Node
 
+## Applies directional four-way movement to a [MovementVelocity] component.
+##
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsFourWay.md
+
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
 ## The input action to move up.

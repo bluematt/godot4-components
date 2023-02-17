@@ -1,6 +1,10 @@
 class_name MovementVelocity
 extends Node
 
+## Controls [member CharacterBody2D.velocity], applying a maximum speed with acceleration and deceleration coefficients.
+##
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementVelocity.md
+
 ## The [CharacterBody2D] to move.
 @export var character_node:CharacterBody2D
 

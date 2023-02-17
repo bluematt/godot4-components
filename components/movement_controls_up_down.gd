@@ -1,6 +1,10 @@
 class_name MovementControlsUpDown
 extends Node
 
+## Applies up and down movement to a [MovementVelocity] component.
+##
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsUpDown.md
+
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
 ## The input action to move up.

@@ -3,18 +3,7 @@ extends Node
 
 ## A generic stat component.
 ##
-## [b]How to use[/b] [br][br]
-##
-## 1. Attach a node instance of [Stat]. [br]
-## 2. Set [member max_stat]. [br]
-## 3. Use [member recover], [member recover_fully], [member expend] and
-## [member exhaust] methods to manipulate the stat. [br][br]
-##
-## Use the various state methods to determine the current stat, and the
-## signals to respond to stat changing events. [br][br]
-##
-## If you wish to replicate a health-type stat, the [StatHealth] component may
-## be more suitable.
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/Stat.md
 
 ## Emitted when the stat changes.
 signal changed(value: float)

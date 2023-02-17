@@ -1,6 +1,10 @@
 class_name MovementControlsLeftRight
 extends Node
 
+## Applies left and right movement to a [MovementVelocity] component.
+##
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsLeftRight.md
+
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
 ## The input action to move left.
