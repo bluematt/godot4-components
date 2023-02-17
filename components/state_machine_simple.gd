@@ -5,8 +5,14 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/SimpleStateMachine.md
 
-## No state
-const UNINITIALISED_STATE := StringName("")
+# No data.
+const __NO_DATA := null
+
+# No state.
+const __NO_STATE := ""
+
+# Default method prefix.
+const __DEFAULT_METHOD_PREFIX := ""
 
 ## Emitted when a state is entered.
 signal state_entered(state:String)
@@ -21,18 +27,18 @@ signal state_exited(state:String)
 
 ## Optional method prefix (e.g. [code]my_state_machine_[/code]) to help 
 ## separate methods.
-@export_placeholder("my_prefix_") var method_prefix:String = ""
+@export_placeholder("my_prefix_") var method_prefix:String = __DEFAULT_METHOD_PREFIX
 
 ## Enable debugging to warn about expected (but missing) methods.  [b]Note:[/b]
 ## enabling this can generate a [i]lot[/i] of warnings.
 @export var debug:bool = false
 
 # The current state.
-var _state:String = UNINITIALISED_STATE
+var __state:String = __NO_STATE
 
 ## Returns the current state.
 func get_state() -> String:
-	return _state
+	return __state
 
 func _ready() -> void:
 	# Validate initial state.
@@ -40,7 +46,7 @@ func _ready() -> void:
 		"Invalid initial state '%s' in %s" % [initial_state, get_path()])
 
 	# Validate method prefix.
-	if method_prefix != "":
+	if method_prefix:
 		assert(method_prefix.is_valid_identifier(),
 			"Invalid method prefix '%s' in %s" % [method_prefix, get_path()])
 
@@ -51,20 +57,20 @@ func _ready() -> void:
 ## Transition to a new state.
 func transition_to(new_state:String) -> void:
 	# Guard against transitioning to the same state.
-	if new_state == _state:
+	if new_state == __state:
 		if debug:
 			push_warning("Transition to same state '%s' in %s" %
-				[_state, get_path()])
+				[__state, get_path()])
 		return
 
 	# Allow for the first state to be blank.
-	if _state != UNINITIALISED_STATE:
+	if __state:
 		__exit_state()
 
 	# Check the new state is allowed.
 	assert(__is_valid_state(new_state),
 		"Invalid transition state '%s' in %s" % [new_state, get_path()])
-	_state = new_state
+	__state = new_state
 
 	# Enter the (new) state.
 	__enter_state()
@@ -72,12 +78,12 @@ func transition_to(new_state:String) -> void:
 # Enters the current state.
 func __enter_state() -> void:
 	__call_delegate_for("_enter")
-	state_entered.emit(_state)
+	state_entered.emit(__state)
 
 # Exits the current state.
 func __exit_state() -> void:
 	__call_delegate_for("_exit")
-	state_exited.emit(_state)
+	state_exited.emit(__state)
 
 # Delegates _process().
 func _process(delta: float) -> void:
@@ -104,11 +110,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	__call_delegate_for("_unhandled_key_input", event)
 
 # Executes the relevant delegate method, if it exists.
-func __call_delegate_for(builtin:String, data:Variant=null) -> Variant:
+func __call_delegate_for(builtin:String, data:Variant=__NO_DATA) -> Variant:
 	# Guard for valid states.
-	if not __is_valid_state(_state):
+	if not __is_valid_state(__state):
 		if debug:
-			push_warning("Invalid state '%s' in %s" % [_state, get_path()])
+			push_warning("Invalid state '%s' in %s" % [__state, get_path()])
 		return
 	
 	# Guard the method exists.
@@ -122,7 +128,7 @@ func __call_delegate_for(builtin:String, data:Variant=null) -> Variant:
 	var callable := Callable(self, method)
 
 	# Bind data to the delegated method, if applicable.
-	if data != null:
+	if data != __NO_DATA:
 		callable = callable.bind(data)
 
 	# Call the delegated method call, and return any output.
@@ -130,8 +136,8 @@ func __call_delegate_for(builtin:String, data:Variant=null) -> Variant:
 
 # Return whether a state is considered valid.
 func __is_valid_state(some_state:String) -> bool:
-	return (some_state != "" and some_state.is_valid_identifier())
+	return some_state != __NO_STATE and some_state.is_valid_identifier()
 
 # Return the StringName version of a method name.
 func __get_state_method(builtin: String) -> StringName:
-	return StringName(method_prefix + _state + builtin)
+	return StringName(method_prefix + __state + builtin)

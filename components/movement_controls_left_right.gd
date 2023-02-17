@@ -5,6 +5,12 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsLeftRight.md
 
+# The default input action for left movement.
+const DEFAULT_ACTION_LEFT := "ui_left"
+
+# The default input action for right movement.
+const DEFAULT_ACTION_RIGHT := "ui_right"
+
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
 
@@ -21,12 +27,12 @@ func _ready() -> void:
 
 	if input_action_left == null:
 		input_action_left = InputEventAction.new()
-		input_action_left.set_action("ui_left")
+		input_action_left.set_action(DEFAULT_ACTION_LEFT)
 	assert(input_action_left)
 
 	if input_action_right == null:
 		input_action_right = InputEventAction.new()
-		input_action_right.set_action("ui_right")
+		input_action_right.set_action(DEFAULT_ACTION_RIGHT)
 	assert(input_action_right)
 
 

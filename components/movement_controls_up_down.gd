@@ -5,6 +5,12 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsUpDown.md
 
+# The default input action for up movement.
+const DEFAULT_ACTION_UP := "ui_up"
+
+# The default input action for down movement.
+const DEFAULT_ACTION_DOWN := "ui_down"
+
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
 
@@ -21,12 +27,12 @@ func _ready() -> void:
 
 	if input_action_up == null:
 		input_action_up = InputEventAction.new()
-		input_action_up.set_action("ui_up")
+		input_action_up.set_action(DEFAULT_ACTION_UP)
 	assert(input_action_up)
 
 	if input_action_down == null:
 		input_action_down = InputEventAction.new()
-		input_action_down.set_action("ui_down")
+		input_action_down.set_action(DEFAULT_ACTION_DOWN)
 	assert(input_action_down)
 
 func _process(_delta: float) -> void:
