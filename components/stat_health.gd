@@ -11,22 +11,29 @@ signal changed(value: float)
 ## Emitted when healing takes place.  Passes in the actual amount of healing up
 ## to [member max_health].
 signal healed(amount: float)
+
 ## Emitted when healing takes place.  Passes in the raw amount of healing.
 signal healed_raw(amount: float)
+
 ## Emitted when healing takes place.  Passes in the percentage healing of 
 ## [member max_health].
 signal healed_percentage(percentage: float)
+
 ## Emitted when fully healed.
 signal healed_fully()
 
 ## Emitted when damage takes place.  Passes in the actual amount of damage.
 signal damaged(amount:float)
+
 ## Emitted when damage takes place.  Passes in the raw amount of damage.
 signal damaged_raw(amount:float)
+
 ## Emitted when damage takes place.  Passes in the percentage of damage.
 signal damaged_percentage(percentage: float)
+
 ## Emitted when health reaches 0.
 signal died()
+
 ## Emitted when aliveness has been restored.
 signal revived()
 

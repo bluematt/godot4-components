@@ -7,12 +7,16 @@ extends Node
 
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
+
 ## The input action to move up.
 @export var input_action_up:InputEventAction
+
 ## The input action to move down.
 @export var input_action_down:InputEventAction
+
 ## The input action to move left.
 @export var input_action_left:InputEventAction
+
 ## The input action to move right.
 @export var input_action_right:InputEventAction
 

@@ -7,10 +7,13 @@ extends Node
 
 ## Emitted when autorecovery starts.
 signal autorecovery_started()
+
 ## Emitted when autorecovery stops.
 signal autorecovery_stopped()
+
 ## Emitted when autorecovery is enabled or disabled.
 signal autorecovery_enabled(status: bool)
+
 ## Emitted when autorecovery is about to begin.
 signal autorecovery_counting_down(time_left: float)
 

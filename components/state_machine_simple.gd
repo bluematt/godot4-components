@@ -27,6 +27,7 @@ signal state_exited(state:String)
 ## enabling this can generate a [i]lot[/i] of warnings.
 @export var debug:bool = false
 
+# The current state.
 var _state:String = UNINITIALISED_STATE
 
 ## Returns the current state.

@@ -11,27 +11,34 @@ signal changed(value: float)
 ## Emitted when the stat is recovered.  Passes in the actual amount of
 ## recovery up to [member max_stat].
 signal recovered(amount: float)
+
 ## Emitted when the stat is recovered.  Passes in the raw amount of
 ## recovery.
 signal recovered_raw(amount: float)
+
 ## Emitted when the stat is recovered.  Passes in the percentage of recovery
 ## of [member max_stat].
 signal recovered_percentage(percentage: float)
+
 ## Emitted when fully recovered.
 signal recovered_fully()
 
 ## Emitted when the stat is expended.  Passes in the actual amount of
 ## expenditure.
 signal expended(amount: float)
+
 ## Emitted when the stat is expended.  Passes in the raw amount of expenditure.
 signal expended_raw(amount: float)
+
 ## Emitted when the stat is expended.  Passes in the percentage of expenditure.
 signal expended_percentage(percentage: float)
+
 ## Emitted when the stat reaches 0.
 signal exhausted()
 
 ## Emitted when the stat is expended, and the amount expended was available.
 signal succeeded()
+
 ## Emitted when the stat is expended, and the amount expended was not available.
 ## Passes in the deficit difference between the amount of stat expended, and the
 ## stat available.
