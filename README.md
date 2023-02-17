@@ -1,10 +1,8 @@
-# godot4-components
-
-Simple components for Godot 4.
+# Simple components for Godot 4
 
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
 
-These components are designed to be simple to use, ready to be dropped into a project with minimal configuration, and "smart" or at least sensible defaults.
+These components are designed to be simple to use, ready to be dropped into a Godot 4 project with minimal configuration, and "smart" or at least sensible defaults.
 
 ## Current components
 
@@ -14,14 +12,14 @@ These components are designed to be simple to use, ready to be dropped into a pr
 
 ### Stats
 
-- [`StatHealth`](doc/StatHealth.md) - A node for managing a health-like stat.
-- [`StatAutoHeal`](doc/StatAutoHeal.md) - A node for enabling timed autohealing for a `StatHealth` node.
-- [`Stat`](doc/Stat.md) - A node for managing a generic stat.
-- [`StatAutoRecover`](doc/StatAutoRecover.md) - A node for enabling timed autorecovery for a `Stat` node.
+- [`StatHealth`](doc/StatHealth.md) - Health-like stat component.
+- [`StatAutoHeal`](doc/StatAutoHeal.md) - Time-based automatic healing for a  [`StatHealth`](StatHealth.md) component.
+- [`Stat`](doc/Stat.md) - Generic stat component.
+- [`StatAutoRecover`](doc/StatAutoRecover.md) - Time-based automatic recovery for a  [`Stat`](Stat.md) component.
 
 ### Movement
 
 - [`MovementVelocity`](doc/MovementVelocity.md) - Controls a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
 - [`MovementControlsLeftRight`](doc/MovementControlsLeftRight.md) - Applies left and right movement to a [`MovementVelocity`](MovementVelocity.md) component.
 - [`MovementControlsUpDown`](doc/MovementControlsUpDown.md) - Applies up and down movement to a [`MovementVelocity`](MovementVelocity.md) component.
-- [`MovementControlsFourWay`](doc/MovementControlsFourWay.md) - Applies directional four-way movement to a `MovementVelocity` component.
+- [`MovementControlsFourWay`](doc/MovementControlsFourWay.md) - Applies directional four-way movement to a [`MovementVelocity`](doc/MovementVelocity.md) component.
