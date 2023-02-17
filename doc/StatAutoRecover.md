@@ -1,6 +1,6 @@
-# StatAutoRecover component
+# `StatAutoRecover` component
 
-A node to automatically recover a `Stat` node.
+Time-based automatic recovery for a  [`Stat`](Stat.md) component.
 
 ## How to use
 

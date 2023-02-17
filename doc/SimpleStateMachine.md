@@ -1,10 +1,12 @@
-# SimpleStateMachine component
+# `SimpleStateMachine` component
 
 A simple state machine implementation that uses ordinary, specifically-named methods to manage state.
 
+> **Note:** This component is not designed to be used as-is, it should be extended from.
+
 ## How to use
 
-1. Create a `Node`, attach a script, and extend from `SimpleStateMachine`.
+1. Create a `Node`, attach a script, and **extend** from `SimpleStateMachine`.
 2. Create methods in your script to handle the game loop and events.  For example, to manage the state "`idle`", define methods such as:
 
 ```gdscript

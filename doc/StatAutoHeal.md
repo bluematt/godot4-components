@@ -1,6 +1,6 @@
-# StatAutoHeal component
+# `StatAutoHeal` component
 
-A node to automatically heal a `StatHealth` node.
+Time-based automatic healing for a  [`StatHealth`](StatHealth.md) component.
 
 ## How to use
 
