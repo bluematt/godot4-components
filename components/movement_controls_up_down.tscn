@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwn55qgop2w8g"]
+
+[ext_resource type="Script" path="res://components/movement_controls_up_down.gd" id="1_gwt4a"]
+
+[node name="MovementControlsUpDown" type="Node"]
+script = ExtResource("1_gwt4a")

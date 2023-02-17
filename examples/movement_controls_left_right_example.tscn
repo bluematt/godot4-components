@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://50w8gdxppdvv"]
+
+[ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://icon.svg" id="1_mmgat"]
+[ext_resource type="PackedScene" uid="uid://wd6jlpxfkijc" path="res://components/movement_velocity.tscn" id="2_qa0qy"]
+[ext_resource type="PackedScene" uid="uid://8r0ch0jm0pvs" path="res://components/movement_controls_left_right.tscn" id="3_j4ctw"]
+
+[node name="MovementControlsLeftRightExample" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(578, 334)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_mmgat")
+
+[node name="MovementVelocity" parent="CharacterBody2D" instance=ExtResource("2_qa0qy")]
+
+[node name="MovementControlsLeftRight" parent="CharacterBody2D/MovementVelocity" instance=ExtResource("3_j4ctw")]
