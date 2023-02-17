@@ -1,4 +1,4 @@
-# StatAutoHeal
+# StatAutoHeal component
 
 A node to automatically heal a `StatHealth` node.
 

@@ -1,4 +1,4 @@
-# SimpleStateMachine
+# SimpleStateMachine component
 
 A simple state machine implementation that uses ordinary, specifically-named methods to manage state.
 
