@@ -19,7 +19,7 @@ These components are designed to be simple to use, ready to be dropped into a pr
 
 ### Movement
 
-- [`MovementVelocity`](doc/`MovementVelocity.md) - 
-- [`MovementControlsLeftRight`](doc/MovementControlsLeftRight.md) - 
-- [`MovementControlsUpDown`](doc/MovementControlsUpDown.md) - 
-- [`MovementControlsFourWay`](doc/MovementControlsFourWay.md) - 
+- [`MovementVelocity`](doc/`MovementVelocity.md) - Controls a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
+- [`MovementControlsLeftRight`](doc/MovementControlsLeftRight.md) - Applies left and right movement to a [`MovementVelocity`](MovementVelocity.md) component.
+- [`MovementControlsUpDown`](doc/MovementControlsUpDown.md) - Applies up and down movement to a [`MovementVelocity`](MovementVelocity.md) component.
+- [`MovementControlsFourWay`](doc/MovementControlsFourWay.md) - Applies directional four-way movement to a `MovementVelocity` component.
