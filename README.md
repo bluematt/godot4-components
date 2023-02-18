@@ -23,3 +23,7 @@ These components are designed to be simple to use, ready to be dropped into a Go
 - [`MovementControlsLeftRight`](doc/MovementControlsLeftRight.md) - Applies left and right movement to a [`MovementVelocity`](MovementVelocity.md) component.
 - [`MovementControlsUpDown`](doc/MovementControlsUpDown.md) - Applies up and down movement to a [`MovementVelocity`](MovementVelocity.md) component.
 - [`MovementControlsFourWay`](doc/MovementControlsFourWay.md) - Applies directional four-way movement to a [`MovementVelocity`](doc/MovementVelocity.md) component.
+
+### Visual
+
+- [`VisualPlaceholder`](doc/VisualPlaceholder.md) - A visual placeholder component.
