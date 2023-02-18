@@ -29,7 +29,7 @@ signal autohealing_enabled(status: bool)
 ## Emitted when autohealing is about to begin.
 signal autohealing_counting_down(time_left: float)
 
-@export_node_path("StatHealth") var health_stat_node
+@export var health_stat_node:StatHealth
 
 ## Whether autohealing is enabled.  Initiate autohealing if enabled.
 @export var enabled := false:
@@ -60,12 +60,10 @@ signal autohealing_counting_down(time_left: float)
 # A timer to determine when autohealing occurs.
 @onready var __heal_timer := %HealTimer
 
-# The [StatHealth] node to operate on.
-@onready var __health:StatHealth = get_node(health_stat_node)
-
 func _ready() -> void:
+	if health_stat_node == null:
+		health_stat_node = get_parent() as StatHealth
 	assert(health_stat_node)
-	assert(__health)
 	
 	# Start the heal timer if the heal start timer times out.
 	__delay_timer.timeout.connect(func():
@@ -75,31 +73,31 @@ func _ready() -> void:
 	# Heal when the heal timer times out.
 	__heal_timer.timeout.connect(func():
 		if enabled:
-			__health.heal(autoheal_amount))
+			health_stat_node.heal(autoheal_amount))
 	
 	# Stop autohealing on damage, and start the autohealing timer.
-	__health.damaged.connect(func(_amount:float):
+	health_stat_node.damaged.connect(func(_amount:float):
 		__stop_autohealing()
 		__initiate_autohealing())
 
 	# Stop autohealing on death, and prevent further autohealing.
-	__health.died.connect(func():
+	health_stat_node.died.connect(func():
 		__stop_autohealing()
 		__prevent_autohealing())
 
 	# Stop autohealing when health is fully restored.
-	__health.healed_fully.connect(func():
+	health_stat_node.healed_fully.connect(func():
 		__stop_autohealing()
 		__prevent_autohealing())
 		
 	# Allow autohealing to resume if revived.
-	__health.revived.connect(func():
+	health_stat_node.revived.connect(func():
 		__initiate_autohealing())
 
 # Initiate the autohealing process timer.
 func __initiate_autohealing() -> void:
 	if not enabled: return
-	if __health.is_dead() or __health.is_maxed(): return
+	if health_stat_node.is_dead() or health_stat_node.is_maxed(): return
 	
 	__delay_timer.start(autoheal_delay)
 	
@@ -110,7 +108,7 @@ func __prevent_autohealing() -> void:
 # Start autohealing.
 func __start_autohealing() -> void:
 	if not enabled: return
-	if __health.is_dead(): return
+	if health_stat_node.is_dead(): return
 
 	__heal_timer.start(autoheal_rate)
 	autohealing_started.emit()

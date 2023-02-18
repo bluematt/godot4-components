@@ -18,7 +18,6 @@ unique_name_in_owner = true
 
 [node name="StatAutoHeal" parent="StatHealth" instance=ExtResource("3_qquyk")]
 unique_name_in_owner = true
-health_stat_node = NodePath("..")
 enabled = true
 autoheal_amount = 1.0
 autoheal_rate = 0.1

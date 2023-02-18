@@ -29,7 +29,7 @@ signal autorecovery_enabled(status: bool)
 ## Emitted when autorecovery is about to begin.
 signal autorecovery_counting_down(time_left: float)
 
-@export_node_path("Stat") var stat_node
+@export var stat_node:Stat
 
 ## Whether autorecovery is enabled.  Initiate autorecovery if enabled.
 @export var enabled := false:
@@ -60,12 +60,8 @@ signal autorecovery_counting_down(time_left: float)
 # A timer to determine when autorecovery occurs.
 @onready var __recovery_timer := %RecoveryTimer
 
-# The [Stat] node to operate on.
-@onready var __stat:Stat = get_node(stat_node)
-
 func _ready() -> void:
 	assert(stat_node)
-	assert(__stat)
 	
 	# Start the recovery timer when the delay timer times out.
 	__delay_timer.timeout.connect(func():
@@ -75,22 +71,22 @@ func _ready() -> void:
 	# Recover when the recovery timer times out.
 	__recovery_timer.timeout.connect(func():
 		if enabled:
-			__stat.recover(autorecover_amount))
+			stat_node.recover(autorecover_amount))
 			
 	# Stop autorecovery on expenditure, and restart the delay timer.
-	__stat.expended.connect(func(_amount:float):
+	stat_node.expended.connect(func(_amount:float):
 		__stop_autorecovery()
 		__initiate_autorecovery())
 		
 	# Stop autorecovery when the stat is fully restored.
-	__stat.recovered_fully.connect(func():
+	stat_node.recovered_fully.connect(func():
 		__stop_autorecovery()
 		__prevent_autorecovery())
 
 # Initiate the autorecovery process timer.
 func __initiate_autorecovery() -> void:
 	if not enabled: return
-	if __stat.is_maxed(): return
+	if stat_node.is_maxed(): return
 	
 	__delay_timer.start(autorecover_delay)
 	
@@ -101,7 +97,7 @@ func __prevent_autorecovery() -> void:
 # Start autorecovery.
 func __start_autorecovery() -> void:
 	if not enabled: return
-	if __stat.is_exhausted(): return
+	if stat_node.is_exhausted(): return
 
 	__recovery_timer.start(autorecover_rate)
 	autorecovery_started.emit()
