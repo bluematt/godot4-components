@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://q5owqku0xuyf"]
+
+[ext_resource type="Script" path="res://components/visual_placeholder.gd" id="1_eo8fd"]
+
+[node name="VisualPlaceholder" type="Node2D"]
+script = ExtResource("1_eo8fd")
