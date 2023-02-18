@@ -19,14 +19,15 @@ const __TRIGGER_LIMIT_AUTOHEAL_RATE := 0.0
 
 ## Emitted when autohealing starts.
 signal autohealing_started()
+
 ## Emitted when autohealing stops.
 signal autohealing_stopped()
+
 ## Emitted when autohealing is enabled or disabled.
 signal autohealing_enabled(status: bool)
+
 ## Emitted when autohealing is about to begin.
 signal autohealing_counting_down(time_left: float)
-
-@export_category("StatAutoHeal")
 
 @export_node_path("StatHealth") var health_stat_node
 

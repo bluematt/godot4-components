@@ -36,8 +36,6 @@ signal died()
 ## Emitted when aliveness has been restored.
 signal revived()
 
-@export_category("StatHealth")
-
 ## The maximum allowed health.
 @export var max_health := __DEFAULT_MAX_HEALTH
 
