@@ -20,14 +20,14 @@ signal state_entered(state:String)
 ## Emitted when a state is exited.
 signal state_exited(state:String)
 
-@export_category("SimpleStateMachine")
-
 ## The initial state.
-@export_placeholder("some_state") var initial_state:String
+@export_placeholder("e.g. idle") var initial_state:String
 
 ## Optional method prefix (e.g. [code]my_state_machine_[/code]) to help 
 ## separate methods.
-@export_placeholder("my_prefix_") var method_prefix:String = __DEFAULT_METHOD_PREFIX
+@export_placeholder("e.g. my_prefix_") var method_prefix:String = __DEFAULT_METHOD_PREFIX
+
+@export_group("Debugging")
 
 ## Enable debugging to warn about expected (but missing) methods.  [b]Note:[/b]
 ## enabling this can generate a [i]lot[/i] of warnings.

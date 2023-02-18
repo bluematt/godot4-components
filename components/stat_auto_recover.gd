@@ -29,8 +29,6 @@ signal autorecovery_enabled(status: bool)
 ## Emitted when autorecovery is about to begin.
 signal autorecovery_counting_down(time_left: float)
 
-@export_category("StatAutoRecover")
-
 @export_node_path("Stat") var stat_node
 
 ## Whether autorecovery is enabled.  Initiate autorecovery if enabled.

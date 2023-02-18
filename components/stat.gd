@@ -43,8 +43,6 @@ signal succeeded()
 ## stat available.
 signal failed(deficit: float)
 
-@export_category("Stat")
-
 ## The maximum allowed stat.
 @export var max_stat := __DEFAULT_MAX_STAT
 

@@ -14,6 +14,8 @@ const DEFAULT_ACTION_DOWN := "ui_down"
 ## The [MovementVelocity] to control.
 @export var velocity_node: MovementVelocity
 
+@export_group("Input actions", "input_action_")
+
 ## The input action to move up.
 @export var input_action_up:InputEventAction
 
