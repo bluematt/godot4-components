@@ -48,7 +48,9 @@ var direction := __NO_DIRECTION
 func _ready() -> void:
 	if null == character_node:
 		character_node = get_parent() as CharacterBody2D
-	assert(character_node)
+	assert(character_node, "No character_node:CharacterBody2D node " + 
+		"specified in %s. Select one, or reparent this component as a child " +
+		"of a CharacterBody2D node." % [get_path()])
 
 func _physics_process(_delta: float) -> void:
 	# Accelerate if we have somewhere to go.

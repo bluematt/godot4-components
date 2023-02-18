@@ -63,7 +63,9 @@ signal autohealing_counting_down(time_left: float)
 func _ready() -> void:
 	if health_stat_node == null:
 		health_stat_node = get_parent() as StatHealth
-	assert(health_stat_node)
+	assert(health_stat_node, "No health_stat_node:StatHealth component " + 
+		"specified in %s. Select one, or reparent this component as a child " +
+		"of a StatHealth component." % [get_path()])
 	
 	# Start the heal timer if the heal start timer times out.
 	__delay_timer.timeout.connect(func():
