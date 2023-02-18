@@ -61,7 +61,9 @@ signal autorecovery_counting_down(time_left: float)
 @onready var __recovery_timer := %RecoveryTimer
 
 func _ready() -> void:
-	assert(stat_node)
+	assert(stat_node, "No stat_node:Stat component specified in %s. Select " +
+		"one, or reparent this component as a child of a Stat component." 
+		% [get_path()])
 	
 	# Start the recovery timer when the delay timer times out.
 	__delay_timer.timeout.connect(func():
