@@ -6,15 +6,6 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatAutoHeal.md
 
-# The default autoheal amount.
-const __DEFAULT_AUTOHEAL_AMOUNT := 0.0
-
-# The default autoheal rate.
-const __DEFAULT_AUTOHEAL_RATE := 0.0
-
-# The default autoheal delay.
-const __DEFAULT_AUTOHEAL_DELAY := 0.0
-
 # The autoheal rate which triggers autohealing.
 const __TRIGGER_LIMIT_AUTOHEAL_RATE := 0.0
 
@@ -47,13 +38,13 @@ signal autohealing_counting_down(time_left: float)
 @export_group("Autohealing", "autoheal_")
 
 ## The amount of autohealing per `autoheal_rate` tick.
-@export var autoheal_amount := __DEFAULT_AUTOHEAL_AMOUNT
+@export var autoheal_amount := 0.0
 
 ## The rate of autohealing, in seconds.
-@export var autoheal_rate := __DEFAULT_AUTOHEAL_RATE
+@export var autoheal_rate := 0.0
 
 ## A delay before any autohealing, in seconds.
-@export var autoheal_delay := __DEFAULT_AUTOHEAL_DELAY
+@export var autoheal_delay := 0.0
 
 # A timer to determine when autohealing can start.
 @onready var __delay_timer := %DelayTimer

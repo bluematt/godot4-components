@@ -6,9 +6,6 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/Stat.md
 
-# The default maximum stat.
-const __DEFAULT_MAX_STAT := 100.0
-
 # The lowest the stat can be.
 const __LOWEST_LIMIT_STAT := 0.0
 
@@ -45,7 +42,7 @@ signal succeeded()
 signal failed(deficit: float)
 
 ## The maximum allowed stat.
-@export var max_stat := __DEFAULT_MAX_STAT
+@export var max_stat := 100.0
 
 ## The current stat.
 @onready var stat := max_stat:
