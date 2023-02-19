@@ -76,6 +76,11 @@ signal label_changed(new_label:String)
 		label_size = s
 		queue_redraw()
 		label_changed.emit(label_text)
+		
+func _init(_dimensions:=__DEFAULT_DIMENSIONS, _color:=__DEFAULT_COLOR, _label_text:=__DEFAULT_LABEL_TEXT) -> void:
+	dimensions = _dimensions
+	color = _color
+	label_text = _label_text
 
 func _draw() -> void:
 	## Determine the size of the placeholder.
