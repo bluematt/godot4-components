@@ -6,16 +6,16 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsFourWay.md
 
-# The default input action for up movement.
+## The default input action for up movement.
 const DEFAULT_ACTION_UP := "ui_up"
 
-# The default input action for down movement.
+## The default input action for down movement.
 const DEFAULT_ACTION_DOWN := "ui_down"
 
-# The default input action for left movement.
+## The default input action for left movement.
 const DEFAULT_ACTION_LEFT := "ui_left"
 
-# The default input action for right movement.
+## The default input action for right movement.
 const DEFAULT_ACTION_RIGHT := "ui_right"
 
 ## The [MovementVelocity] to control.

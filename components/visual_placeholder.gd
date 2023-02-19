@@ -16,18 +16,6 @@ const __HALF_FACTOR := 0.5
 # The luminance threshold used to determine contrast.
 const __LUMINANCE_THRESHOLD := 0.5
 
-# The default dimensions.
-const __DEFAULT_DIMENSIONS := Vector2(32.0, 32.0)
-
-# The default colour.
-const __DEFAULT_COLOR := Color.SLATE_GRAY
-
-# The default label text.
-const __DEFAULT_LABEL_TEXT := ""
-
-# The default label text size.
-const __DEFAULT_LABEL_SIZE := 16
-
 ## Emitted when the dimensions have changed.
 signal dimensions_changed(new_dimensions:Vector2)
 
@@ -41,14 +29,14 @@ signal texture_changed(new_texture:Texture)
 signal label_changed(new_label:String)
 
 ## The dimensions of the placeholder.
-@export var dimensions := __DEFAULT_DIMENSIONS:
+@export var dimensions := Vector2(64.0, 64.0):
 	set(s):
 		dimensions = s
 		queue_redraw()
 		dimensions_changed.emit(dimensions)
 
 ## The background color.
-@export_color_no_alpha var color := __DEFAULT_COLOR:
+@export_color_no_alpha var color := Color.SLATE_GRAY:
 	set(c):
 		color = c
 		queue_redraw()
@@ -65,14 +53,14 @@ signal label_changed(new_label:String)
 @export_group("Label", "label_")
 
 ## The label to display.
-@export_placeholder("e.g. player 1") var label_text := __DEFAULT_LABEL_TEXT:
+@export_placeholder("e.g. player 1") var label_text := "":
 	set(t):
 		label_text = t
 		queue_redraw()
 		label_changed.emit(label_text)
 
 ## The label text size.
-@export_range(8, 32, 1) var label_size := __DEFAULT_LABEL_SIZE:
+@export_range(8, 32, 1) var label_size := 16:
 	set(s):
 		label_size = s
 		queue_redraw()

@@ -7,25 +7,16 @@ extends Node
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/VisualLookAtCursor.md
 
 # The default smoothing.
-const __DEFAULT_SMOOTHING := 1.0
-
-# The default enabled.
-const __DEFAULT_ENABLED := true
-
-# The lower smoothing limit.
-const __SMOOTHING_LOWER_LIMIT := 0.0
-
-# The upper smoothing limit.
-const __SMOOTHING_UPPER_LIMIT := 1.0
+#const __DEFAULT_SMOOTHING := 1.0
 
 ## The node to rotate.
 @export var node:Node2D
 
 ## The smoothing to be applied to the rotation.
-@export_range(__SMOOTHING_LOWER_LIMIT, __SMOOTHING_UPPER_LIMIT) var smoothing := __DEFAULT_SMOOTHING
+@export_range(0.0, 1.0) var smoothing := 1.0
 
 ## Whether the component is enabled.
-@export var enabled := __DEFAULT_ENABLED
+@export var enabled := true
 
 ## The interpolated cursor position.
 var __cursor_position:Vector2

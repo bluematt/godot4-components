@@ -12,24 +12,15 @@ enum Loop {
 ## Represents no time at all, in seconds(!).
 const __NO_DURATION := 0.0
 
-# The default displacement.
-const __DEFAULT_DISPLACEMENT := Vector2.ZERO
-
-# The default duration, in seconds.
-const __DEFAULT_DURATION := 1.0
-
-# The default number of repeats.  0 = infinite
-const __DEFAULT_REPEATS := 0
-
 ## The node to bounce.
 @export var node:Node2D
 
 ## How long the bounce should take (in seconds).
 @export_range(0.0, 1_000_000, 0.01, "hide_slider", "suffix:s") var duration \
-	:= __DEFAULT_DURATION
+	:= 1.0
 
 ## How far to move the node.
-@export var displacement := __DEFAULT_DISPLACEMENT
+@export var displacement := Vector2.ZERO
 
 ## The transition type.
 @export var transition : Tween.TransitionType = Tween.TRANS_SINE
@@ -41,7 +32,7 @@ const __DEFAULT_REPEATS := 0
 @export var loop:Loop = Loop.FROM_START
 
 ## How many times to repeat.  0 means repeat infinitely
-@export_range(0, 1_000_000_000) var repeats := __DEFAULT_REPEATS
+@export_range(0, 1_000_000_000) var repeats := 0
 
 # The tween which controls the bounce.
 @onready var __tween := get_tree().create_tween()

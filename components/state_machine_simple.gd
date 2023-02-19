@@ -12,9 +12,6 @@ const __NO_DATA := null
 # No state.
 const __NO_STATE := ""
 
-# Default method prefix.
-const __DEFAULT_METHOD_PREFIX := ""
-
 ## Emitted when a state is entered.
 signal state_entered(state:String)
 
@@ -26,7 +23,7 @@ signal state_exited(state:String)
 
 ## Optional method prefix (e.g. [code]my_state_machine_[/code]) to help 
 ## separate methods.
-@export_placeholder("e.g. my_prefix_") var method_prefix:String = __DEFAULT_METHOD_PREFIX
+@export_placeholder("e.g. my_prefix_") var method_prefix:String = ""
 
 @export_group("Debugging")
 

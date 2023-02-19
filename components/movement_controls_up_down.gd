@@ -6,10 +6,10 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsUpDown.md
 
-# The default input action for up movement.
+## The default input action for up movement.
 const DEFAULT_ACTION_UP := "ui_up"
 
-# The default input action for down movement.
+## The default input action for down movement.
 const DEFAULT_ACTION_DOWN := "ui_down"
 
 ## The [MovementVelocity] to control.
