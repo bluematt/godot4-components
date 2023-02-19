@@ -9,6 +9,9 @@ extends Node
 # The default smoothing.
 const __DEFAULT_SMOOTHING := 1.0
 
+# The default enabled.
+const __DEFAULT_ENABLED := true
+
 # The lower smoothing limit.
 const __SMOOTHING_LOWER_LIMIT := 0.0
 
@@ -22,7 +25,7 @@ const __SMOOTHING_UPPER_LIMIT := 1.0
 @export_range(__SMOOTHING_LOWER_LIMIT, __SMOOTHING_UPPER_LIMIT) var smoothing := __DEFAULT_SMOOTHING
 
 ## Whether the component is enabled.
-@export var enabled := true
+@export var enabled := __DEFAULT_ENABLED
 
 ## The interpolated cursor position.
 var __cursor_position:Vector2
