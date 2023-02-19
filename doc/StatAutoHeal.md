@@ -1,4 +1,4 @@
-# `StatAutoHeal` component
+# <img src="../icons/stat_auto_heal.svg" width="48" height="48"> `StatAutoHeal` component
 
 Time-based automatic healing for a  [`StatHealth`](StatHealth.md) component.
 

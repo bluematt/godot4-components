@@ -1,4 +1,4 @@
-# `MovementVelocity` component
+# <img src="../icons/movement_velocity.svg" width="48" height="48"> `MovementVelocity` component
 
 Controls a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
 

@@ -1,4 +1,4 @@
-# `VisualLookAtCursor` component
+# <img src="../icons/visual_look_at_cursor.svg" width="48" height="48"> `VisualLookAtCursor` component
 
 Rotates a Node2D to "look" at the cursor.
 

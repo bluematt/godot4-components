@@ -1,4 +1,4 @@
-# `VisualPlaceholder` component
+# <img src="../icons/visual_placeholder.svg" width="48" height="48"> `VisualPlaceholder` component
 
 A visual placeholder component.
 

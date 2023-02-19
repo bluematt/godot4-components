@@ -1,4 +1,4 @@
-# `MovementControlsUpDown` component
+# <img src="../icons/movement_controls_up_down.svg" width="48" height="48"> `MovementControlsUpDown` component
 
 Applies up and down movement to a [`MovementVelocity`](MovementVelocity.md) component.
 

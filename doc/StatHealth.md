@@ -1,4 +1,4 @@
-# `StatHealth` component
+# <img src="../icons/stat_health.svg" width="48" height="48"> `StatHealth` component
 
 Health-like stat component.
 

@@ -1,4 +1,4 @@
-# `Stat` component
+# <img src="../icons/stat.svg" width="48" height="48"> `Stat` component
 
 Generic stat component.
 

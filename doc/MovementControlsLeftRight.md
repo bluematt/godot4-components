@@ -1,4 +1,4 @@
-# `MovementControlsLeftRight` component
+# <img src="../icons/movement_controls_left_right.svg" width="48" height="48"> `MovementControlsLeftRight` component
 
 Applies left and right movement to a [`MovementVelocity`](MovementVelocity.md) component.
 

@@ -1,4 +1,4 @@
-# `MovementControlsFourWay` component
+# <img src="../icons/movement_controls_four_way.svg" width="48" height="48"> `MovementControlsFourWay` component
 
 Applies directional four-way movement to a `MovementVelocity` component.
 

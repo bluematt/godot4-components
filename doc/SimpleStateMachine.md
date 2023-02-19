@@ -1,4 +1,4 @@
-# `SimpleStateMachine` component
+# <img src="../icons/state_machine_simple.svg" width="48" height="48"> `SimpleStateMachine` component
 
 A simple state machine implementation that uses ordinary, specifically-named methods to manage state.
 

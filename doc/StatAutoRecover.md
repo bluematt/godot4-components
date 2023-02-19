@@ -1,4 +1,4 @@
-# `StatAutoRecover` component
+# <img src="../icons/stat_auto_recover.svg" width="48" height="48"> `StatAutoRecover` component
 
 Time-based automatic recovery for a  [`Stat`](Stat.md) component.
 
