@@ -1,3 +1,4 @@
+@icon("res://icons/stat_auto_heal.svg")
 class_name StatAutoHeal
 extends Node
 

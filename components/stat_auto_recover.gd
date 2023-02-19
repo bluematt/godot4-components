@@ -1,3 +1,4 @@
+@icon("res://icons/stat_auto_recover.svg")
 class_name StatAutoRecover
 extends Node
 

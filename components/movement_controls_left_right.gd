@@ -1,3 +1,4 @@
+@icon("res://icons/movement_controls_left_right.svg")
 class_name MovementControlsLeftRight
 extends Node
 

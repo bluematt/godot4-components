@@ -1,3 +1,4 @@
+@icon("res://icons/movement_controls_four_way.svg")
 class_name MovementControlsFourWay
 extends Node
 
