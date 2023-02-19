@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dni17rgfnxpe6"]
+[gd_scene load_steps=3 format=3 uid="uid://dni17rgfnxpe6"]
 
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_q4h0t"]
-[ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://icon.svg" id="1_q7upl"]
 [ext_resource type="Script" path="res://examples/SimpleStateMachine.gd" id="3_4yy22"]
 
 [node name="SimpleStateMachineExample" type="Node2D"]
@@ -15,11 +14,6 @@ label_text = "WOOO!"
 script = ExtResource("3_4yy22")
 initial_state = "idle"
 method_prefix = "spr_rotate_"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(576, 324)
-texture = ExtResource("1_q7upl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
