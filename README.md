@@ -28,3 +28,7 @@ A collection of simple components that are designed to be easy to use, ready to 
 
 - [`VisualPlaceholder`](doc/VisualPlaceholder.md) - A visual placeholder component.
 - [`VisualLookAtCursor`](doc/VisualLookAtCursor.md) - Rotates a Node2D to "look" at the cursor.
+
+### Effects
+
+- [`EffectBounce`](doc/EffectBounce.md) - A simple bouncing effect.
