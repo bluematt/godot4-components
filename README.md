@@ -27,3 +27,4 @@ These components are designed to be simple to use, ready to be dropped into a Go
 ### Visual
 
 - [`VisualPlaceholder`](doc/VisualPlaceholder.md) - A visual placeholder component.
+- [`VisualLookAtCursor`](doc/VisualLookAtCursor.md) - Rotates a Node2D to "look" at the cursor.
