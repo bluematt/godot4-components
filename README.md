@@ -1,10 +1,10 @@
-# Simple components for Godot 4
+# Godot 4 Component Toolbox
 
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
 
-These components are designed to be simple to use, ready to be dropped into a Godot 4 project with minimal configuration, and "smart" or at least sensible defaults.
+A collection of simple components that are designed to be easy to use, ready to be dropped into a Godot 4 project with minimal configuration, and "smart" (or at least sensible) defaults.
 
-## Current components
+## The components
 
 ### State Machine
 
