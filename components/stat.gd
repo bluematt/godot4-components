@@ -1,3 +1,4 @@
+@icon("res://icons/stat.svg")
 class_name Stat
 extends Node
 

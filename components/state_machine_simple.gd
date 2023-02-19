@@ -1,3 +1,4 @@
+@icon("res://icons/state_machine_simple.svg")
 class_name SimpleStateMachine
 extends Node
 

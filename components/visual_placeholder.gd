@@ -1,4 +1,5 @@
 @tool
+@icon("res://icons/visual_placeholder.svg")
 class_name VisualPlaceholder
 extends Node2D
 

@@ -1,3 +1,4 @@
+@icon("res://icons/stat_health.svg")
 class_name StatHealth
 extends Node
 

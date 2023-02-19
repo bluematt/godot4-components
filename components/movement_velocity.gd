@@ -1,3 +1,4 @@
+@icon("res://icons/movement_velocity.svg")
 class_name MovementVelocity
 extends Node
 
