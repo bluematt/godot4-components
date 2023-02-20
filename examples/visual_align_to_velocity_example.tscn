@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdltx2i2x7t8j"]
+
+[ext_resource type="PackedScene" uid="uid://wd6jlpxfkijc" path="res://components/movement_velocity.tscn" id="2_fj0b4"]
+[ext_resource type="PackedScene" uid="uid://ciurp5y4uuium" path="res://components/visual_align_to_velocity.tscn" id="2_uj7gs"]
+[ext_resource type="PackedScene" uid="uid://c6urid0yvct1s" path="res://components/movement_controls_four_way.tscn" id="3_dhni3"]
+[ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="4_h0amt"]
+
+[node name="VisualAlignToVelocityExample" type="Node2D"]
+
+[node name="Ogre" type="CharacterBody2D" parent="."]
+position = Vector2(355, 334)
+
+[node name="VisualPlaceholder" parent="Ogre" instance=ExtResource("4_h0amt")]
+dimensions = Vector2(128, 128)
+color = Color(0.462745, 0.564706, 0.282353, 1)
+label_text = "ogre"
+
+[node name="MovementVelocity" parent="Ogre" instance=ExtResource("2_fj0b4")]
+acceleration_coefficient = 0.1
+deceleration_coefficient = 0.1
+
+[node name="MovementControlsFourWay" parent="Ogre/MovementVelocity" instance=ExtResource("3_dhni3")]
+
+[node name="VisualAlignToVelocity" parent="Ogre" node_paths=PackedStringArray("velocity_node") instance=ExtResource("2_uj7gs")]
+velocity_node = NodePath("../MovementVelocity")
+smoothing = 0.05
+
+[node name="Fairy" type="CharacterBody2D" parent="."]
+position = Vector2(798, 330)
+
+[node name="VisualPlaceholder" parent="Fairy" instance=ExtResource("4_h0amt")]
+color = Color(0.756863, 0.505882, 0.745098, 1)
+label_text = "fairy"
+
+[node name="MovementVelocity" parent="Fairy" instance=ExtResource("2_fj0b4")]
+acceleration_coefficient = 0.75
+deceleration_coefficient = 0.75
+
+[node name="MovementControlsFourWay" parent="Fairy/MovementVelocity" instance=ExtResource("3_dhni3")]
+
+[node name="VisualAlignToVelocity" parent="Fairy" node_paths=PackedStringArray("velocity_node") instance=ExtResource("2_uj7gs")]
+velocity_node = NodePath("../MovementVelocity")
+smoothing = 0.5
