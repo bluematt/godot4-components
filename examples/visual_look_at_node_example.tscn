@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://sipywta36o0p"]
+
+[ext_resource type="Script" path="res://components/visual_placeholder.gd" id="1_3kjoh"]
+[ext_resource type="PackedScene" uid="uid://ubutra0q1mw" path="res://components/effect_bounce.tscn" id="2_8b042"]
+[ext_resource type="PackedScene" uid="uid://bvcv6r1c0hn5h" path="res://components/visual_look_at_node.tscn" id="2_trk27"]
+
+[node name="VisualLookAtNodeExample" type="Node2D"]
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(166, 108)
+script = ExtResource("1_3kjoh")
+dimensions = Vector2(128, 128)
+color = Color(0.564706, 0.278431, 0.160784, 1)
+label_text = "target"
+
+[node name="EffectBounce" parent="Target" instance=ExtResource("2_8b042")]
+displacement = Vector2(800, 0)
+easing = 2
+loop = 1
+
+[node name="FollowerInstant" type="Node2D" parent="."]
+position = Vector2(482, 548)
+rotation = -1.5708
+
+[node name="VisualPlaceholder" type="Node2D" parent="FollowerInstant"]
+rotation = 1.5708
+script = ExtResource("1_3kjoh")
+dimensions = Vector2(32, 128)
+color = Color(0.403922, 0.564706, 0.313726, 1)
+label_text = "instant"
+
+[node name="VisualLookAtNode" parent="FollowerInstant" node_paths=PackedStringArray("target_node") instance=ExtResource("2_trk27")]
+target_node = NodePath("../../Target")
+
+[node name="FollowerInterpolated" type="Node2D" parent="."]
+position = Vector2(668, 546)
+rotation = -1.5708
+
+[node name="VisualPlaceholder" type="Node2D" parent="FollowerInterpolated"]
+rotation = 1.5708
+script = ExtResource("1_3kjoh")
+dimensions = Vector2(32, 128)
+color = Color(0.188235, 0.498039, 0.564706, 1)
+label_text = "smoothed"
+
+[node name="VisualLookAtNode" parent="FollowerInterpolated" node_paths=PackedStringArray("target_node") instance=ExtResource("2_trk27")]
+target_node = NodePath("../../Target")
+smoothing = 0.01
