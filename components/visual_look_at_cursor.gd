@@ -6,9 +6,6 @@ extends Node
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/VisualLookAtCursor.md
 
-# The default smoothing.
-#const __DEFAULT_SMOOTHING := 1.0
-
 ## The node to rotate.
 @export var node:Node2D
 
