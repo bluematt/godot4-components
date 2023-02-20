@@ -16,6 +16,18 @@ const __HALF_FACTOR := 0.5
 # The luminance threshold used to determine contrast.
 const __LUMINANCE_THRESHOLD := 0.5
 
+# The colour of the label text.
+const __LABEL_COLOR_TEXT := Color.WHITE
+
+# The colour of the label text outline.
+const __LABEL_COLOR_OUTLINE := Color.BLACK
+
+# The maximum number of lines in the label.
+const __LABEL_LINES_MAX := 2
+
+# The thickness of the label outline.
+const __LABEL_WIDTH_OUTLINE := 4
+
 ## Emitted when the dimensions have changed.
 signal dimensions_changed(new_dimensions:Vector2)
 
@@ -100,7 +112,13 @@ func _draw() -> void:
 		var text_width := maxf(__MINIMUM_LABEL_WIDTH, bounds_rect.size.x)
 		var text_pos := Vector2.ZERO
 		text_pos.x -= text_width * __HALF_FACTOR
-		text_pos.y += default_font.get_ascent(font_size) * __HALF_FACTOR - default_font.get_descent(font_size) * __HALF_FACTOR
+		text_pos.y += default_font.get_ascent(font_size) * __HALF_FACTOR - \
+			default_font.get_descent(font_size) * __HALF_FACTOR
 		
-		draw_multiline_string_outline(default_font, text_pos, label_text, HORIZONTAL_ALIGNMENT_CENTER, text_width, font_size, 2, 4, Color.BLACK)
-		draw_multiline_string(default_font, text_pos, label_text, HORIZONTAL_ALIGNMENT_CENTER, text_width, font_size, 10, Color.WHITE)
+		draw_multiline_string_outline(default_font, text_pos, label_text, 
+			HORIZONTAL_ALIGNMENT_CENTER, text_width, font_size, 
+			__LABEL_LINES_MAX, __LABEL_WIDTH_OUTLINE, __LABEL_COLOR_OUTLINE)
+		draw_multiline_string(default_font, text_pos, label_text, 
+			HORIZONTAL_ALIGNMENT_CENTER, text_width, font_size, 
+			__LABEL_LINES_MAX, __LABEL_COLOR_TEXT)
+
