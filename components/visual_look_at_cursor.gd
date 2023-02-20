@@ -15,7 +15,7 @@ extends Node
 ## Whether the component is enabled.
 @export var enabled := true
 
-## The interpolated cursor position.
+# The interpolated cursor position.
 var __cursor_position:Vector2
 
 func _ready() -> void:
