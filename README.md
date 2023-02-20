@@ -33,6 +33,7 @@ While efforts has been made to make components robust and performant enough for 
 - [`VisualPlaceholder`](doc/VisualPlaceholder.md) - A visual placeholder component.
 - [`VisualLookAtCursor`](doc/VisualLookAtCursor.md) - Rotates a Node2D to "look" at the cursor.
 - [`VisualLookAtNode`](doc/VisualLookAtNode.md) - Rotates a Node2D to "look" at another Node2D.
+- [`VisualAlignToVelocity`](doc/`VisualAlignToVelocity.md) - Align a node to a [`MovementVelocity`](MovementVelocity.md) component.
 
 ### Effects
 
