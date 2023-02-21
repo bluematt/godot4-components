@@ -38,6 +38,8 @@ While efforts has been made to make components robust and performant enough for 
 ### Effects
 
 - [`EffectBounce`](doc/EffectBounce.md) - A simple bouncing effect.
+- [`EffectFlash`](doc/EffectFlash.md) - A simple flash effect.
+- [`EffectFlashOnHit`](doc/EffectFlashOnHit.md) - A simple flash-on-hit effect for use with a [`InteractHurtbox`](doc/InteractHurtbox.md).
 
 ### Interactions
 
