@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://pt6rl8d2beu3"]
+[gd_scene load_steps=11 format=3 uid="uid://fd1tdgiir52w"]
 
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_1eowi"]
 [ext_resource type="PackedScene" uid="uid://b8440pdd1e8cf" path="res://components/interact_hurtbox.tscn" id="2_mwlxd"]
+[ext_resource type="PackedScene" uid="uid://bmpr7hqqx6j1k" path="res://components/effect_flash_on_hit.tscn" id="5_t02w5"]
 [ext_resource type="PackedScene" uid="uid://00ojm0dql7dm" path="res://components/stat_health.tscn" id="5_ymfum"]
 [ext_resource type="PackedScene" uid="uid://c6urid0yvct1s" path="res://components/movement_controls_four_way.tscn" id="6_leanc"]
 [ext_resource type="PackedScene" uid="uid://s0qhatxbneng" path="res://components/interact_hitbox.tscn" id="6_t8m3d"]
@@ -14,15 +15,13 @@ size = Vector2(128, 128)
 script/source = "extends CharacterBody2D
 
 func _on_stat_health_damaged(amount: float) -> void:
-	print(\"I was hit for %s damage!\" % amount)
-	modulate = Color.RED
-	var tween := get_tree().create_tween()
-	tween.tween_property(self, \"modulate\", Color.WHITE, 0.1)
+	if amount > 0.0:
+		print(\"I was hit for %s damage!\" % amount)
+	else:
+		print(\"I was hit!\")
 
 func _on_stat_health_died() -> void:
 	print(\"I'm dead! Argh...\")
-	var tween := get_tree().create_tween()
-	tween.tween_property(self, \"modulate\", Color.DARK_RED, 0.3)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogcit"]
@@ -61,6 +60,9 @@ health_stat_node = NodePath("../StatHealth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/InteractHurtbox"]
 shape = SubResource("RectangleShape2D_ogcit")
+
+[node name="EffectFlashOnHit" parent="Character/InteractHurtbox" node_paths=PackedStringArray("target_node") instance=ExtResource("5_t02w5")]
+target_node = NodePath("../..")
 
 [node name="MovementVelocity" parent="Character" instance=ExtResource("7_ch0sa")]
 max_speed = 200.0

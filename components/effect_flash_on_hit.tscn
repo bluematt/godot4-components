@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmpr7hqqx6j1k"]
+
+[ext_resource type="Script" path="res://components/effect_flash_on_hit.gd" id="1_rfjg0"]
+
+[node name="EffectFlashOnHit" type="Node"]
+script = ExtResource("1_rfjg0")

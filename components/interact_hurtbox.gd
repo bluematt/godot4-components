@@ -8,6 +8,8 @@ extends Area2D
 ## The [StatHealth] to manipulate.
 @export var health_stat_node:StatHealth
 
+signal damaged(amount: float)
+
 func _ready() -> void:
 	if health_stat_node == null:
 		health_stat_node = get_parent() as StatHealth
@@ -17,3 +19,4 @@ func _ready() -> void:
 
 func damage(amount: float) -> void:
 	health_stat_node.damage(amount)
+	damaged.emit(amount)
