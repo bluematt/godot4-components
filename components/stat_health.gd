@@ -73,7 +73,7 @@ func damage(amount: float) -> void:
 		health = __LOWEST_LIMIT_HEALTH
 
 	damaged_raw.emit(amount)
-	damaged.emit(health - old_heath)
+	damaged.emit(old_heath - health)
 	changed.emit(health)
 		
 	if is_dead():
