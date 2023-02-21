@@ -10,7 +10,7 @@ While efforts has been made to make components robust and performant enough for 
 
 ## The components
 
-### State Machine
+### State Management
 
 - [`SimpleStateMachine`](doc/SimpleStateMachine.md) - A simple state machine implementation that uses ordinary, specifically-named methods to manage state.
 
@@ -38,3 +38,8 @@ While efforts has been made to make components robust and performant enough for 
 ### Effects
 
 - [`EffectBounce`](doc/EffectBounce.md) - A simple bouncing effect.
+
+### Interactions
+
+- [`InteractHitbox`](doc/InteractHitbox.md) - A simple hitbox component.
+- [`InteractHurtbox`](doc/InteractHurtbox.md) - A simple hurtbox component.
