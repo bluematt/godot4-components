@@ -28,41 +28,26 @@ None.
 
 ### Enumerations
 
-- `Loop { FROM_START, PING_PONG, OFF }` 
-  Looping types.
+- `Loop { FROM_START, PING_PONG, OFF }` - Looping types.
 
 ### Signals
 
-- `started()`
-	Emitted when the bounce has started.
-- `stopped()`
-	Emitted when the bounce has stopped.
+- `started()` - Emitted when the bounce has started.
+- `stopped() - Emitted when the bounce has stopped.
 
 ### Properties
 
-- `node: Node2D` †
-	The node to bounce.
-- `duration: float = 1.0`
-	How long the bounce should take (in seconds).
-- `displacement: Vector2 = Vector2.ZERO`
-	How far to move the node.
-- `transition: Tween.TransitionType = Tween.TRANS_SINE`
-	The transition type.
-- `easing: Tween.EaseType = Tween.EASE_IN`
-	The easing type.
-- `loop: Loop { FROM_START, PING_PONG, OFF } = Loop.FROM_START`
-	How to loop the bounce.
-- `repeats: int = 0`
-	How many times to repeat.  0 means repeat infinitely.
-- `enabled: bool = true`
-	Whether the bounce effect is enabled.
+- `node: Node2D` - The node to bounce.
+- `duration: float = 1.0` - How long the bounce should take (in seconds).
+- `displacement: Vector2 = Vector2.ZERO` - How far to move the node.
+- `transition: Tween.TransitionType = Tween.TRANS_SINE` - The transition type.
+- `easing: Tween.EaseType = Tween.EASE_IN` - The easing type.
+- `loop: Loop { FROM_START, PING_PONG, OFF } = Loop.FROM_START` - How to loop the bounce.
+- `repeats: int = 0` - How many times to repeat.  0 means repeat infinitely.
+- `enabled: bool = true` - Whether the bounce effect is enabled.
 
 ### Method
 
-- `play()` 
-	Play the bounce animation.
-- `stop()` 
-	Stop the bounce animation.
+- `play()`  - Play the bounce animation.
+- `stop()`  - Stop the bounce animation.
 
-## Notes
-† Required.
