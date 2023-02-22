@@ -1,10 +1,10 @@
-@icon("res://icons/stat_auto_recover.svg")
-class_name StatAutoRecover
+@icon("./stat_auto_recover.svg")
+class_name BCStatAutoRecover
 extends Node
 
-## A node to automatically recover a [Stat] node.
+## Give a [StatComponent] the ability to autorecover over time.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatAutoRecover.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/stat_auto_recover.md
 
 # The autorecover rate which triggers autorecovery.
 const __TRIGGER_LIMIT_AUTORECOVER_RATE := 0.0
@@ -16,12 +16,13 @@ signal autorecovery_started()
 signal autorecovery_stopped()
 
 ## Emitted when autorecovery is enabled or disabled.
-signal autorecovery_enabled(status: bool)
+signal autorecovery_enabled(status : bool)
 
-## Emitted when autorecovery is about to begin.
-signal autorecovery_counting_down(time_left: float)
+## Emitted while autorecovery is waiting to start.
+signal autorecovery_counting_down(time_left : float)
 
-@export var stat_node:Stat
+## The [BCStatComponent] to autorecover.
+@export var stat_node:BCStatComponent
 
 ## Whether autorecovery is enabled.  Initiate autorecovery if enabled.
 @export var enabled := false:
@@ -40,10 +41,10 @@ signal autorecovery_counting_down(time_left: float)
 ## The amount of autorecovery per autorecover_rate` tick.
 @export var autorecover_amount := 0.0
 
-## The rate of autorecovery, in seconds.
+## The rate of autorecovery (in seconds).
 @export var autorecover_rate := 0.0
 
-## A delay before any autorecovery, in seconds.
+## The delay before autorecovery starts (in seconds).
 @export var autorecover_delay := 0.0
 
 # A timer to determine when autorecovery can start.
@@ -104,5 +105,19 @@ func __stop_autorecovery() -> void:
 # Update the amount of time remaining on the delay timer.
 func _process(_delta: float) -> void:
 	if not __delay_timer.is_stopped():
-		autorecovery_counting_down.emit(__delay_timer.time_left)
+		autorecovery_counting_down.emit(get_delay_time_remaining())
 
+## Enable autorecovery.
+func enable() -> void:
+	enabled = true
+
+## Disable autorecovery.
+func disable() -> void:
+	enabled = false
+
+## Return the amount of time left before autohealing commences (in seconds).
+func get_delay_time_remaining() -> float:
+	if not __delay_timer.is_stopped():
+		return __delay_timer.time_left
+
+	return 0.0
