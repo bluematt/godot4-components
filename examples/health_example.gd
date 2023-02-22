@@ -1,7 +1,7 @@
 extends Control
 
-@onready var health := %StatHealth as StatHealth
-@onready var autoheal := %StatAutoHeal as StatAutoHeal
+@onready var health := %HealthComponent as BCHealthComponent
+@onready var autoheal := %AutoHealComponent as BCAutoHealComponent
 
 func _ready() -> void:
 	_update_status()
@@ -20,30 +20,30 @@ func _on_heal_all_button_pressed() -> void:
 
 func _on_revive_50_percent_pressed() -> void:
 	health.revive(health.max_health * 0.5)
-
-func _on_stat_health_changed(_value: float) -> void:
+	
+func _on_health_component_changed(value : float) -> void:
 	_update_status()
-
-func _on_stat_health_died() -> void:
+	
+func _on_health_component_died() -> void:
 	%StatusLabel.text = "Status: DEAD!"
 
-func _on_check_box_toggled(button_pressed: bool) -> void:
+func _on_check_box_toggled(button_pressed : bool) -> void:
 	autoheal.enabled = button_pressed
 
-func _on_stat_health_revived() -> void:
+func _on_health_component_revived() -> void:
 	%StatusLabel.text = "Status: ALIVE AGAIN!"
 
-func _on_stat_auto_heal_autohealing_counting_down(time_left) -> void:
+func _on_auto_heal_component_autoheal_counting_down(time_left : float) -> void:
 	%DelayRemaining.max_value = autoheal.autoheal_delay
 	%DelayRemaining.value = time_left
 
-func _on_stat_auto_heal_autohealing_started() -> void:
+func _on_auto_heal_component_autoheal_started() -> void:
 	%HealthProgress.modulate = Color.GREEN
-
-func _on_stat_auto_heal_autohealing_stopped() -> void:
+	
+func _on_auto_heal_component_autoheal_stopped() -> void:
 	%HealthProgress.modulate = Color.WHITE
 
-func _on_stat_auto_heal_autohealing_enabled(status) -> void:
+func _on_auto_heal_component_autoheal_enabled(status : bool) -> void:
 	%AutohealCheckbox.button_pressed = status
 
 func _update_status() -> void:
@@ -57,3 +57,17 @@ func _update_status() -> void:
 	%RateLabel.text = "Rate: %s/%s s" % [autoheal.autoheal_amount, autoheal.autoheal_rate]
 	%DelayLabel.text = "Delay: %s s" % [autoheal.autoheal_delay]
 	%AutohealCheckbox.button_pressed = autoheal.enabled
+
+
+
+
+
+
+
+
+
+
+
+
+
+

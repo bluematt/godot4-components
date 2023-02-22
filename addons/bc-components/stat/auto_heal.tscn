@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dchpolls7pytd"]
+[gd_scene load_steps=2 format=3 uid="uid://sdfw383payn7"]
 
-[ext_resource type="Script" path="res://components/stat_auto_heal.gd" id="1_ac72s"]
+[ext_resource type="Script" path="res://addons/bc-components/stat/auto_heal.gd" id="1_ac72s"]
 
-[node name="StatAutoHeal" type="Node"]
+[node name="AutoHealComponent" type="Node"]
 script = ExtResource("1_ac72s")
 
 [node name="DelayTimer" type="Timer" parent="."]

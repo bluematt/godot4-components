@@ -33,4 +33,4 @@ Internally it uses a `Tween` to control the flash, modulating the `node` between
 
 ### Related components
 
-[`FlashOnHitComponent`](flash_on_hit.md) - Add a flash effect to a `Node2D`, triggered by a collision of a [`HurtboxComponent`](hurtbox.md) with a [`HitboxComponent`](hitbox.md).
+- [`FlashOnHitComponent`](flash_on_hit.md) - Add a flash effect to a `Node2D`, triggered by a collision of a [`HurtboxComponent`](hurtbox.md) with a [`HitboxComponent`](hitbox.md).

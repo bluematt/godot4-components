@@ -115,7 +115,7 @@ func enable() -> void:
 func disable() -> void:
 	enabled = false
 
-## Return the amount of time left before autohealing commences (in seconds).
+## Return the amount of time left before autorecovery commences (in seconds).
 func get_delay_time_remaining() -> float:
 	if not __delay_timer.is_stopped():
 		return __delay_timer.time_left

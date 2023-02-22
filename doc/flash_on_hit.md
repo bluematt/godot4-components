@@ -34,6 +34,6 @@ Internally it uses a `Tween` to control the flash, modulating the `node` between
 
 ### Related components
 
-[`FlashComponent`](flash.md) - Add a flash effect to a `Node2D`.
+- [`FlashComponent`](flash.md) - Add a flash effect to a `Node2D`.
 
-[`HurtboxComponent`](hurtbox.md).
+- [`HurtboxComponent`](hurtbox.md).

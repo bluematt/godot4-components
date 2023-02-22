@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://o3c76la4qkay"]
+[gd_scene load_steps=4 format=3 uid="uid://b5ovn8j7aukcl"]
 
-[ext_resource type="PackedScene" uid="uid://00ojm0dql7dm" path="res://components/stat_health.tscn" id="1_7csi2"]
-[ext_resource type="Script" path="res://examples/stat_health_example.gd" id="1_tjnr4"]
-[ext_resource type="PackedScene" uid="uid://dchpolls7pytd" path="res://components/stat_auto_heal.tscn" id="3_qquyk"]
+[ext_resource type="PackedScene" uid="uid://dgxh4tpir6c5e" path="res://addons/bc-components/stat/health.tscn" id="1_7csi2"]
+[ext_resource type="Script" path="res://examples/health_example.gd" id="1_tjnr4"]
+[ext_resource type="PackedScene" uid="uid://sdfw383payn7" path="res://addons/bc-components/stat/auto_heal.tscn" id="3_qquyk"]
 
-[node name="StatHealthExample" type="Control"]
+[node name="HealthExample" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,10 +13,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tjnr4")
 
-[node name="StatHealth" parent="." instance=ExtResource("1_7csi2")]
+[node name="HealthComponent" parent="." instance=ExtResource("1_7csi2")]
 unique_name_in_owner = true
 
-[node name="StatAutoHeal" parent="StatHealth" instance=ExtResource("3_qquyk")]
+[node name="AutoHealComponent" parent="HealthComponent" instance=ExtResource("3_qquyk")]
 unique_name_in_owner = true
 enabled = true
 autoheal_amount = 1.0
@@ -117,13 +117,13 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Autoheal?"
 
-[connection signal="changed" from="StatHealth" to="." method="_on_stat_health_changed"]
-[connection signal="died" from="StatHealth" to="." method="_on_stat_health_died"]
-[connection signal="revived" from="StatHealth" to="." method="_on_stat_health_revived"]
-[connection signal="autohealing_counting_down" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_counting_down"]
-[connection signal="autohealing_enabled" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_enabled"]
-[connection signal="autohealing_started" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_started"]
-[connection signal="autohealing_stopped" from="StatHealth/StatAutoHeal" to="." method="_on_stat_auto_heal_autohealing_stopped"]
+[connection signal="changed" from="HealthComponent" to="." method="_on_health_component_changed"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="revived" from="HealthComponent" to="." method="_on_health_component_revived"]
+[connection signal="autoheal_counting_down" from="HealthComponent/AutoHealComponent" to="." method="_on_auto_heal_component_autoheal_counting_down"]
+[connection signal="autoheal_enabled" from="HealthComponent/AutoHealComponent" to="." method="_on_auto_heal_component_autoheal_enabled"]
+[connection signal="autoheal_started" from="HealthComponent/AutoHealComponent" to="." method="_on_auto_heal_component_autoheal_started"]
+[connection signal="autoheal_stopped" from="HealthComponent/AutoHealComponent" to="." method="_on_auto_heal_component_autoheal_stopped"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Damage10Button" to="." method="_on_damage_10_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Damage25Button" to="." method="_on_damage_25_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonBox/Heal10Button" to="." method="_on_heal_10_button_pressed"]

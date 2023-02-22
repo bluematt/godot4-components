@@ -6,10 +6,10 @@
 
 ## Stats
 
-- [`StatHealth`](StatHealth.md) - Health-like stat component.
-- [`StatAutoHeal`](StatAutoHeal.md) - Time-based automatic healing for a  [`StatHealth`](StatHealth.md) component.
 - <img src="../addons/bc-components/stat/stat.svg" width="20" height="20"> [`StatComponent`](stat.md) - Keep track of an arbitrary numerical statistic (stat).
 - <img src="../addons/bc-components/stat/auto_recover.svg" width="20" height="20"> [`AutoRecoverComponent`](auto_recover.md) - Give a `StatComponent` the ability to autorecover over time..
+- <img src="../addons/bc-components/stat/health.svg" width="20" height="20"> [`HealthComponent`](health.md) - Keep track of a health-like numerical statistic (stat)..
+- <img src="../addons/bc-components/stat/auto_heal.svg" width="20" height="20"> [`AutoHealComponent`](auto_heal.md) - Give a `HealthComponent` the ability to autoheal over time.
 
 ## Movement
 

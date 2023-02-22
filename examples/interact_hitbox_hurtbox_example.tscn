@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://djw0tkd5xcdva"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_1eowi"]
 [ext_resource type="PackedScene" uid="uid://b8440pdd1e8cf" path="res://components/interact_hurtbox.tscn" id="2_mwlxd"]
 [ext_resource type="PackedScene" uid="uid://cub2wjbssfmq6" path="res://addons/bc-components/effect/flash_on_hit.tscn" id="5_t02w5"]
-[ext_resource type="PackedScene" uid="uid://00ojm0dql7dm" path="res://components/stat_health.tscn" id="5_ymfum"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/stat/health.tscn" id="5_ymfum"]
 [ext_resource type="PackedScene" uid="uid://c6urid0yvct1s" path="res://components/movement_controls_four_way.tscn" id="6_leanc"]
 [ext_resource type="PackedScene" uid="uid://s0qhatxbneng" path="res://components/interact_hitbox.tscn" id="6_t8m3d"]
 [ext_resource type="PackedScene" uid="uid://wd6jlpxfkijc" path="res://components/movement_velocity.tscn" id="7_ch0sa"]
