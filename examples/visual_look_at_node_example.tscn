@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://sipywta36o0p"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://components/visual_placeholder.gd" id="1_3kjoh"]
-[ext_resource type="PackedScene" uid="uid://ubutra0q1mw" path="res://components/effect_bounce.tscn" id="2_8b042"]
+[ext_resource type="PackedScene" uid="uid://yka43ecmrqn6" path="res://addons/bc-components/effect/bounce.tscn" id="2_8b042"]
 [ext_resource type="PackedScene" uid="uid://bvcv6r1c0hn5h" path="res://components/visual_look_at_node.tscn" id="2_trk27"]
 
 [node name="VisualLookAtNodeExample" type="Node2D"]

@@ -1,12 +1,21 @@
-@icon("res://icons/effect_bounce.svg")
-class_name EffectBounce
+@icon("./bounce.svg")
+class_name BCBounceComponent
 extends Node
 
-## Allowed looping types.
+## Add a bouncing effect to a `Node2D`.
+##
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/bounce.md
+
+## Emitted when the bounce has started.
+signal started()
+## Emitted when the bounce has stopped.
+signal stopped()
+
+## Looping types.
 enum Loop {
-	FROM_START, # 
-	PING_PONG,
-	OFF,
+	FROM_START, # repeat from the start on a loop
+	PING_PONG,  # repeat back and forth
+	OFF,        # do not repeat
 }
 
 ## Represents no time at all, in seconds(!).
@@ -31,7 +40,7 @@ const __NO_DURATION := 0.0
 ## How to loop the bounce.
 @export var loop:Loop = Loop.FROM_START
 
-## How many times to repeat.  0 means repeat infinitely
+## How many times to repeat.  0 means repeat infinitely.
 @export_range(0, 1_000_000_000) var repeats := 0
 
 # The tween which controls the bounce.
@@ -65,6 +74,8 @@ func play() -> void:
 	__tween.set_loops(repeats)
 	__tween.set_ease(easing)
 
+	started.emit()
+
 	__tween.tween_property(node, "position", target_position, duration)
 	match loop:
 		Loop.FROM_START:
@@ -77,4 +88,5 @@ func play() -> void:
 ## Stop the bounce animation.
 func stop() -> void:
 	__tween.stop()
+	stopped.emit()
 	

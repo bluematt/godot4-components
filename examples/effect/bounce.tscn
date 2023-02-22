@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://7hbct8m2mjpf"]
 
 [ext_resource type="Script" path="res://components/visual_placeholder.gd" id="1_ndgfl"]
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_nm4x8"]
-[ext_resource type="PackedScene" path="res://components/effect_bounce.tscn" id="2_8dmuh"]
+[ext_resource type="PackedScene" uid="uid://dp8gl53tbxsbw" path="res://addons/bc-components/effect/bounce.tscn" id="2_8dmuh"]
 
-[node name="EffectBounceExample" type="Node2D"]
+[node name="BounceExample" type="Node2D"]
 
-[node name="Wall" parent="." instance=ExtResource("1_nm4x8")]
+[node name="BobbingGhost" type="Node2D" parent="."]
+
+[node name="Wall" parent="BobbingGhost" instance=ExtResource("1_nm4x8")]
 position = Vector2(210, 372)
 dimensions = Vector2(256, 64)
 color = Color(0.180392, 0.160784, 0.270588, 1)
 label_text = "wall"
 
-[node name="Ghost" type="Node2D" parent="."]
+[node name="Ghost" type="Node2D" parent="BobbingGhost"]
 modulate = Color(1, 1, 1, 0.5)
 position = Vector2(203, 302.675)
 script = ExtResource("1_ndgfl")
@@ -20,43 +22,47 @@ dimensions = Vector2(96, 128)
 color = Color(0.709804, 0.811765, 0.913725, 1)
 label_text = "bobbing ghost"
 
-[node name="EffectBounce" parent="Ghost" instance=ExtResource("2_8dmuh")]
+[node name="BounceComponent" parent="BobbingGhost/Ghost" instance=ExtResource("2_8dmuh")]
+displacement = Vector2(0, 20)
 easing = 2
 loop = 1
 
-[node name="Floor" parent="." instance=ExtResource("1_nm4x8")]
+[node name="BouncingBlock" type="Node2D" parent="."]
+
+[node name="Floor" parent="BouncingBlock" instance=ExtResource("1_nm4x8")]
 position = Vector2(535, 524)
 dimensions = Vector2(256, 64)
 color = Color(0.180392, 0.160784, 0.270588, 1)
 label_text = "floor"
 
-[node name="Ball" type="Node2D" parent="."]
+[node name="Block" type="Node2D" parent="BouncingBlock"]
 position = Vector2(542, 172)
 script = ExtResource("1_ndgfl")
 dimensions = Vector2(128, 128)
 color = Color(0.564706, 0.172549, 0.176471, 1)
-label_text = "bouncing ball"
+label_text = "bouncing block"
 
-[node name="EffectBounce" parent="Ball" instance=ExtResource("2_8dmuh")]
+[node name="BounceComponent" parent="BouncingBlock/Block" instance=ExtResource("2_8dmuh")]
 displacement = Vector2(0, 256)
 transition = 9
 easing = 1
 
 [node name="Hacksaw" type="Node2D" parent="."]
-position = Vector2(840.717, 314)
+
+[node name="Hacksaw" type="Node2D" parent="Hacksaw"]
+position = Vector2(807, 314)
 script = ExtResource("1_ndgfl")
 dimensions = Vector2(128, 64)
 color = Color(0.243137, 0.278431, 0.313726, 1)
 label_text = "hacksaw"
 
-[node name="EffectBounce" parent="Hacksaw" instance=ExtResource("2_8dmuh")]
+[node name="BounceComponent" parent="Hacksaw/Hacksaw" instance=ExtResource("2_8dmuh")]
 displacement = Vector2(128, 0)
 transition = 2
 easing = 2
 loop = 1
 
-[node name="Log" parent="." instance=ExtResource("1_nm4x8")]
+[node name="Log" parent="Hacksaw" instance=ExtResource("1_nm4x8")]
 position = Vector2(871, 358)
-dimensions = Vector2(64, 64)
 color = Color(0.298039, 0.207843, 0.145098, 1)
 label_text = "log"
