@@ -1,14 +1,30 @@
-class_name EffectFlashOnHit
+class_name BCFlashOnHitComponent
 extends Node
 
-@export var target_node:Node2D
-@export var hurtbox_node:Node2D
-@export var fade_duration := 0.5
+## Add a flash effect to a [Node2D], triggered by a collision with a [BCHurtboxComponent].
+##
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/flash.md
+
+## The node to flash.
+@export var target_node : Node2D
+
+## The [BCHurtboxComponent] which notifies when to flash.
+@export var hurtbox_node : Node2D
+
+## The duration of the flash (in seconds).
+@export var flash_duration := 0.2
+
+## The node's default color modulation.
 @export var default_modulation := Color.WHITE
+
+## The node's flash color modulation.
 @export var flash_modulation := Color.RED
+
+## The saturation multiplier for the flash color.
 @export var saturation := 1.0
 
-@onready var __flash:EffectFlash
+## The [BCFlashComponent] component used to flash the [member target_node].
+@onready var __flash:BCFlashComponent
 
 func _ready() -> void:
 	if target_node == null:
@@ -22,10 +38,10 @@ func _ready() -> void:
 	assert(hurtbox_node, ("No hurtbox_node:InteractHurtbox component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a InteractHurtbox component.") % [str(get_path())])
-		
-	__flash = EffectFlash.new()
+
+	__flash = BCFlashComponent.new()
 	__flash.target_node = target_node
-	__flash.fade_duration = fade_duration
+	__flash.flash_duration = flash_duration
 	__flash.default_modulation = default_modulation
 	__flash.flash_modulation = flash_modulation
 	__flash.saturation = saturation
@@ -34,8 +50,3 @@ func _ready() -> void:
 
 	hurtbox_node.damaged.connect(func(_damage: float):
 		__flash.flash())
-
-#	hurtbox_node.damaged.connect(func(_amount: float):
-#		target_node.modulate = flash_modulation * saturation
-#		var tween := get_tree().create_tween()
-#		tween.tween_property(target_node, "modulate", default_modulation, fade_duration))

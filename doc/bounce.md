@@ -14,17 +14,13 @@ Class: `BCBounceComponent`
 
 Add a bouncing effect to a `Node2D`.
 
-Attach the `BCBounceComponent` to a `Node2D` to enable a simple bouncing mechanic.
+Attach the `BounceComponent` to a `Node2D` to enable a simple bouncing mechanic.
 
 Internally it uses a `Tween` to control the bounce mechanic, moving the `node` between its original position and the position described by the `displacement` from the original position.
 
 Note: In `Loop.PING_PONG` mode, the `duration` refers to movement in one direction only.  The return movement will also take `duration` seconds.
 
 ## API
-
-### Constants
-
-None.
 
 ### Enumerations
 
@@ -46,7 +42,7 @@ None.
 - `repeats: int = 0` - How many times to repeat.  0 means repeat infinitely.
 - `enabled: bool = true` - Whether the bounce effect is enabled.
 
-### Method
+### Methods
 
 - `play()`  - Play the bounce animation.
 - `stop()`  - Stop the bounce animation.

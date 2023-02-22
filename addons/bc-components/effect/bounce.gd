@@ -2,12 +2,13 @@
 class_name BCBounceComponent
 extends Node
 
-## Add a bouncing effect to a `Node2D`.
+## Add a bouncing effect to a [Node2D].
 ##
 ## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/bounce.md
 
 ## Emitted when the bounce has started.
 signal started()
+
 ## Emitted when the bounce has stopped.
 signal stopped()
 
@@ -22,7 +23,7 @@ enum Loop {
 const __NO_DURATION := 0.0
 
 ## The node to bounce.
-@export var node:Node2D
+@export var target_node:Node2D
 
 ## How long the bounce should take (in seconds).
 @export_range(0.0, 1_000_000, 0.01, "hide_slider", "suffix:s") var duration \
@@ -38,16 +39,16 @@ const __NO_DURATION := 0.0
 @export var easing : Tween.EaseType = Tween.EASE_IN
 
 ## How to loop the bounce.
-@export var loop:Loop = Loop.FROM_START
+@export var loop : Loop = Loop.FROM_START
 
 ## How many times to repeat.  0 means repeat infinitely.
 @export_range(0, 1_000_000_000) var repeats := 0
 
 # The tween which controls the bounce.
-@onready var __tween := get_tree().create_tween()
+@onready var __tween : Tween
 
 # The original position of the node.
-var __original_position:Vector2
+var __original_position : Vector2
 
 # Whether the bounce effect is enabled.
 @export var enabled := true:
@@ -56,12 +57,15 @@ var __original_position:Vector2
 		if not enabled: stop()
 
 func _ready() -> void:
-	if node == null:
-		node = get_parent()
-	assert(node, ("No node:Node2D component specified in %s. Select one, or reparent this " +
-		"component as a child of a Node2D node.") % [str(get_path())])
+	if target_node == null:
+		target_node = get_parent()
+	assert(target_node, ("No target_node:Node2D component specified in %s. " +
+		"Select one, or reparent this component as a child of a Node2D node.") 
+		% [str(get_path())])
+		
+	__tween = get_tree().create_tween()
 
-	__original_position = node.position
+	__original_position = target_node.position
 
 	if enabled:
 		play()
@@ -76,12 +80,12 @@ func play() -> void:
 
 	started.emit()
 
-	__tween.tween_property(node, "position", target_position, duration)
+	__tween.tween_property(target_node, "position", target_position, duration)
 	match loop:
 		Loop.FROM_START:
-			__tween.tween_property(node, "position", __original_position, __NO_DURATION)
+			__tween.tween_property(target_node, "position", __original_position, __NO_DURATION)
 		Loop.PING_PONG:
-			__tween.tween_property(node, "position", __original_position, duration)
+			__tween.tween_property(target_node, "position", __original_position, duration)
 		_:
 			pass
 

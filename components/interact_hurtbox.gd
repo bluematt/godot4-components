@@ -1,4 +1,4 @@
-class_name InteractHurtbox 
+class_name InteractHurtbox
 extends Area2D
 
 ## A simple hurtbox component.

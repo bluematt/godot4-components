@@ -16,7 +16,7 @@
 - [`MovementVelocity`](MovementVelocity.md) - Controls a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
 - [`MovementControlsLeftRight`](MovementControlsLeftRight.md) - Applies left and right movement to a [`MovementVelocity`](MovementVelocity.md) component.
 - [`MovementControlsUpDown`](MovementControlsUpDown.md) - Applies up and down movement to a [`MovementVelocity`](MovementVelocity.md) component.
-- [`MovementControlsFourWay`](MovementControlsFourWay.md) - Applies directional four-way movement to a [`MovementVelocity`](doc/MovementVelocity.md) component.
+- [`MovementControlsFourWay`](MovementControlsFourWay.md) - Applies directional four-way movement to a [`MovementVelocity`](MovementVelocity.md) component.
 
 ## Visual
 
@@ -28,8 +28,8 @@
 ## Effects
 
 - [`BounceComponent`](bounce.md) - Add a bouncing effect to a `Node2D`.
-- [`EffectFlash`](EffectFlash.md) - A simple flash effect.
-- [`EffectFlashOnHit`](EffectFlashOnHit.md) - A simple flash-on-hit effect for use with a [`InteractHurtbox`](doc/InteractHurtbox.md).
+- [`FlashComponent`](flash.md) - Add a flash effect to a `Node2D`.
+- [`FlashOnHitComponent`](flash_on_hit.md) - Add a flash effect to a `Node2D`, triggered by a collision with a [`HurtboxComponent`](hurtbox.md).
 
 ## Interactions
 
