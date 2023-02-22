@@ -1,15 +1,11 @@
 ---
 component: FlashOnHitComponent
 class_name: BCFlashOnHitComponent
-scene: res:///addons/bc-components/effect/flash_on_hit.tscn
-script: res:///addons/bc-components/effect/flash_on_hit.gd
-authors:
-  - https://github.com/bluematt/
 ---
 
-# <img src="../icon.svg" width="48" height="48"> `FlashOnHitComponent` 
+# <img src="../addons/bc-components/effect/flash.svg" width="48" height="48"> `FlashOnHitComponent` 
 
-Class: BCFlashOnHitComponent
+Class: `BCFlashOnHitComponent`
 
 Add a flash effect to a `Node2D`, triggered by a collision with a [`HurtboxComponent`](hurtbox.md).
 
@@ -36,3 +32,8 @@ Internally it uses a `Tween` to control the flash, modulating the `node` between
 
 - `flash()`  - Activate the flash effect on demand.
 
+### Related components
+
+[`FlashComponent`](flash.md) - Add a flash effect to a `Node2D`.
+
+[`HurtboxComponent`](hurtbox.md).

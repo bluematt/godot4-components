@@ -1,3 +1,4 @@
+@icon("./flash.svg")
 class_name BCFlashComponent
 extends Node
 

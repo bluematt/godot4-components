@@ -1,11 +1,6 @@
 ---
 component: StatAutoRecoverComponent
 class_name: BCStatAutoRecoverComponent
-scene: res:///addons/bc-components/stat/stat_auto_recover.tscn
-script: res:///addons/bc-components/stat/stat_auto_recover.gd
-icon: res:///addons/bc-components/stat/stat_auto_recover.svg
-authors:
-  - https://github.com/bluematt/
 ---
 
 # <img src="../addons/bc-components/stat/stat_auto_recover.svg" width="48" height="48"> `StatAutoRecoverComponent`
@@ -39,4 +34,4 @@ Give a [`StatComponent`](stat.md) the ability to autorecover over time.
 
 ### Related components
 
-- [`StatComponent`](stat.md)
+- [`StatComponent`](stat.md) - Keep track of an arbitrary numerical statistic (stat).

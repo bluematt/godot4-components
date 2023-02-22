@@ -1,11 +1,6 @@
 ---
 component: BounceComponent
 class_name: BCBounceComponent
-scene: res:///addons/bc-components/effect/bounce.tscn
-script: res:///addons/bc-components/effect/bounce.gd
-icon: res:///addons/bc-components/effect/bounce.svg
-authors:
-  - https://github.com/bluematt/
 ---
 
 # <img src="../addons/bc-components/effect/bounce.svg" width="48" height="48"> `BounceComponent` 
@@ -29,18 +24,18 @@ Note: In `Loop.PING_PONG` mode, the `duration` refers to movement in one directi
 ### Signals
 
 - `started()` - Emitted when the bounce has started.
-- `stopped() - Emitted when the bounce has stopped.
+- `stopped()` - Emitted when the bounce has stopped.
 
 ### Properties
 
-- `node: Node2D` - The node to bounce.
-- `duration: float = 1.0` - How long the bounce should take (in seconds).
 - `displacement: Vector2 = Vector2.ZERO` - How far to move the node.
-- `transition: Tween.TransitionType = Tween.TRANS_SINE` - The transition type.
+- `duration: float = 1.0` - How long the bounce should take (in seconds).
 - `easing: Tween.EaseType = Tween.EASE_IN` - The easing type.
-- `loop: Loop { FROM_START, PING_PONG, OFF } = Loop.FROM_START` - How to loop the bounce.
-- `repeats: int = 0` - How many times to repeat.  0 means repeat infinitely.
 - `enabled: bool = true` - Whether the bounce effect is enabled.
+- `loop: Loop { FROM_START, PING_PONG, OFF } = Loop.FROM_START` - How to loop the bounce.
+- `node: Node2D` - The node to bounce.
+- `repeats: int = 0` - How many times to repeat.  0 means repeat infinitely.
+- `transition: Tween.TransitionType = Tween.TRANS_SINE` - The transition type.
 
 ### Methods
 
