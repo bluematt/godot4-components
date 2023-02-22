@@ -1,11 +1,11 @@
 ---
-component: StatAutoRecoverComponent
-class_name: BCStatAutoRecoverComponent
+component: AutoRecoverComponent
+class_name: BCAutoRecoverComponent
 ---
 
-# <img src="../addons/bc-components/stat/stat_auto_recover.svg" width="48" height="48"> `StatAutoRecoverComponent`
+# <img src="../addons/bc-components/stat/auto_recover.svg" width="48" height="48"> `AutoRecoverComponent`
 
-Class: `BCStatAutoRecoverComponent`
+Class: `BCAutoRecoverComponent`
 
 Give a [`StatComponent`](stat.md) the ability to autorecover over time.
 

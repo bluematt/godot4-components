@@ -1,5 +1,5 @@
-@icon("./stat_auto_recover.svg")
-class_name BCStatAutoRecover
+@icon("./auto_recover.svg")
+class_name BCAutoRecoverComponent
 extends Node
 
 ## Give a [StatComponent] the ability to autorecover over time.

@@ -9,7 +9,7 @@
 - [`StatHealth`](StatHealth.md) - Health-like stat component.
 - [`StatAutoHeal`](StatAutoHeal.md) - Time-based automatic healing for a  [`StatHealth`](StatHealth.md) component.
 - <img src="../addons/bc-components/stat/stat.svg" width="20" height="20"> [`StatComponent`](stat.md) - Keep track of an arbitrary numerical statistic (stat).
-- <img src="../addons/bc-components/stat/stat_auto_recover.svg" width="20" height="20"> [`StatAutoRecover`](StatAutoRecover.md) - Time-based automatic recovery for a  [`Stat`](Stat.md) component.
+- <img src="../addons/bc-components/stat/auto_recover.svg" width="20" height="20"> [`AutoRecoverComponent`](auto_recover.md) - Give a `StatComponent` the ability to autorecover over time..
 
 ## Movement
 
@@ -28,10 +28,11 @@
 ## Effects
 
 - <img src="../addons/bc-components/effect/bounce.svg" width="20" height="20"> [`BounceComponent`](bounce.md) - Add a bouncing effect to a `Node2D`.
-- <img src="../addons/bc-components/effect/flash.svg" width="20" height="20">[`FlashComponent`](flash.md) - Add a flash effect to a `Node2D`.
+- <img src="../addons/bc-components/effect/flash.svg" width="20" height="20"> [`FlashComponent`](flash.md) - Add a flash effect to a `Node2D`.
 - <img src="../addons/bc-components/effect/flash.svg" width="20" height="20"> [`FlashOnHitComponent`](flash_on_hit.md) - Add a flash effect to a `Node2D`, triggered by a collision with a [`HurtboxComponent`](hurtbox.md).
 
 ## Interactions
 
 - [`InteractHitbox`](InteractHitbox.md) - A simple hitbox component.
 - [`InteractHurtbox`](InteractHurtbox.md) - A simple hurtbox component.
+

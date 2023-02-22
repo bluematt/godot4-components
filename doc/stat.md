@@ -43,4 +43,4 @@ A `StatComponent`'s value cannot go below zero, nor can it exceed `max_stat`.
 
 The [`HealthComponent`](health.md) may be more suitable for tracking a health-type stat.
 
-[`StatAutoRecover`](stat_auto_recover.md) - Give a `StatComponent` the ability to autorecover over time.
+[`AutoRecoverComponent`](auto_recover.md) - Give a `StatComponent` the ability to autorecover over time.

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://csrycnvvanyjt"]
+
+[ext_resource type="Script" path="res://addons/bc-components/stat/auto_recover.gd" id="1_odmk4"]
+
+[node name="AutoRecoverComponent" type="Node"]
+script = ExtResource("1_odmk4")
+
+[node name="DelayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+unique_name_in_owner = true
