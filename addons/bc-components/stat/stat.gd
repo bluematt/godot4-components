@@ -1,34 +1,27 @@
-@icon("res://icons/stat.svg")
-class_name Stat
+@icon("./stat.svg")
+class_name BCStatComponent
 extends Node
 
-## A generic stat component.
+## Keep track of an arbitrary numerical statistic (stat).
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/Stat.md
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/stat.md
 
 # The lowest the stat can be.
 const __LOWEST_LIMIT_STAT := 0.0
 
 ## Emitted when the stat changes.
-signal changed(value: float)
+signal changed(new_value : float)
 
 ## Emitted when the stat is recovered.  Passes in the actual amount of
 ## recovery up to [member max_stat].
-signal recovered(amount: float)
-
-## Emitted when the stat is recovered.  Passes in the raw amount of
-## recovery.
-signal recovered_raw(amount: float)
+signal recovered(amount : float)
 
 ## Emitted when fully recovered.
 signal recovered_fully()
 
 ## Emitted when the stat is expended.  Passes in the actual amount of
 ## expenditure.
-signal expended(amount: float)
-
-## Emitted when the stat is expended.  Passes in the raw amount of expenditure.
-signal expended_raw(amount: float)
+signal expended(amount : float)
 
 ## Emitted when the stat reaches 0.
 signal exhausted()
@@ -39,27 +32,26 @@ signal succeeded()
 ## Emitted when the stat is expended, and the amount expended was not available.
 ## Passes in the deficit difference between the amount of stat expended, and the
 ## stat available.
-signal failed(deficit: float)
+signal failed(deficit : float)
 
 ## The maximum allowed stat.
 @export var max_stat := 100.0
 
-## The current stat.
-@onready var stat := max_stat:
+# The current stat.
+@onready var __stat := max_stat:
 	set(v):
-		stat = clamp(v, __LOWEST_LIMIT_STAT, max_stat)
+		__stat = clamp(v, __LOWEST_LIMIT_STAT, max_stat)
 
 ## Recover an amount of the stat.
-func recover(amount: float) -> void:
-	var old_stat := stat
+func recover(amount : float) -> void:
+	var old_stat := __stat
 
-	stat += amount
-	if stat >= max_stat:
-		stat = max_stat
+	__stat += amount
+	if __stat >= max_stat:
+		__stat = max_stat
 
-	recovered_raw.emit(amount)
-	recovered.emit(stat - old_stat)
-	changed.emit(stat)
+	recovered.emit(__stat - old_stat)
+	changed.emit(__stat)
 
 	if is_maxed():
 		recovered_fully.emit()
@@ -71,15 +63,14 @@ func recover_fully() -> void:
 ## Expend an amount of the stat.  Returns whether there was enough of the stat
 ## to consider the expenditure "successful".
 func expend(amount: float) -> bool:
-	var old_stat := stat
+	var old_stat := __stat
 
-	stat -= amount
-	if stat <= __LOWEST_LIMIT_STAT:
-		stat = __LOWEST_LIMIT_STAT
+	__stat -= amount
+	if __stat <= __LOWEST_LIMIT_STAT:
+		__stat = __LOWEST_LIMIT_STAT
 
-	expended_raw.emit(amount)
-	expended.emit(stat - old_stat)
-	changed.emit(stat)
+	expended.emit(__stat - old_stat)
+	changed.emit(__stat)
 		
 	if is_exhausted():
 		exhausted.emit()
@@ -95,8 +86,24 @@ func expend(amount: float) -> bool:
 
 ## Return whether the stat has been exhausted.
 func is_exhausted() -> bool:
-	return stat <= __LOWEST_LIMIT_STAT
+	return __stat <= __LOWEST_LIMIT_STAT
 	
 ## Return whether the stat is maxed out.
 func is_maxed() -> bool:
-	return stat >= max_stat
+	return __stat >= max_stat
+
+## Get the stat.
+func get_stat() -> float:
+	return __stat
+
+## Set the stat.
+func set_stat(value : float) -> void:
+	__stat = value
+
+## Get the maximum stat.
+func get_max_stat() -> float:
+	return max_stat
+
+## Set the maximum stat.
+func set_max_stat(value : float) -> void:
+	max_stat = value

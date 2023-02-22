@@ -8,7 +8,7 @@
 
 - [`StatHealth`](StatHealth.md) - Health-like stat component.
 - [`StatAutoHeal`](StatAutoHeal.md) - Time-based automatic healing for a  [`StatHealth`](StatHealth.md) component.
-- [`Stat`](Stat.md) - Generic stat component.
+- [`StatComponent`](stat.md) - Keep track of an arbitrary numerical statistic (stat).
 - [`StatAutoRecover`](StatAutoRecover.md) - Time-based automatic recovery for a  [`Stat`](Stat.md) component.
 
 ## Movement
