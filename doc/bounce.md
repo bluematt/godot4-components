@@ -5,7 +5,7 @@ scene: res:///addons/bc-components/effect/bounce.tscn
 script: res:///addons/bc-components/effect/bounce.gd
 icon: res:///addons/bc-components/effect/bounce.svg
 authors:
-	- https://github.com/bluematt/
+  - https://github.com/bluematt/
 ---
 
 # <img src="../addons/bc-components/effect/bounce.svg" width="48" height="48"> `BounceComponent` 
