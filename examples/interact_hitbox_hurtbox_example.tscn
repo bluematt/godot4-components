@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://dikapsgnps4xo"]
 
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_1eowi"]
 [ext_resource type="PackedScene" uid="uid://b8440pdd1e8cf" path="res://components/interact_hurtbox.tscn" id="2_mwlxd"]
 [ext_resource type="PackedScene" uid="uid://cub2wjbssfmq6" path="res://addons/bc-components/effect/flash_on_hit.tscn" id="5_t02w5"]
-[ext_resource type="PackedScene" path="res://addons/bc-components/stat/health.tscn" id="5_ymfum"]
+[ext_resource type="PackedScene" uid="uid://dgxh4tpir6c5e" path="res://addons/bc-components/stat/health.tscn" id="5_ymfum"]
 [ext_resource type="PackedScene" uid="uid://c6urid0yvct1s" path="res://components/movement_controls_four_way.tscn" id="6_leanc"]
 [ext_resource type="PackedScene" uid="uid://s0qhatxbneng" path="res://components/interact_hitbox.tscn" id="6_t8m3d"]
-[ext_resource type="PackedScene" uid="uid://wd6jlpxfkijc" path="res://components/movement_velocity.tscn" id="7_ch0sa"]
+[ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="7_ch0sa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5b1ia"]
 size = Vector2(128, 128)
@@ -55,8 +55,7 @@ label_text = "HERO"
 [node name="StatHealth" parent="Character" instance=ExtResource("5_ymfum")]
 max_health = 25.0
 
-[node name="InteractHurtbox" parent="Character" node_paths=PackedStringArray("health_stat_node") instance=ExtResource("2_mwlxd")]
-health_stat_node = NodePath("../StatHealth")
+[node name="InteractHurtbox" parent="Character" instance=ExtResource("2_mwlxd")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/InteractHurtbox"]
 shape = SubResource("RectangleShape2D_ogcit")
@@ -64,12 +63,12 @@ shape = SubResource("RectangleShape2D_ogcit")
 [node name="FlashOnHitComponent" parent="Character/InteractHurtbox" node_paths=PackedStringArray("target_node") instance=ExtResource("5_t02w5")]
 target_node = NodePath("../..")
 
-[node name="MovementVelocity" parent="Character" instance=ExtResource("7_ch0sa")]
+[node name="VelocityComponent" parent="Character" instance=ExtResource("7_ch0sa")]
 max_speed = 200.0
 acceleration_coefficient = 0.5
 deceleration_coefficient = 0.5
 
-[node name="MovementControlsFourWay" parent="Character/MovementVelocity" instance=ExtResource("6_leanc")]
+[node name="MovementControlsFourWay" parent="Character/VelocityComponent" instance=ExtResource("6_leanc")]
 
 [connection signal="damaged" from="Character/StatHealth" to="Character" method="_on_stat_health_damaged"]
 [connection signal="died" from="Character/StatHealth" to="Character" method="_on_stat_health_died"]

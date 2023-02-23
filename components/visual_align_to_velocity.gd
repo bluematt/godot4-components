@@ -9,8 +9,8 @@ extends Node
 ## The [CharacterBody2D] to align.
 @export var character_node:CharacterBody2D
 
-## The [MovementVelocity] component to align to.
-@export var velocity_node:MovementVelocity
+## The [BCVelocityComponent] component to align to.
+@export var velocity_node:BCVelocityComponent
 
 ## A rotational offset, in degrees.
 @export_range(-360.0,360.0) var offset := 90.0
@@ -32,15 +32,17 @@ func _ready() -> void:
 		"of a CharacterBody2D node.") % [str(get_path())])
 	
 	if velocity_node == null:
-		velocity_node = get_parent() as MovementVelocity
-	assert(velocity_node, ("No velocity_node:MovementVelocity component " + 
+		velocity_node = get_parent() as BCVelocityComponent
+	assert(velocity_node, ("No velocity_node:BCVelocityComponent component " + 
 		"specified in %s. Select one, or reparent this component as a child "
-		+ "of a MovementVelocity component.") % [str(get_path())])
+		+ "of a BCVelocityComponent component.") % [str(get_path())])
 
 	__rotation = character_node.rotation
 
 func _physics_process(_delta: float) -> void:
 	if enabled:
-		if velocity_node.direction:
-			__rotation = lerp_angle(__rotation, velocity_node.direction.angle() + deg_to_rad(offset), smoothing)
+		if velocity_node.get_direction():
+			__rotation = lerp_angle(__rotation, 
+				velocity_node.get_direction().angle() + 
+				deg_to_rad(offset), smoothing)
 			character_node.rotation = __rotation

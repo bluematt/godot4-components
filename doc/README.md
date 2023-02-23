@@ -13,7 +13,7 @@
 
 ## Movement
 
-- [`MovementVelocity`](MovementVelocity.md) - Controls a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
+- <img src="../addons/bc-components/movement/velocity.svg" width="20" height="20"> [`VelocityComponent`](velocity.md) - Control a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
 - [`MovementControlsLeftRight`](MovementControlsLeftRight.md) - Applies left and right movement to a [`MovementVelocity`](MovementVelocity.md) component.
 - [`MovementControlsUpDown`](MovementControlsUpDown.md) - Applies up and down movement to a [`MovementVelocity`](MovementVelocity.md) component.
 - [`MovementControlsFourWay`](MovementControlsFourWay.md) - Applies directional four-way movement to a [`MovementVelocity`](MovementVelocity.md) component.

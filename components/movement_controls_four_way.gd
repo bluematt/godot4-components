@@ -2,7 +2,7 @@
 class_name MovementControlsFourWay
 extends Node
 
-## Applies directional four-way movement to a [MovementVelocity] component.
+## Applies directional four-way movement to a [BCVelocityComponent] component.
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsFourWay.md
 
@@ -18,8 +18,8 @@ const DEFAULT_ACTION_LEFT := "ui_left"
 ## The default input action for right movement.
 const DEFAULT_ACTION_RIGHT := "ui_right"
 
-## The [MovementVelocity] to control.
-@export var velocity_node: MovementVelocity
+## The [BCVelocityComponent] to control.
+@export var velocity_node: BCVelocityComponent
 
 @export_group("Input actions", "input_action_")
 
@@ -37,10 +37,10 @@ const DEFAULT_ACTION_RIGHT := "ui_right"
 
 func _ready() -> void:
 	if velocity_node == null:
-		velocity_node = get_parent() as MovementVelocity
-	assert(velocity_node, ("No velocity_node:MovementVelocity component " + 
+		velocity_node = get_parent() as BCVelocityComponent
+	assert(velocity_node, ("No velocity_node:BCVelocityComponent component " + 
 		"specified in %s. Select one, or reparent this component as a child "
-		+ "of a MovementVelocity component.") % [str(get_path())])
+		+ "of a BCVelocityComponent component.") % [str(get_path())])
 	
 	if input_action_up == null:
 		input_action_up = InputEventAction.new()
@@ -75,8 +75,79 @@ func _ready() -> void:
 		"specified in %s.") % [str(get_path())])
 
 func _process(_delta: float) -> void:
-	velocity_node.direction = Input.get_vector(
+	velocity_node.set_direction(Input.get_vector(
 		input_action_left.action, 
 		input_action_right.action,
 		input_action_up.action,
-		input_action_down.action)
+		input_action_down.action))
+
+## Set the [member velocity_node].
+func set_velocity(value : BCVelocityComponent) -> void:
+	velocity_node = value
+
+## Return the [member velocity_node].
+func get_velocity() -> BCVelocityComponent:
+	return velocity_node
+
+## Set the [InputEventAction] to move up.
+func set_input_action_up(value : InputEventAction) -> void:
+	input_action_up = value
+	
+## Set the [InputEventAction] to move down.
+func set_input_action_down(value : InputEventAction) -> void:
+	input_action_down = value
+	
+## Set the [InputEventAction] to move left.
+func set_input_action_left(value : InputEventAction) -> void:
+	input_action_left = value
+	
+## Set the [InputEventAction] to move right.
+func set_input_action_right(value : InputEventAction) -> void:
+	input_action_right = value
+	
+## Set the action to move up.
+func set_action_up(value : StringName) -> void:
+	input_action_up.set_action(value)
+
+## Set the action to move down.
+func set_action_down(value : StringName) -> void:
+	input_action_down.set_action(value)
+
+## Set the action to move left.
+func set_action_left(value : StringName) -> void:
+	input_action_left.set_action(value)
+
+## Set the action to move right.
+func set_action_right(value : StringName) -> void:
+	input_action_right.set_action(value)
+
+## Reset all actions.	
+func reset_actions() -> void:
+	reset_action_up()
+	reset_action_down()
+	reset_action_left()
+	reset_action_right()
+
+## Reset the action to move up.
+func reset_action_up() -> void:
+	input_action_up == null
+	input_action_up = InputEventAction.new()
+	input_action_up.set_action(DEFAULT_ACTION_UP)
+
+## Reset the action to move down.
+func reset_action_down() -> void:
+	input_action_down == null
+	input_action_down = InputEventAction.new()
+	input_action_down.set_action(DEFAULT_ACTION_DOWN)
+
+## Reset the action to move left.
+func reset_action_left() -> void:
+	input_action_left == null
+	input_action_left = InputEventAction.new()
+	input_action_left.set_action(DEFAULT_ACTION_LEFT)
+
+## Reset the action to move right.
+func reset_action_right() -> void:
+	input_action_right == null
+	input_action_right = InputEventAction.new()
+	input_action_right.set_action(DEFAULT_ACTION_RIGHT)
