@@ -1,8 +1,8 @@
 @icon("res://icons/movement_controls_left_right.svg")
-class_name MovementControlsLeftRight
+class_name BCControlsLeftRight
 extends Node
 
-## Applies left and right movement to a [BCVelocityComponent] component.
+## Applies left and right movement to a [BCVelocity] component.
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsLeftRight.md
 
@@ -12,8 +12,8 @@ const DEFAULT_ACTION_LEFT := &"ui_left"
 ## The default input action for right movement.
 const DEFAULT_ACTION_RIGHT := &"ui_right"
 
-## The [BCVelocityComponent] to control.
-@export var velocity_node: BCVelocityComponent
+## The [BCVelocity] component to control.
+@export var velocity_node: BCVelocity
 
 @export_group("Input actions", "input_action_")
 
@@ -25,10 +25,10 @@ const DEFAULT_ACTION_RIGHT := &"ui_right"
 
 func _ready() -> void:
 	if velocity_node == null:
-		velocity_node = get_parent() as BCVelocityComponent
-	assert(velocity_node, ("No velocity_node:BCVelocityComponent component " + 
+		velocity_node = get_parent() as BCVelocity
+	assert(velocity_node, ("No velocity_node:BCVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
-		"of a BCVelocityComponent component.") % [str(get_path())])
+		"of a BCVelocity component.") % [str(get_path())])
 
 	if input_action_left == null:
 		reset_action_left()
@@ -49,11 +49,11 @@ func _process(_delta: float) -> void:
 		input_action_left.action, input_action_right.action))
 
 ## Set the [member velocity_node].
-func set_velocity(value : BCVelocityComponent) -> void:
+func set_velocity(value : BCVelocity) -> void:
 	velocity_node = value
 
 ## Return the [member velocity_node].
-func get_velocity() -> BCVelocityComponent:
+func get_velocity() -> BCVelocity:
 	return velocity_node
 
 ## Set the [InputEventAction] to move left.

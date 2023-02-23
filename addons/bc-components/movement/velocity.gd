@@ -1,5 +1,5 @@
 @icon("./velocity.svg")
-class_name BCVelocityComponent
+class_name BCVelocity
 extends Node
 
 ## Control [member CharacterBody2D.velocity], applying a maximum speed with acceleration and deceleration coefficients.

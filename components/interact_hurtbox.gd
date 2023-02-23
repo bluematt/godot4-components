@@ -6,13 +6,13 @@ extends Area2D
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/InteractHurtbox.md
 
 ## The [StatHealth] to manipulate.
-@export var health_stat_node:StatHealth
+@export var health_stat_node:BCHealthComponent
 
 signal damaged(amount: float)
 
 func _ready() -> void:
 	if health_stat_node == null:
-		health_stat_node = get_parent() as StatHealth
+		health_stat_node = get_parent() as BCHealthComponent
 	assert(health_stat_node, ("No health_stat_node:StatHealth component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a StatHealth component.") % [str(get_path())])

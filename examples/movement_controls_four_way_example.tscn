@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_3iun0"]
-[ext_resource type="PackedScene" path="res://addons/bc-components/movement/velocity.tscn" id="2_p50vw"]
-[ext_resource type="PackedScene" uid="uid://c6urid0yvct1s" path="res://components/movement_controls_four_way.tscn" id="3_f1f8r"]
+[ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="2_p50vw"]
+[ext_resource type="PackedScene" uid="uid://besovdtn2pc8k" path="res://components/controls_four_way.tscn" id="3_f1f8r"]
 
 [node name="MovementControlsFourWayExample" type="Node2D"]
 

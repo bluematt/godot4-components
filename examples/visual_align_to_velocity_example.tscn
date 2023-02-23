@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bc-components/movement/velocity.tscn" id="2_fj0b4"]
+[ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="2_fj0b4"]
 [ext_resource type="PackedScene" uid="uid://ciurp5y4uuium" path="res://components/visual_align_to_velocity.tscn" id="2_uj7gs"]
-[ext_resource type="PackedScene" uid="uid://c6urid0yvct1s" path="res://components/movement_controls_four_way.tscn" id="3_dhni3"]
+[ext_resource type="PackedScene" uid="uid://besovdtn2pc8k" path="res://components/controls_four_way.tscn" id="3_dhni3"]
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="4_h0amt"]
 
 [node name="VisualAlignToVelocityExample" type="Node2D"]

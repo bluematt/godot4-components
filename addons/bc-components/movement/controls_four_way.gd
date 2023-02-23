@@ -1,25 +1,25 @@
-@icon("res://icons/movement_controls_four_way.svg")
-class_name MovementControlsFourWay
+@icon("./controls_four_way.svg")
+class_name BCControlsFourWay
 extends Node
 
-## Applies directional four-way movement to a [BCVelocityComponent] component.
+## Applies directional four-way movement to a [BCVelocity] component.
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsFourWay.md
 
 ## The default input action for up movement.
-const DEFAULT_ACTION_UP := "ui_up"
+const DEFAULT_ACTION_UP := &"ui_up"
 
 ## The default input action for down movement.
-const DEFAULT_ACTION_DOWN := "ui_down"
+const DEFAULT_ACTION_DOWN := &"ui_down"
 
 ## The default input action for left movement.
-const DEFAULT_ACTION_LEFT := "ui_left"
+const DEFAULT_ACTION_LEFT := &"ui_left"
 
 ## The default input action for right movement.
-const DEFAULT_ACTION_RIGHT := "ui_right"
+const DEFAULT_ACTION_RIGHT := &"ui_right"
 
-## The [BCVelocityComponent] to control.
-@export var velocity_node: BCVelocityComponent
+## The [BCVelocity] component to control.
+@export var velocity_node: BCVelocity
 
 @export_group("Input actions", "input_action_")
 
@@ -37,10 +37,10 @@ const DEFAULT_ACTION_RIGHT := "ui_right"
 
 func _ready() -> void:
 	if velocity_node == null:
-		velocity_node = get_parent() as BCVelocityComponent
-	assert(velocity_node, ("No velocity_node:BCVelocityComponent component " + 
+		velocity_node = get_parent() as BCVelocity
+	assert(velocity_node, ("No velocity_node:BCVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child "
-		+ "of a BCVelocityComponent component.") % [str(get_path())])
+		+ "of a BCVelocity component.") % [str(get_path())])
 	
 	if input_action_up == null:
 		input_action_up = InputEventAction.new()
@@ -82,11 +82,11 @@ func _process(_delta: float) -> void:
 		input_action_down.action))
 
 ## Set the [member velocity_node].
-func set_velocity(value : BCVelocityComponent) -> void:
+func set_velocity(value : BCVelocity) -> void:
 	velocity_node = value
 
 ## Return the [member velocity_node].
-func get_velocity() -> BCVelocityComponent:
+func get_velocity() -> BCVelocity:
 	return velocity_node
 
 ## Set the [InputEventAction] to move up.
@@ -121,14 +121,14 @@ func set_action_left(value : StringName) -> void:
 func set_action_right(value : StringName) -> void:
 	input_action_right.set_action(value)
 
-## Reset all actions.	
+## Reset all actions to their defaults.	
 func reset_actions() -> void:
 	reset_action_up()
 	reset_action_down()
 	reset_action_left()
 	reset_action_right()
 
-## Reset the action to move up.
+## Reset the default name of the action to move up.
 func reset_action_up() -> void:
 	input_action_up == null
 	input_action_up = InputEventAction.new()

@@ -1,8 +1,8 @@
 @icon("res://icons/movement_controls_up_down.svg")
-class_name MovementControlsUpDown
+class_name BCControlsUpDown
 extends Node
 
-## Applies up and down movement to a [BCVelocityComponent] component.
+## Applies up and down movement to a [BCVelocity].
 ##
 ## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsUpDown.md
 
@@ -12,8 +12,8 @@ const DEFAULT_ACTION_UP := "ui_up"
 ## The default input action for down movement.
 const DEFAULT_ACTION_DOWN := "ui_down"
 
-## The [BCVelocityComponent] to control.
-@export var velocity_node: BCVelocityComponent
+## The [BCVelocity] to control.
+@export var velocity_node: BCVelocity
 
 @export_group("Input actions", "input_action_")
 
@@ -25,10 +25,10 @@ const DEFAULT_ACTION_DOWN := "ui_down"
 
 func _ready() -> void:
 	if velocity_node == null:
-		velocity_node = get_parent() as BCVelocityComponent
-	assert(velocity_node, ("No velocity_node:BCVelocityComponent component " + 
+		velocity_node = get_parent() as BCVelocity
+	assert(velocity_node, ("No velocity_node:BCVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
-		"of a BCVelocityComponent component.") % [str(get_path())])
+		"of a BCVelocity component.") % [str(get_path())])
 
 	if input_action_up == null:
 		reset_action_up()
@@ -49,11 +49,11 @@ func _process(_delta: float) -> void:
 		input_action_up.action, input_action_down.action))
 
 ## Set the [member velocity_node].
-func set_velocity(value : BCVelocityComponent) -> void:
+func set_velocity(value : BCVelocity) -> void:
 	velocity_node = value
 
 ## Return the [member velocity_node].
-func get_velocity() -> BCVelocityComponent:
+func get_velocity() -> BCVelocity:
 	return velocity_node
 
 ## Set the [InputEventAction] to move up.

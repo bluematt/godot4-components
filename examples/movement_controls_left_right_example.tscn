@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_imf4k"]
-[ext_resource type="PackedScene" path="res://addons/bc-components/movement/velocity.tscn" id="2_qa0qy"]
-[ext_resource type="PackedScene" uid="uid://8r0ch0jm0pvs" path="res://components/movement_controls_left_right.tscn" id="3_j4ctw"]
+[ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="2_qa0qy"]
+[ext_resource type="PackedScene" uid="uid://d2ns65qysqiy1" path="res://components/controls_left_right.tscn" id="3_j4ctw"]
 
 [node name="MovementControlsLeftRightExample" type="Node2D"]
 
