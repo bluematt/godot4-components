@@ -1,10 +1,10 @@
 @icon("./velocity.svg")
-class_name BCVelocity
+class_name BBVelocity
 extends Node
 
 ## Control [member CharacterBody2D.velocity], applying a maximum speed with acceleration and deceleration coefficients.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/velocity.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/velocity.md
 
 # The target velocity when decelerating.
 const __DECELERATION_TARGET_VELOCITY := Vector2.ZERO

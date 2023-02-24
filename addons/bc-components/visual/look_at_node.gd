@@ -1,10 +1,10 @@
 @icon("./look_at_node.svg")
-class_name VisualLookAtNode
+class_name BBLookAtNode
 extends Node
 
 ## Rotates a Node2D to "look" at another Node2D.
 ##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/VisualLookAtNode.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/look_at_node.md
 
 ## The node to rotate.
 @export var node:Node2D

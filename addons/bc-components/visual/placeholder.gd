@@ -1,11 +1,11 @@
 @tool
 @icon("./placeholder.svg")
-class_name BCPlaceholder
+class_name BBPlaceholder
 extends Node2D
 
 ## A visual placeholder component.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/placeholder.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/placeholder.md
 
 # The minimum width taken up by a label.
 const __MINIMUM_LABEL_WIDTH := 64.0 # pixels

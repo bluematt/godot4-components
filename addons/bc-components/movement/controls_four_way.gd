@@ -1,10 +1,10 @@
 @icon("./controls_four_way.svg")
-class_name BCControlsFourWay
+class_name BBControlsFourWay
 extends Node
 
-## Applies directional four-way movement to a [BCVelocity] component.
+## Applies directional four-way movement to a [BBVelocity] component.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/MovementControlsFourWay.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/controls_four_way.md
 
 ## The default input action for up movement.
 const DEFAULT_ACTION_UP := &"ui_up"
@@ -18,8 +18,8 @@ const DEFAULT_ACTION_LEFT := &"ui_left"
 ## The default input action for right movement.
 const DEFAULT_ACTION_RIGHT := &"ui_right"
 
-## The [BCVelocity] component to control.
-@export var velocity_node: BCVelocity
+## The [BBVelocity] component to control.
+@export var velocity_node: BBVelocity
 
 @export_group("Input actions", "input_action_")
 
@@ -37,10 +37,10 @@ const DEFAULT_ACTION_RIGHT := &"ui_right"
 
 func _ready() -> void:
 	if velocity_node == null:
-		velocity_node = get_parent() as BCVelocity
-	assert(velocity_node, ("No velocity_node:BCVelocity component " + 
+		velocity_node = get_parent() as BBVelocity
+	assert(velocity_node, ("No velocity_node:BBVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child "
-		+ "of a BCVelocity component.") % [str(get_path())])
+		+ "of a BBVelocity component.") % [str(get_path())])
 	
 	if input_action_up == null:
 		input_action_up = InputEventAction.new()
@@ -82,11 +82,11 @@ func _process(_delta: float) -> void:
 		input_action_down.action))
 
 ## Set the [member velocity_node].
-func set_velocity(value : BCVelocity) -> void:
+func set_velocity(value : BBVelocity) -> void:
 	velocity_node = value
 
 ## Return the [member velocity_node].
-func get_velocity() -> BCVelocity:
+func get_velocity() -> BBVelocity:
 	return velocity_node
 
 ## Set the [InputEventAction] to move up.

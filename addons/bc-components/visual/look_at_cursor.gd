@@ -1,10 +1,10 @@
 @icon("./look_at_cursor.svg")
-class_name VisualLookAtCursor
+class_name BBLookAtCursor
 extends Node
 
 ## Rotates a Node2D to "look" at the cursor.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/VisualLookAtCursor.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/look_at_cursor.md
 
 ## The node to rotate.
 @export var node:Node2D

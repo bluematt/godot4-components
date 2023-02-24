@@ -1,16 +1,16 @@
 @icon("./align_to_velocity.svg")
-class_name VisualAlignToVelocity
+class_name BBAlignToVelocity
 extends Node
 
 ## Align a node to a velocity.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/VisualAlignToVelocity.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/align_to_velocity.md
 
 ## The [CharacterBody2D] to align.
 @export var character_node:CharacterBody2D
 
-## The [BCVelocity] component to align to.
-@export var velocity_node:BCVelocity
+## The [BBVelocity] component to align to.
+@export var velocity_node:BBVelocity
 
 ## A rotational offset, in degrees.
 @export_range(-360.0,360.0) var offset := 90.0
@@ -32,10 +32,10 @@ func _ready() -> void:
 		"of a CharacterBody2D node.") % [str(get_path())])
 	
 	if velocity_node == null:
-		velocity_node = get_parent() as BCVelocity
-	assert(velocity_node, ("No velocity_node:BCVelocity component " + 
+		velocity_node = get_parent() as BBVelocity
+	assert(velocity_node, ("No velocity_node:BBVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child "
-		+ "of a BCVelocity component.") % [str(get_path())])
+		+ "of a BBVelocity component.") % [str(get_path())])
 
 	__rotation = character_node.rotation
 

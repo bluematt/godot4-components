@@ -1,7 +1,7 @@
 extends Control
 
-@onready var health := %HealthComponent as BCHealthComponent
-@onready var autoheal := %AutoHealComponent as BCAutoHealComponent
+@onready var health := %HealthComponent as BBHealth
+@onready var autoheal := %AutoHealComponent as BBAutoHeal
 
 func _ready() -> void:
 	_update_status()

@@ -1,10 +1,10 @@
 @icon("./stat.svg")
-class_name BCStatComponent
+class_name BBStat
 extends Node
 
 ## Keep track of an arbitrary numerical statistic (stat).
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/stat.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/stat.md
 
 # The lowest the stat can be.
 const __LOWEST_LIMIT_STAT := 0.0

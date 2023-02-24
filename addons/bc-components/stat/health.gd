@@ -1,5 +1,5 @@
 @icon("./health.svg")
-class_name BCHealthComponent
+class_name BBHealth
 extends Node
 
 ## Keep track of a health-like numerical statistic (stat).

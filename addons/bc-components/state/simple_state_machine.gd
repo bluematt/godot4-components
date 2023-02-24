@@ -1,10 +1,10 @@
 @icon("./simple_state_machine.svg")
-class_name SimpleStateMachine
+class_name BBSimpleStateMachine
 extends Node
 
 ## A simple state machine for Godot 4.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/SimpleStateMachine.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/simple_state_machine.md
 
 # No data.
 const __NO_DATA := null

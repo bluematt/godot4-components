@@ -1,10 +1,10 @@
 @icon("./auto_recover.svg")
-class_name BCAutoRecoverComponent
+class_name BBAutoRecover
 extends Node
 
 ## Give a [StatComponent] the ability to autorecover over time.
 ##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/stat_auto_recover.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/auto_recover.md
 
 # The autorecover rate which triggers autorecovery.
 const __TRIGGER_LIMIT_AUTORECOVER_RATE := 0.0
@@ -21,8 +21,8 @@ signal autorecovery_enabled(status : bool)
 ## Emitted while autorecovery is waiting to start.
 signal autorecovery_counting_down(time_left : float)
 
-## The [BCStatComponent] to autorecover.
-@export var stat_node:BCStatComponent
+## The [BBStat] to autorecover.
+@export var stat_node:BBStat
 
 ## Whether autorecovery is enabled.  Initiate autorecovery if enabled.
 @export var enabled := false:

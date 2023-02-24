@@ -1,10 +1,10 @@
 @icon("./auto_heal.svg")
-class_name BCAutoHealComponent
+class_name BBAutoHeal
 extends Node
 
 ## Give a [HealthComponent] the ability to autoheal over time.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/StatAutoHeal.md
+## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/auto_heal.md
 
 # The autoheal rate which triggers autohealing.
 const __TRIGGER_LIMIT_AUTOHEAL_RATE := 0.0
@@ -21,7 +21,7 @@ signal autoheal_enabled(status: bool)
 ## Emitted when autohealing is about to begin.
 signal autoheal_counting_down(time_left: float)
 
-@export var health_stat_node:BCHealthComponent
+@export var health_stat_node:BBHealth
 
 ## Whether autohealing is enabled.  Initiate autohealing if enabled.
 @export var enabled := false:
@@ -54,10 +54,10 @@ signal autoheal_counting_down(time_left: float)
 
 func _ready() -> void:
 	if health_stat_node == null:
-		health_stat_node = get_parent() as BCHealthComponent
-	assert(health_stat_node, ("No health_stat_node:StatHealth component " + 
+		health_stat_node = get_parent() as BBHealth
+	assert(health_stat_node, ("No health_stat_node:BBHealth component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
-		"of a StatHealth component.") % [str(get_path())])
+		"of a BBHealth component.") % [str(get_path())])
 	
 	# Start the heal timer if the heal start timer times out.
 	__delay_timer.timeout.connect(func():

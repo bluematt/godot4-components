@@ -1,4 +1,4 @@
-extends SimpleStateMachine
+extends BBSimpleStateMachine
 
 const COLORS := [
 	Color.RED,

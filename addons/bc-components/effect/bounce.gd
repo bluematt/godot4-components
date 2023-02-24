@@ -1,5 +1,5 @@
 @icon("./bounce.svg")
-class_name BCBounceComponent
+class_name BBBounce
 extends Node
 
 ## Add a bouncing effect to a [Node2D].

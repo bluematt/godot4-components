@@ -1,5 +1,5 @@
 @icon("./flash.svg")
-class_name BCFlashComponent
+class_name BBFlash
 extends Node
 
 ## Add a flash effect to a [Node2D].
