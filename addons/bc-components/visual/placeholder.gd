@@ -1,11 +1,11 @@
 @tool
-@icon("res://icons/visual_placeholder.svg")
-class_name VisualPlaceholder
+@icon("./placeholder.svg")
+class_name BCPlaceholder
 extends Node2D
 
 ## A visual placeholder component.
 ##
-## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/VisualPlaceholder.md
+## @tutorial: https://github.com/bluematt/godot4-components/blob/main/doc/placeholder.md
 
 # The minimum width taken up by a label.
 const __MINIMUM_LABEL_WIDTH := 64.0 # pixels
@@ -29,16 +29,18 @@ const __LABEL_LINES_MAX := 2
 const __LABEL_WIDTH_OUTLINE := 4
 
 ## Emitted when the dimensions have changed.
-signal dimensions_changed(new_dimensions:Vector2)
+signal dimensions_changed(new_dimensions : Vector2)
 
 ## Emitted when the background color has changed.
-signal color_changed(new_color:Color)
+signal color_changed(new_color : Color)
 
 ## Emitted when the texture has changed.
-signal texture_changed(new_texture:Texture)
+signal texture_changed(new_texture : Texture)
 
 ## Emitted when the label has changed.
-signal label_changed(new_label:String)
+signal label_changed(new_label : String)
+
+@export_category("PlaceholderComponent")
 
 ## The dimensions of the placeholder.
 @export var dimensions := Vector2(64.0, 64.0):
@@ -47,7 +49,7 @@ signal label_changed(new_label:String)
 		queue_redraw()
 		dimensions_changed.emit(dimensions)
 
-## The background color.
+## The background colour.
 @export_color_no_alpha var color := Color.SLATE_GRAY:
 	set(c):
 		color = c
@@ -74,7 +76,7 @@ signal label_changed(new_label:String)
 ## The label text size.
 @export_range(8, 32, 1) var label_size := 16:
 	set(s):
-		label_size = s
+		label_size = clamp(s, 8, 32)
 		queue_redraw()
 		label_changed.emit(label_text)
 
@@ -122,3 +124,38 @@ func _draw() -> void:
 			HORIZONTAL_ALIGNMENT_CENTER, text_width, font_size, 
 			__LABEL_LINES_MAX, __LABEL_COLOR_TEXT)
 
+func set_dimensions(new_dimensions : Vector2) -> void:
+	if new_dimensions.x < 2: new_dimensions.x = 2
+	if new_dimensions.y < 2: new_dimensions.y = 2
+	dimensions = new_dimensions
+
+func get_dimensions() -> Vector2:
+	return dimensions
+
+func set_color(new_color: Color) -> void:
+	color = new_color
+	
+func get_color() -> Color:
+	return color
+
+func set_texture(new_texture : Texture) -> void:
+	texture = new_texture
+	
+func get_texture() -> Texture:
+	return texture
+	
+func clear_texture() -> void:
+	texture = null
+	
+func set_label(new_text : String, new_size : int) -> void:
+	set_label_text(new_text)
+	set_label_size(new_size)
+
+func set_label_text(new_text : String) -> void:
+	label_text = new_text
+
+func set_label_size(new_size : int) -> void:
+	label_size = new_size
+
+func clear_label() -> void:
+	set_label_text("")

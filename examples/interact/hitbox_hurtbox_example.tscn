@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjrexshbcy3l"]
+[gd_scene load_steps=11 format=3]
 
-[ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_1eowi"]
-[ext_resource type="PackedScene" uid="uid://b8440pdd1e8cf" path="res://components/interact_hurtbox.tscn" id="2_mwlxd"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/visual/placeholder.tscn" id="1_1eowi"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/interact/hurtbox.tscn" id="2_mwlxd"]
 [ext_resource type="PackedScene" uid="uid://cub2wjbssfmq6" path="res://addons/bc-components/effect/flash_on_hit.tscn" id="5_t02w5"]
 [ext_resource type="PackedScene" uid="uid://dgxh4tpir6c5e" path="res://addons/bc-components/stat/health.tscn" id="5_ymfum"]
 [ext_resource type="PackedScene" uid="uid://besovdtn2pc8k" path="res://addons/bc-components/movement/controls_four_way.tscn" id="6_leanc"]
-[ext_resource type="PackedScene" uid="uid://s0qhatxbneng" path="res://components/interact_hitbox.tscn" id="6_t8m3d"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/interact/hitbox.tscn" id="6_t8m3d"]
 [ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="7_ch0sa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5b1ia"]
@@ -28,7 +28,7 @@ func _on_health_component_died() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogcit"]
 size = Vector2(32, 64)
 
-[node name="InteractHitboxHurtboxExample" type="Node2D"]
+[node name="HitboxHurtboxExample" type="Node2D"]
 
 [node name="Trap" parent="." instance=ExtResource("1_1eowi")]
 position = Vector2(749, 334)
@@ -36,11 +36,11 @@ dimensions = Vector2(128, 128)
 color = Color(0.564706, 0.184314, 0.176471, 1)
 label_text = "IT'S A TRAP!"
 
-[node name="InteractHitbox" parent="Trap" instance=ExtResource("6_t8m3d")]
+[node name="HitboxComponent" parent="Trap" instance=ExtResource("6_t8m3d")]
 position = Vector2(749, 334)
 damage_amount = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trap/InteractHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trap/HitboxComponent"]
 position = Vector2(-749, -334)
 shape = SubResource("RectangleShape2D_5b1ia")
 
@@ -56,13 +56,13 @@ label_text = "HERO"
 [node name="HealthComponent" parent="Character" instance=ExtResource("5_ymfum")]
 max_health = 5.0
 
-[node name="InteractHurtbox" parent="Character" node_paths=PackedStringArray("health_stat_node") instance=ExtResource("2_mwlxd")]
+[node name="HurtboxComponent" parent="Character" node_paths=PackedStringArray("health_stat_node") instance=ExtResource("2_mwlxd")]
 health_stat_node = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/InteractHurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtboxComponent"]
 shape = SubResource("RectangleShape2D_ogcit")
 
-[node name="FlashOnHitComponent" parent="Character/InteractHurtbox" node_paths=PackedStringArray("target_node") instance=ExtResource("5_t02w5")]
+[node name="FlashOnHitComponent" parent="Character/HurtboxComponent" node_paths=PackedStringArray("target_node") instance=ExtResource("5_t02w5")]
 target_node = NodePath("../..")
 
 [node name="VelocityComponent" parent="Character" instance=ExtResource("7_ch0sa")]

@@ -1,3 +1,4 @@
+@icon("./hurtbox.svg")
 class_name InteractHurtbox
 extends Area2D
 

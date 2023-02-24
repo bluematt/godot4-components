@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cflfuvs770yaw"]
-
-[ext_resource type="Script" path="res://components/visual_look_at_cursor.gd" id="1_doh3x"]
-
-[node name="VisualLookAtCursor" type="Node"]
-script = ExtResource("1_doh3x")

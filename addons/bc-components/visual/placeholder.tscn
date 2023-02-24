@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/bc-components/visual/placeholder.gd" id="1_eo8fd"]
+
+[node name="PlaceholderComponent" type="Node2D"]
+script = ExtResource("1_eo8fd")

@@ -1,4 +1,4 @@
-@icon("res://icons/visual_align_to_velocity.svg")
+@icon("./align_to_velocity.svg")
 class_name VisualAlignToVelocity
 extends Node
 

@@ -1,4 +1,4 @@
-@icon("res://icons/movement_controls_up_down.svg")
+@icon("./controls_up_down.svg")
 class_name BCControlsUpDown
 extends Node
 

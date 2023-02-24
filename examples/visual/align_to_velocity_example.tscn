@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/bc-components/visual/placeholder.tscn" id="1_8tdh3"]
+[ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="2_88103"]
+[ext_resource type="PackedScene" uid="uid://besovdtn2pc8k" path="res://addons/bc-components/movement/controls_four_way.tscn" id="3_omfo5"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/visual/align_to_velocity.tscn" id="4_1rgfu"]
+
+[node name="AlignToVelocityExample" type="Node2D"]
+
+[node name="Ogre" type="CharacterBody2D" parent="."]
+position = Vector2(355, 334)
+
+[node name="PlaceholderComponent" parent="Ogre" instance=ExtResource("1_8tdh3")]
+dimensions = Vector2(128, 128)
+color = Color(0.462745, 0.564706, 0.282353, 1)
+label_text = "ogre"
+
+[node name="VelocityComponent" parent="Ogre" instance=ExtResource("2_88103")]
+acceleration_coefficient = 0.1
+deceleration_coefficient = 0.1
+
+[node name="ControlsFourWayComponent" parent="Ogre/VelocityComponent" instance=ExtResource("3_omfo5")]
+
+[node name="AlignToVelocityComponent" parent="Ogre" node_paths=PackedStringArray("velocity_node") instance=ExtResource("4_1rgfu")]
+velocity_node = NodePath("../VelocityComponent")
+smoothing = 0.05
+
+[node name="Fairy" type="CharacterBody2D" parent="."]
+position = Vector2(798, 330)
+
+[node name="PlaceholderComponent" parent="Fairy" instance=ExtResource("1_8tdh3")]
+color = Color(0.756863, 0.505882, 0.745098, 1)
+label_text = "fairy"
+
+[node name="VelocityComponent" parent="Fairy" instance=ExtResource("2_88103")]
+acceleration_coefficient = 0.75
+deceleration_coefficient = 0.75
+
+[node name="ControlsFourWayComponent" parent="Fairy/VelocityComponent" instance=ExtResource("3_omfo5")]
+
+[node name="AlignToVelocityComponent" parent="Fairy" node_paths=PackedStringArray("velocity_node") instance=ExtResource("4_1rgfu")]
+velocity_node = NodePath("../VelocityComponent")
+smoothing = 0.5

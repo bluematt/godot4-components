@@ -1,3 +1,4 @@
+@icon("./hitbox.svg")
 class_name InteractHitbox
 extends Area2D
 

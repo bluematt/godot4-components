@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/bc-components/visual/look_at_cursor.gd" id="1_doh3x"]
+
+[node name="VisualLookAtCursor" type="Node"]
+script = ExtResource("1_doh3x")

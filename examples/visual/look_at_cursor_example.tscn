@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://div5fx7ipfucx"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://components/visual_placeholder.gd" id="1_mpaet"]
-[ext_resource type="PackedScene" path="res://components/visual_look_at_cursor.tscn" id="2_ljbff"]
+[ext_resource type="Script" path="res://addons/bc-components/visual/placeholder.gd" id="1_mpaet"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/visual/look_at_cursor.tscn" id="2_ljbff"]
 
 [node name="LookAtCursorExample" type="Node2D"]
 

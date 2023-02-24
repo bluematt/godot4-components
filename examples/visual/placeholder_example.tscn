@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvr5365mqqsku"]
+[gd_scene load_steps=3 format=3 uid="uid://c1rklkuk17qvr"]
 
-[ext_resource type="PackedScene" uid="uid://q5owqku0xuyf" path="res://components/visual_placeholder.tscn" id="1_obupx"]
+[ext_resource type="PackedScene" path="res://addons/bc-components/visual/placeholder.tscn" id="1_obupx"]
 [ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://icon.svg" id="2_wwpvt"]
 
-[node name="VisualPlaceholderExample" type="Node2D"]
+[node name="PlaceholderExample" type="Node2D"]
 
 [node name="Basic" parent="." instance=ExtResource("1_obupx")]
 position = Vector2(79, 118)
@@ -15,14 +15,23 @@ dimensions = Vector2(32, 64)
 color = Color(0.666667, 0.764706, 0.858824, 1)
 
 [node name="WithLabel" parent="." instance=ExtResource("1_obupx")]
-position = Vector2(418, 166)
-dimensions = Vector2(128, 128)
+position = Vector2(505, 91)
+dimensions = Vector2(256, 128)
 color = Color(0.298039, 0.564706, 0.196078, 1)
-label_text = "HOUSE"
+label_text = "GREEN!"
 label_size = 24
 
 [node name="WithTexture" parent="." instance=ExtResource("1_obupx")]
 position = Vector2(123, 320)
-dimensions = Vector2(64, 64)
 color = Color(0.196078, 0.372549, 0.564706, 1)
 texture = ExtResource("2_wwpvt")
+label_text = "smol"
+label_size = 12
+
+[node name="WithTextureLarge" parent="." instance=ExtResource("1_obupx")]
+position = Vector2(314, 329)
+dimensions = Vector2(256, 256)
+color = Color(0.196078, 0.372549, 0.564706, 1)
+texture = ExtResource("2_wwpvt")
+label_text = "BIG"
+label_size = 32

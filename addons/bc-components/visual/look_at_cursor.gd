@@ -1,4 +1,4 @@
-@icon("res://icons/visual_look_at_cursor.svg")
+@icon("./look_at_cursor.svg")
 class_name VisualLookAtCursor
 extends Node
 
