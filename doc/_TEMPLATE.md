@@ -1,11 +1,11 @@
 ---
 component: CommonNameComponent
-class_name: BCClassName
+class_name: BBClassName
 ---
 
 # <img src="../addons/bc-components/CATEGORY/ICON.svg" width="48" height="48"> `CommonNameComponent` 
 
-Class: `BCClassName`
+Class: `BBClassName`
 
 Description.
 

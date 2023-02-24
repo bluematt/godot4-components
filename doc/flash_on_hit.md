@@ -1,11 +1,11 @@
 ---
 component: FlashOnHitComponent
-class_name: BCFlashOnHitComponent
+class_name: BBFlashOnHit
 ---
 
 # <img src="../addons/bc-components/effect/flash.svg" width="48" height="48"> `FlashOnHitComponent` 
 
-Class: `BCFlashOnHitComponent`
+Class: `BBFlashOnHit`
 
 Add a flash effect to a `Node2D`, triggered by a collision with a [`HurtboxComponent`](hurtbox.md).
 

@@ -1,11 +1,11 @@
 ---
 component: ControlsFourWayComponent
-class_name: BCControlsFourWay
+class_name: BBControlsFourWay
 ---
 
 # <img src="../addons/bc-components/movement/controls_four_way.svg" width="48" height="48"> `ControlsFourWayComponent`
 
-Class: `BCControlsFourWay`
+Class: `BBControlsFourWay`
 
 Apply four-way movement to a [`VelocityComponent`](velocity.md).
 

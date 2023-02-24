@@ -1,11 +1,11 @@
 ---
 component: PlaceholderComponent
-class_name: BCPlaceholder
+class_name: BBPlaceholder
 ---
 
 # <img src="../addons/bc-components/visual/placeholder.svg" width="48" height="48"> `PlaceholderComponent` 
 
-Class: `BCPlaceholder`
+Class: `BBPlaceholder`
 
 A visual placeholder component.
 

@@ -1,11 +1,11 @@
 ---
 component: AutoHealComponent
-class_name: BCAutoHealComponent
+class_name: BBAutoHeal
 ---
 
 # <img src="../addons/bc-components/stat/auto_heal.svg" width="48" height="48"> `AutoHealComponent`
 
-Class: `BCAutoHealComponent`
+Class: `BBAutoHeal`
 
 Give a [`HealthComponent`](health.md) the ability to autorecover over time.
 

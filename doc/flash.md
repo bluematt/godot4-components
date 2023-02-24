@@ -1,11 +1,11 @@
 ---
 component: FlashComponent
-class_name: BCFlashComponent
+class_name: BBFlash
 ---
 
 # <img src="../addons/bc-components/effect/flash.svg" width="48" height="48"> `FlashComponent`
 
-Class: `BCFlashComponent`
+Class: `BBFlash`
 
 Add a flash effect to a `Node2D`.
 

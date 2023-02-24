@@ -1,11 +1,11 @@
 ---
 component: HealthComponent
-class_name: BCHealthComponent
+class_name: BBHealth
 ---
 
 # <img src="../addons/bc-components/stat/health.svg" width="48" height="48"> `HealthComponent`
 
-Class: `BCHealthComponent`
+Class: `BBHealth`
 
 Keep track of a health-like numerical statistic (stat).
 

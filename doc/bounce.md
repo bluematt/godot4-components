@@ -1,11 +1,11 @@
 ---
 component: BounceComponent
-class_name: BCBounceComponent
+class_name: BBBounce
 ---
 
 # <img src="../addons/bc-components/effect/bounce.svg" width="48" height="48"> `BounceComponent` 
 
-Class: `BCBounceComponent`
+Class: `BBBounce`
 
 Add a bouncing effect to a `Node2D`.
 

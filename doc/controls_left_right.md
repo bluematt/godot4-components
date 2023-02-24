@@ -1,11 +1,11 @@
 ---
 component: ControlsLeftRightComponent
-class_name: BCControlsLeftRight
+class_name: BBControlsLeftRight
 ---
 
 # <img src="../addons/bc-components/movement/controls_left_right.svg" width="48" height="48"> `ControlsLeftRightComponent`
 
-Class: `BCControlsLeftRight`
+Class: `BBControlsLeftRight`
 
 Apply left and right movement to a [`VelocityComponent`](velocity.md).
 

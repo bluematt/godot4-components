@@ -1,11 +1,11 @@
 ---
 component: ControlsUpDownComponent
-class_name: BCControlsUpDown
+class_name: BBControlsUpDown
 ---
 
 # <img src="../addons/bc-components/movement/controls_four_way.svg" width="48" height="48"> `ControlsUpDownComponent`
 
-Class: `BCControlsUpDown`
+Class: `BBControlsUpDown`
 
 Apply up and down movement to a [`VelocityComponent`](velocity.md).
 

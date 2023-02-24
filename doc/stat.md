@@ -1,11 +1,11 @@
 ---
 component: StatComponent
-class_name: BCStatComponent
+class_name: BBStat
 ---
 
 # <img src="../addons/bc-components/stat/stat.svg" width="48" height="48"> `StatComponent`
 
-Class: `BCStatComponent`
+Class: `BBStat`
 
 Keep track of an arbitrary numerical statistic (stat).
 

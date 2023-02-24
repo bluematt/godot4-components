@@ -1,11 +1,11 @@
 ---
 component: VelocityComponent
-class_name: BCVelocity
+class_name: BBVelocity
 ---
 
 # <img src="../addons/bc-components/movement/velocity.svg" width="48" height="48"> `VelocityComponent`
 
-Class: `BCVelocity`
+Class: `BBVelocity`
 
 Control a `CharacterBody2D` node, applying a maximum speed with acceleration and deceleration coefficients.
 
