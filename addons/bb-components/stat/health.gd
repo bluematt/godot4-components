@@ -32,23 +32,21 @@ signal revived()
 @export var max_health := 100.0
 
 ## The current health.
-@onready var __health := max_health:
+@onready var health := max_health:
 	set(v):
-		__health = clamp(v, __LOWEST_LIMIT_HEALTH, max_health)
+		health = clamp(v, __LOWEST_LIMIT_HEALTH, max_health)
 
 ## Apply an amount of healing.  If [i]will_revive[/i] is true, the health can be
 ## from a "dead" state.
 func heal(amount : float, will_revive : bool = false) -> void:
 	if is_dead() and not will_revive: return
 
-	var old_heath := __health
+	var old_heath := health
 
-	__health += amount
-	if __health >= max_health:
-		__health = max_health
+	health += amount
 
-	healed.emit(__health - old_heath)
-	changed.emit(__health)
+	healed.emit(health - old_heath)
+	changed.emit(health)
 
 	if is_maxed():
 		healed_fully.emit()
@@ -59,14 +57,12 @@ func heal_fully() -> void:
 
 ## Apply an amount of damage.
 func damage(amount : float) -> void:
-	var old_heath := __health
+	var old_heath := health
 
-	__health -= amount
-	if __health <= __LOWEST_LIMIT_HEALTH:
-		__health = __LOWEST_LIMIT_HEALTH
+	health -= amount
 
-	damaged.emit(old_heath - __health)
-	changed.emit(__health)
+	damaged.emit(old_heath - health)
+	changed.emit(health)
 		
 	if is_dead():
 		died.emit()
@@ -77,25 +73,17 @@ func is_dead() -> bool:
 	
 ## Return whether the health should be considered "alive".
 func is_alive() -> bool:
-	return __health > __LOWEST_LIMIT_HEALTH
+	return health > __LOWEST_LIMIT_HEALTH
 	
 ## Return whether the health is maxed out.
 func is_maxed() -> bool:
-	return __health >= max_health
+	return health >= max_health
 
 ## Revive the health from "dead" state.
 func revive(amount: float) -> void:
 	if is_dead():
 		heal(amount, true)
 		revived.emit()
-
-## Return the current health.
-func get_health() -> float:
-	return __health
-
-## Set the health.
-func set_health(value : float) -> void:
-	__health = value
 
 ## Return the maximum health.
 func get_max_health() -> float:
@@ -104,3 +92,12 @@ func get_max_health() -> float:
 ## Set the maximum health.
 func set_max_health(value : float) -> void:
 	max_health = value
+
+## Return the current health.
+func get_health() -> float:
+	return health
+
+## Set the health.
+func set_health(value : float) -> void:
+	health = value
+
