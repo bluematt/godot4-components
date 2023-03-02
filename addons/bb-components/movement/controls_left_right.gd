@@ -49,42 +49,56 @@ func _process(_delta: float) -> void:
 		input_action_left.action, input_action_right.action))
 
 ## Set the [member velocity_node].
-func set_velocity(value : BBVelocity) -> void:
-	velocity_node = value
+func set_velocity(new_velocity : BBVelocity) -> void:
+	velocity_node = new_velocity
 
 ## Return the [member velocity_node].
 func get_velocity() -> BBVelocity:
 	return velocity_node
 
 ## Set the [InputEventAction] to move left.
-func set_input_action_left(value : InputEventAction) -> void:
-	input_action_left = value
+func set_input_action_left(new_action : InputEventAction) -> void:
+	input_action_left = new_action
+	
+# Get the [InputEventAction] to move left.
+func get_input_action_left() -> InputEventAction:
+	return input_action_left
 	
 ## Set the [InputEventAction] to move right.
-func set_input_action_right(value : InputEventAction) -> void:
-	input_action_right = value
+func set_input_action_right(new_action : InputEventAction) -> void:
+	input_action_right = new_action
+	
+# Get the [InputEventAction] to move right.
+func get_input_action_right() -> InputEventAction:
+	return input_action_right
 	
 ## Set the action to move left.
-func set_action_left(value : StringName) -> void:
-	input_action_left.set_action(value)
+func set_action_left(new_action : StringName) -> void:
+	input_action_left.set_action(new_action)
+
+## Get the action to move left.
+func get_action_left() -> StringName:
+	return input_action_left.get_action()
 
 ## Set the action to move right.
-func set_action_right(value : StringName) -> void:
-	input_action_right.set_action(value)
+func set_action_right(new_action : StringName) -> void:
+	input_action_right.set_action(new_action)
+
+## Get the action to move right.
+func get_action_right() -> StringName:
+	return input_action_right.get_action()
 	
 ## Reset all actions.	
 func reset_actions() -> void:
 	reset_action_left()
 	reset_action_right()
 
-## Set the action to move left.
+## Reset the action to move left.
 func reset_action_left() -> void:
-	input_action_left == null
 	input_action_left = InputEventAction.new()
-	input_action_left.set_action(DEFAULT_ACTION_LEFT)
+	set_action_left(DEFAULT_ACTION_LEFT)
 
-## Set the action to move right.
+## Reset the action to move right.
 func reset_action_right() -> void:
-	input_action_right == null
 	input_action_right = InputEventAction.new()
-	input_action_right.set_action(DEFAULT_ACTION_RIGHT)
+	set_action_right(DEFAULT_ACTION_RIGHT)

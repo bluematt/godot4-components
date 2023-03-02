@@ -49,42 +49,56 @@ func _process(_delta: float) -> void:
 		input_action_up.action, input_action_down.action))
 
 ## Set the [member velocity_node].
-func set_velocity(value : BBVelocity) -> void:
-	velocity_node = value
+func set_velocity(new_velocity : BBVelocity) -> void:
+	velocity_node = new_velocity
 
 ## Return the [member velocity_node].
 func get_velocity() -> BBVelocity:
 	return velocity_node
 
 ## Set the [InputEventAction] to move up.
-func set_input_action_up(value : InputEventAction) -> void:
-	input_action_up = value
+func set_input_action_up(new_action : InputEventAction) -> void:
+	input_action_up = new_action
+
+# Get the [InputEventAction] to move up.
+func get_input_action_up() -> InputEventAction:
+	return input_action_up
 	
 ## Set the [InputEventAction] to move down.
-func set_input_action_down(value : InputEventAction) -> void:
-	input_action_down = value
+func set_input_action_down(new_action : InputEventAction) -> void:
+	input_action_down = new_action
+	
+# Get the [InputEventAction] to move down.
+func get_input_action_down() -> InputEventAction:
+	return input_action_down
 	
 ## Set the action to move up.
-func set_action_up(value : StringName) -> void:
-	input_action_up.set_action(value)
+func set_action_up(new_action : StringName) -> void:
+	input_action_up.set_action(new_action)
+	
+## Get the action to move up.
+func get_action_up() -> StringName:
+	return input_action_up.get_action()
 
 ## Set the action to move down.
-func set_action_down(value : StringName) -> void:
-	input_action_down.set_action(value)
+func set_action_down(new_action : StringName) -> void:
+	input_action_down.set_action(new_action)
+
+## Get the action to move down.
+func get_action_down() -> StringName:
+	return input_action_down.get_action()
 	
 ## Reset all actions.	
 func reset_actions() -> void:
 	reset_action_up()
 	reset_action_down()
 
-## Set the action to move up.
+## Reset the default name of the action to move up.
 func reset_action_up() -> void:
-	input_action_up == null
 	input_action_up = InputEventAction.new()
-	input_action_up.set_action(DEFAULT_ACTION_UP)
+	set_action_up(DEFAULT_ACTION_UP)
 
-## Set the action to move down.
+## Reset the action to move down.
 func reset_action_down() -> void:
-	input_action_down == null
 	input_action_down = InputEventAction.new()
-	input_action_down.set_action(DEFAULT_ACTION_DOWN)
+	set_action_down(DEFAULT_ACTION_DOWN)
