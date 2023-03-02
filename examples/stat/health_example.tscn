@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3]
 
-[ext_resource type="PackedScene" uid="uid://dgxh4tpir6c5e" path="res://addons/bc-components/stat/health.tscn" id="1_7csi2"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/stat/health.tscn" id="1_7csi2"]
 [ext_resource type="Script" path="res://examples/stat/health_example.gd" id="1_tjnr4"]
-[ext_resource type="PackedScene" uid="uid://sdfw383payn7" path="res://addons/bc-components/stat/auto_heal.tscn" id="3_qquyk"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/stat/auto_heal.tscn" id="3_qquyk"]
 
 [node name="HealthExample" type="Control"]
 layout_mode = 3

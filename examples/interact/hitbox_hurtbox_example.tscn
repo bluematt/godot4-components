@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bc-components/visual/placeholder.tscn" id="1_1eowi"]
-[ext_resource type="PackedScene" path="res://addons/bc-components/interact/hurtbox.tscn" id="2_mwlxd"]
-[ext_resource type="PackedScene" uid="uid://cub2wjbssfmq6" path="res://addons/bc-components/effect/flash_on_hit.tscn" id="5_t02w5"]
-[ext_resource type="PackedScene" uid="uid://dgxh4tpir6c5e" path="res://addons/bc-components/stat/health.tscn" id="5_ymfum"]
-[ext_resource type="PackedScene" uid="uid://besovdtn2pc8k" path="res://addons/bc-components/movement/controls_four_way.tscn" id="6_leanc"]
-[ext_resource type="PackedScene" path="res://addons/bc-components/interact/hitbox.tscn" id="6_t8m3d"]
-[ext_resource type="PackedScene" uid="uid://byhys4csvjle8" path="res://addons/bc-components/movement/velocity.tscn" id="7_ch0sa"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_1eowi"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/interact/hurtbox.tscn" id="2_mwlxd"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/effect/flash_on_hit.tscn" id="5_t02w5"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/stat/health.tscn" id="5_ymfum"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/movement/controls_four_way.tscn" id="6_leanc"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/interact/hitbox.tscn" id="6_t8m3d"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/movement/velocity.tscn" id="7_ch0sa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5b1ia"]
 size = Vector2(128, 128)

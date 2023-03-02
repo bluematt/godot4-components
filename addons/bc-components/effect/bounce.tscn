@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp8gl53tbxsbw"]
-
-[ext_resource type="Script" path="res://addons/bc-components/effect/bounce.gd" id="1_odfoa"]
-
-[node name="BCBounceComponent" type="Node"]
-script = ExtResource("1_odfoa")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/bc-components/stat/stat.gd" id="1_mjc5l"]
+[ext_resource type="Script" path="res://addons/bb-components/stat/stat.gd" id="1_mjc5l"]
 
 [node name="StatComponent" type="Node"]
 script = ExtResource("1_mjc5l")
