@@ -74,7 +74,7 @@ func get_max_speed() -> float:
 
 ## Set [member acceleration_coefficient].
 func set_acceleration(acceleration : float) -> void:
-	acceleration_coefficient = clamp(acceleration, 0.0, 1.0)
+	acceleration_coefficient = clampf(acceleration, 0.0, 1.0)
 
 ## Return [member acceleration_coefficient].
 func get_acceleration() -> float:
@@ -82,7 +82,7 @@ func get_acceleration() -> float:
 
 ## Set [member deceleration_coefficient].
 func set_deceleration(deceleration : float) -> void:
-	deceleration_coefficient = clamp(deceleration, 0.0, 1.0)
+	deceleration_coefficient = clampf(deceleration, 0.0, 1.0)
 
 ## Return [member deceleration_coefficient].
 func get_deceleration() -> float:

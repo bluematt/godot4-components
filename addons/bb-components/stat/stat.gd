@@ -40,7 +40,7 @@ signal failed(deficit : float)
 # The current stat.
 @onready var stat := max_stat:
 	set(v):
-		stat = clamp(v, __LOWEST_LIMIT_STAT, max_stat)
+		stat = clampf(v, __LOWEST_LIMIT_STAT, max_stat)
 
 ## Recover an amount of the stat.
 func recover(amount : float) -> void:

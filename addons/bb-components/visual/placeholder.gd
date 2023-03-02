@@ -76,7 +76,7 @@ signal label_changed(new_label : String)
 ## The label text size.
 @export_range(8, 32, 1) var label_size := 16:
 	set(s):
-		label_size = clamp(s, 8, 32)
+		label_size = clampi(s, 8, 32)
 		queue_redraw()
 		label_changed.emit(label_text)
 

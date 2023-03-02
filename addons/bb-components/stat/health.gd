@@ -34,7 +34,7 @@ signal revived()
 ## The current health.
 @onready var health := max_health:
 	set(v):
-		health = clamp(v, __LOWEST_LIMIT_HEALTH, max_health)
+		health = clampf(v, __LOWEST_LIMIT_HEALTH, max_health)
 
 ## Apply an amount of healing.  If [i]will_revive[/i] is true, the health can be
 ## from a "dead" state.
