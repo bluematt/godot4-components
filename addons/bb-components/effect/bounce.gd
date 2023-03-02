@@ -42,7 +42,9 @@ const __NO_DURATION := 0.0
 @export var loop : Loop = Loop.FROM_START
 
 ## How many times to repeat.  0 means repeat infinitely.
-@export_range(0, 1_000_000_000) var repeats := 0
+@export_range(0, 1_000_000_000) var repeats := 0:
+	set(r):
+		repeats = max(0, r)
 
 # The tween which controls the bounce.
 @onready var __tween : Tween
@@ -94,6 +96,62 @@ func stop() -> void:
 	__tween.stop()
 	stopped.emit()
 
+## Set the target node.
+func set_target(new_target : Node2D) -> void:
+	target_node = new_target
+
+## Get the target node.
+func get_target() -> Node2D:
+	return target_node
+
+## Set the duration of the animation.
+func set_duration(time : float) -> void:
+	duration = time
+
+## Get the duration of the animation.
+func get_duration() -> float:
+	return duration
+
+## Set the displacement.
+func set_displacement(distance : Vector2) -> void:
+	displacement = distance
+
+## Get the displacement.
+func get_displacement() -> Vector2:
+	return displacement
+
+## Set the transition.
+func set_transition(new_transition : Tween.TransitionType) -> void:
+	transition = new_transition
+
+## Get the transition.
+func get_transition() -> Tween.TransitionType:
+	return transition
+
+## Set the easing.
+func set_easing(new_easing : Tween.EaseType) -> void:
+	easing = new_easing
+	
+## Get the easing.
+func get_easing() -> Tween.EaseType:
+	return easing
+
+## Set the loop setting.
+func set_loop(new_loop : Loop) -> void:
+	loop = new_loop
+
+## Get the loop setting.
+func get_loop() -> Loop:
+	return loop
+
+## Set repeat count.
+func set_repeats(new_repeats : int) -> void:
+	repeats = new_repeats
+
+## Get repeat count.
+func get_repeats() -> int:
+	return repeats
+
 ## Enable (and start) the bounce animation.
 func enable() -> void:
 	enabled = true
@@ -113,20 +171,3 @@ func get_enabled() -> bool:
 ## Return whether the bounce animation is enabled.
 func is_enabled() -> bool:
 	return enabled
-
-## Set the duration of the animation.
-func set_duration(time : float) -> void:
-	duration = time
-
-## Get the duration of the animation.
-func get_duration() -> float:
-	return duration
-
-## Set the displacement.
-func set_displacement(distance : Vector2) -> void:
-	displacement = distance
-
-## Get the displacement.
-func get_displacement() -> Vector2:
-	return displacement
-
