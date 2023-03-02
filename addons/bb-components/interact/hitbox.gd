@@ -6,7 +6,7 @@ extends Area2D
 ##
 ## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/hitbox.md
 
-## Emitted when the hitbox hits a hurtbox.
+## Emitted when the hitbox hits a [BBHurtbox].
 signal hit(hurtbox: BBHurtbox, amount: float)
 
 ## The amount of damage this hitbox applies.
@@ -15,3 +15,11 @@ signal hit(hurtbox: BBHurtbox, amount: float)
 func _on_hurtbox_entered(hurtbox:BBHurtbox) -> void:
 	hurtbox.damage(damage_amount)
 	hit.emit(hurtbox, damage_amount)
+
+## Set the damage amount.
+func set_damage_amount(new_damage_amount : float) -> void:
+	damage_amount = new_damage_amount
+
+## Get the damage amount.
+func get_damage_amount() -> float:
+	return damage_amount
