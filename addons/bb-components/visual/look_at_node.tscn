@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://drib2wtjs6inl"]
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/look_at_node.gd" id="1_eqyld"]
 
-[node name="VisualLookAtNode" type="Node"]
+[node name="LookAtNodeComponent" type="Node"]
 script = ExtResource("1_eqyld")
