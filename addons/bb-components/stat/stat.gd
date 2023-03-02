@@ -38,20 +38,18 @@ signal failed(deficit : float)
 @export var max_stat := 100.0
 
 # The current stat.
-@onready var __stat := max_stat:
+@onready var stat := max_stat:
 	set(v):
-		__stat = clamp(v, __LOWEST_LIMIT_STAT, max_stat)
+		stat = clamp(v, __LOWEST_LIMIT_STAT, max_stat)
 
 ## Recover an amount of the stat.
 func recover(amount : float) -> void:
-	var old_stat := __stat
+	var old_stat := stat
 
-	__stat += amount
-	if __stat >= max_stat:
-		__stat = max_stat
+	stat += amount
 
-	recovered.emit(__stat - old_stat)
-	changed.emit(__stat)
+	recovered.emit(stat - old_stat)
+	changed.emit(stat)
 
 	if is_maxed():
 		recovered_fully.emit()
@@ -63,14 +61,12 @@ func recover_fully() -> void:
 ## Expend an amount of the stat.  Returns whether there was enough of the stat
 ## to consider the expenditure "successful".
 func expend(amount: float) -> bool:
-	var old_stat := __stat
+	var old_stat := stat
 
-	__stat -= amount
-	if __stat <= __LOWEST_LIMIT_STAT:
-		__stat = __LOWEST_LIMIT_STAT
+	stat -= amount
 
-	expended.emit(__stat - old_stat)
-	changed.emit(__stat)
+	expended.emit(stat - old_stat)
+	changed.emit(stat)
 		
 	if is_exhausted():
 		exhausted.emit()
@@ -84,26 +80,26 @@ func expend(amount: float) -> bool:
 	
 	return success
 
-## Return whether the stat has been exhausted.
-func is_exhausted() -> bool:
-	return __stat <= __LOWEST_LIMIT_STAT
-	
-## Return whether the stat is maxed out.
-func is_maxed() -> bool:
-	return __stat >= max_stat
-
-## Get the stat.
-func get_stat() -> float:
-	return __stat
-
-## Set the stat.
-func set_stat(value : float) -> void:
-	__stat = value
+## Set the maximum stat.
+func set_max_stat(value : float) -> void:
+	max_stat = value
 
 ## Get the maximum stat.
 func get_max_stat() -> float:
 	return max_stat
 
-## Set the maximum stat.
-func set_max_stat(value : float) -> void:
-	max_stat = value
+## Set the stat.
+func set_stat(value : float) -> void:
+	stat = value
+
+## Get the stat.
+func get_stat() -> float:
+	return stat
+
+## Return whether the stat has been exhausted.
+func is_exhausted() -> bool:
+	return stat <= __LOWEST_LIMIT_STAT
+	
+## Return whether the stat is maxed out.
+func is_maxed() -> bool:
+	return stat >= max_stat
