@@ -12,11 +12,15 @@ extends Node
 ## The [BBVelocity] component to align to.
 @export var velocity_node:BBVelocity
 
-## A rotational offset, in degrees.
-@export_range(-360.0,360.0) var offset := 90.0
+## A rotational offset angle (in degrees).
+@export_range(-360.0,360.0) var offset := 90.0:
+	set(o):
+		offset = clampf(o, -360.0, 360.0)
 
 ## The smoothing to be applied to the rotation.
-@export_range(0.0, 1.0) var smoothing := 1.0
+@export_range(0.0, 1.0) var smoothing := 1.0:
+	set(s):
+		smoothing = clampf(s, 0.0, 1.0)
 
 ## Whether the component is enabled.
 @export var enabled := true
@@ -46,3 +50,55 @@ func _physics_process(_delta: float) -> void:
 				velocity_node.get_direction().angle() + 
 				deg_to_rad(offset), smoothing)
 			character_node.rotation = __rotation
+
+## Set the [CharacterBody2D].
+func set_character(new_character : CharacterBody2D) -> void:
+	character_node = new_character
+
+## Get the [CharacterBody2D].
+func get_character() -> CharacterBody2D:
+	return character_node
+
+## Set the [BBVelocity].
+func set_velocity(new_velocity : BBVelocity) -> void:
+	velocity_node = new_velocity
+
+## Get the [BBVelocity].
+func get_velocity() -> BBVelocity:
+	return velocity_node
+
+## Set the offset angle (in degrees).
+func set_offset(new_offset : float) -> void:
+	offset = new_offset
+
+## Get the offset angle (in degrees).
+func get_offset() -> float:
+	return offset
+
+## Set the smoothing.
+func set_smoothing(new_smoothing : float) -> void:
+	smoothing = new_smoothing
+
+## Get the smoothing.
+func get_smoothing() -> float:
+	return smoothing
+
+## Set enabled.
+func set_enabled(is_enabled : bool) -> void:
+	enabled = is_enabled
+
+## Get enabled.
+func get_enabled() -> bool:
+	return enabled
+	
+## Enable the component.
+func enable() -> void:
+	set_enabled(true)
+
+## Disable the component.	
+func disable() -> void:
+	set_enabled(false)
+
+## Return whether the component is enabled.
+func is_enabled() -> bool:
+	return get_enabled()
