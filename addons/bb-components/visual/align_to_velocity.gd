@@ -49,6 +49,7 @@ func _physics_process(_delta: float) -> void:
 			__rotation = lerp_angle(__rotation, 
 				velocity_node.get_direction().angle() + 
 				deg_to_rad(offset), smoothing)
+
 			character_node.rotation = __rotation
 
 ## Set the [CharacterBody2D].
@@ -105,4 +106,4 @@ func is_enabled() -> bool:
 
 ## Return the current rotation (in degrees).
 func get_rotation() -> float:
-	return __rotation
+	return rad_to_deg(__rotation)
