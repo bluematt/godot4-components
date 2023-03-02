@@ -107,13 +107,57 @@ func _process(_delta: float) -> void:
 	if not __delay_timer.is_stopped():
 		autorecovery_counting_down.emit(get_delay_time_remaining())
 
+## Set the stat node.
+func set_stat(new_stat : BBStat) -> void:
+	stat_node = new_stat
+	
+## Get the stat node.
+func get_stat() -> BBStat:
+	return stat_node
+
+## Set enabled.
+func set_enabled(is_enabled : bool) -> void:
+	enabled = is_enabled
+	
+## Get enabled.
+func get_enabled() -> bool:
+	return enabled
+	
+## Set the autorecovery amount.
+func set_autorecover_amount(amount : float) -> void:
+	autorecover_amount = amount
+
+## Get the autorecovery amount.
+func get_autorecover_amount() -> float:
+	return autorecover_amount
+
+## Set the autorecovery rate.
+func set_autorecover_rate(rate : float) -> void:
+	autorecover_rate = rate
+
+## Get the autorecovery rate.
+func get_autorecover_rate() -> float:
+	return autorecover_rate
+
+## Set the autorecovery delay.
+func set_autorecover_delay(delay : float) -> void:
+	autorecover_delay = delay
+
+## Get the autorecovery delay.
+func get_autorecover_delay() -> float:
+	return autorecover_delay
+
 ## Enable autorecovery.
 func enable() -> void:
-	enabled = true
+	set_enabled(true)
 
 ## Disable autorecovery.
 func disable() -> void:
-	enabled = false
+	set_enabled(false)
+
+## Return whether the component is enabled.
+func is_enabled() -> bool:
+	return get_enabled()
 
 ## Return the amount of time left before autorecovery commences (in seconds).
 func get_delay_time_remaining() -> float:
@@ -121,3 +165,4 @@ func get_delay_time_remaining() -> float:
 		return __delay_timer.time_left
 
 	return 0.0
+
