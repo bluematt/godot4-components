@@ -38,7 +38,6 @@ label_text = "IT'S A TRAP!"
 
 [node name="HitboxComponent" parent="Trap" instance=ExtResource("6_t8m3d")]
 position = Vector2(749, 334)
-damage_amount = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trap/HitboxComponent"]
 position = Vector2(-749, -334)
