@@ -54,6 +54,8 @@ const __NO_DURATION := 0.0
 # The original position of the node.
 var __original_position : Vector2
 
+var __is_playing := false
+
 # Whether the bounce effect is enabled.
 @export var enabled := true:
 	set(e):
@@ -64,9 +66,9 @@ func _ready() -> void:
 	if target_node == null:
 		target_node = get_parent()
 	assert(target_node, ("No target_node:Node2D component specified in %s. " +
-		"Select one, or reparent this component as a child of a Node2D node.") 
+		"Select one, or reparent this component as a child of a Node2D node.")
 		% [str(get_path())])
-		
+
 	__tween = get_tree().create_tween()
 
 	__original_position = target_node.position
@@ -76,8 +78,9 @@ func _ready() -> void:
 
 ## Play the bounce animation.
 func play() -> void:
+	__is_playing = true
 	var target_position := __original_position + displacement
-	
+
 	__tween.set_trans(transition)
 	__tween.set_loops(repeats)
 	__tween.set_ease(easing)
@@ -95,6 +98,7 @@ func play() -> void:
 
 ## Stop the bounce animation.
 func stop() -> void:
+	__is_playing = false
 	__tween.stop()
 	stopped.emit()
 
@@ -133,7 +137,7 @@ func get_transition() -> Tween.TransitionType:
 ## Set the easing.
 func set_easing(new_easing : Tween.EaseType) -> void:
 	easing = new_easing
-	
+
 ## Get the easing.
 func get_easing() -> Tween.EaseType:
 	return easing
@@ -173,3 +177,7 @@ func get_enabled() -> bool:
 ## Return whether the bounce animation is enabled.
 func is_enabled() -> bool:
 	return enabled
+
+## Return whether the animation is playing.
+func is_playing() -> bool:
+	return __is_playing
