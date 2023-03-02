@@ -24,18 +24,18 @@ const __DECELERATION_TARGET_VELOCITY := Vector2.ZERO
 @export_range(0.0, 1.0) var deceleration_coefficient := 1.0
 
 ## The direction of the velocity.
-var __direction := Vector2.ZERO
+var direction := Vector2.ZERO
 
 func _ready() -> void:
 	if null == character_node:
 		character_node = get_parent() as CharacterBody2D
-	assert(character_node, ("No character_node:CharacterBody2D node " + 
+	assert(character_node, ("No character_node:CharacterBody2D node " +
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a CharacterBody2D node.") % [str(get_path())])
 
 func _physics_process(_delta: float) -> void:
 	# Accelerate if we have somewhere to go.
-	if __direction: # bool(Vector2.ZERO) == false
+	if direction: # bool(Vector2.ZERO) == false
 		__accelerate()
 	else:
 		# Decelerate if we're still moving.
@@ -43,11 +43,11 @@ func _physics_process(_delta: float) -> void:
 			__decelerate()
 
 	character_node.move_and_slide()
-	
+
 # Accelerate the [member character_node].
 func __accelerate() -> void:
 	var acceleration_rate := max_speed * acceleration_coefficient
-	var speed = __direction.normalized() * max_speed
+	var speed = direction.normalized() * max_speed
 	character_node.velocity = character_node.velocity.move_toward(speed, acceleration_rate)
 
 # Decelerate the [member character_node].
@@ -56,31 +56,13 @@ func __decelerate() -> void:
 	character_node.velocity = \
 		character_node.velocity.move_toward(__DECELERATION_TARGET_VELOCITY, deceleration_rate)
 
-## Set the current direction.
-func set_direction(direction : Vector2) -> void:
-	__direction = direction
+## Set [member max_speed].
+func set_character(node : CharacterBody2D) -> void:
+	character_node = node
 
-## Set the current direction's [code]x[/code] component.
-func set_direction_x(x : float) -> void:
-	set_direction(Vector2(x, __direction.y))
-
-## Set the current direction's [code]y[/code] component.
-func set_direction_y(y : float) -> void:
-	set_direction(Vector2(__direction.x, y))
-
-## Set the current direction's [code]x[/code] component, reset the
-## [code]y[/code] component.
-func set_direction_x_only(x : float) -> void:
-	set_direction(Vector2(x, 0.0))
-
-## Set the current direction's [code]y[/code] component, reset the
-## [code]x[/code] component.
-func set_direction_y_only(y : float) -> void:
-	set_direction(Vector2(0.0, y))
-
-## Return the current direction.
-func get_direction() -> Vector2:
-	return __direction
+## Return [member max_speed].
+func get_character() -> CharacterBody2D:
+	return character_node
 
 ## Set [member max_speed].
 func set_max_speed(max_speed : float) -> void:
@@ -89,14 +71,6 @@ func set_max_speed(max_speed : float) -> void:
 ## Return [member max_speed].
 func get_max_speed() -> float:
 	return max_speed
-
-## Set [member max_speed].
-func set_character(node : CharacterBody2D) -> void:
-	character_node = node
-
-## Return [member max_speed].
-func get_character() -> CharacterBody2D:
-	return character_node
 
 ## Set [member acceleration_coefficient].
 func set_acceleration(acceleration : float) -> void:
@@ -113,3 +87,29 @@ func set_deceleration(deceleration : float) -> void:
 ## Return [member deceleration_coefficient].
 func get_deceleration() -> float:
 	return deceleration_coefficient
+
+## Set the current direction.
+func set_direction(new_direction : Vector2) -> void:
+	direction = new_direction
+
+## Return the current direction.
+func get_direction() -> Vector2:
+	return direction
+
+## Set the current direction's [code]x[/code] component.
+func set_direction_x(x : float) -> void:
+	set_direction(Vector2(x, direction.y))
+
+## Set the current direction's [code]y[/code] component.
+func set_direction_y(y : float) -> void:
+	set_direction(Vector2(direction.x, y))
+
+## Set the current direction's [code]x[/code] component, reset the
+## [code]y[/code] component.
+func set_direction_x_only(x : float) -> void:
+	set_direction(Vector2(x, 0.0))
+
+## Set the current direction's [code]y[/code] component, reset the
+## [code]x[/code] component.
+func set_direction_y_only(y : float) -> void:
+	set_direction(Vector2(0.0, y))
