@@ -27,7 +27,7 @@ signal flashed()
 @export var saturation := 1.0
 
 func _ready() -> void:
-	if target_node == null:
+	if null == target_node:
 		target_node = get_parent() as Node2D
 	assert(target_node, ("No target_node:Node2D node specified in %s. Select " +
 		"one, or reparent this component as a child of a Node2D node.") 

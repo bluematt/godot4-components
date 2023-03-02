@@ -63,7 +63,7 @@ var __is_playing := false
 		if not enabled: stop()
 
 func _ready() -> void:
-	if target_node == null:
+	if null == target_node:
 		target_node = get_parent()
 	assert(target_node, ("No target_node:Node2D component specified in %s. " +
 		"Select one, or reparent this component as a child of a Node2D node.")

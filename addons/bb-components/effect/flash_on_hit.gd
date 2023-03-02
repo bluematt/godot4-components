@@ -13,7 +13,7 @@ func _ready() -> void:
 	# Call [member BBFlash._ready].
 	super()
 	
-	if hurtbox_node == null:
+	if null == hurtbox_node:
 		hurtbox_node = get_parent() as BBHurtbox
 	assert(hurtbox_node, ("No hurtbox_node:BBHurtbox component " + 
 		"specified in %s. Select one, or reparent this component as a child " +

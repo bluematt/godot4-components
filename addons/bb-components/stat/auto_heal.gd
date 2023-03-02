@@ -53,7 +53,7 @@ signal autoheal_counting_down(time_left: float)
 @onready var __heal_timer := %HealTimer
 
 func _ready() -> void:
-	if health_node == null:
+	if null == health_node:
 		health_node = get_parent() as BBHealth
 	assert(health_node, ("No health_stat_node:BBHealth component " + 
 		"specified in %s. Select one, or reparent this component as a child " +

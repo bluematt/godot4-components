@@ -13,7 +13,7 @@ signal damaged(amount: float)
 @export var health_node:BBHealth
 
 func _ready() -> void:
-	if health_node == null:
+	if null == health_node:
 		health_node = get_parent() as BBHealth
 	assert(health_node, ("No health_node:BBHealth component specified in %s." +
 		"Select one, or reparent this component as a child of a BBHealth " +

@@ -24,20 +24,20 @@ const DEFAULT_ACTION_DOWN := "ui_down"
 @export var input_action_down:InputEventAction
 
 func _ready() -> void:
-	if velocity_node == null:
+	if null == velocity_node:
 		velocity_node = get_parent() as BBVelocity
 	assert(velocity_node, ("No velocity_node:BBVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a BBVelocity component.") % [str(get_path())])
 
-	if input_action_up == null:
+	if null == input_action_up:
 		reset_action_up()
 	assert(input_action_up, ("No input_action_up:InputEventAction resource " + 
 		"specified in %s.") % [str(get_path())])
 	assert(input_action_up.action, ("No input_action_up.action " + 
 		"specified in %s.") % [str(get_path())])
 
-	if input_action_down == null:
+	if null == input_action_down:
 		reset_action_down()
 	assert(input_action_down, ("No input_action_down:InputEventAction " +
 		"resource specified in %s.") % [str(get_path())])

@@ -2,7 +2,7 @@
 class_name BBAlignToVelocity
 extends Node
 
-## Align a node to a velocity.
+## Align a [CharacterBody2D] to a [BBVelocity].
 ##
 ## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/align_to_velocity.md
 
@@ -31,7 +31,7 @@ func _ready() -> void:
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a CharacterBody2D node.") % [str(get_path())])
 	
-	if velocity_node == null:
+	if null == velocity_node:
 		velocity_node = get_parent() as BBVelocity
 	assert(velocity_node, ("No velocity_node:BBVelocity component " + 
 		"specified in %s. Select one, or reparent this component as a child "

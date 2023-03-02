@@ -90,7 +90,7 @@ func _draw() -> void:
 	# If there is no texture and no label, draw a simple contrasting
 	# cross design to highlight that this is a placeholder, not a simple
 	# coloured rectangle.
-	if texture == null and label_text == "":
+	if null == texture and "" == label_text:
 		# Determine a contasting colour.
 		var line_color := Color.WHITE
 		if color.get_luminance() > __LUMINANCE_THRESHOLD:
