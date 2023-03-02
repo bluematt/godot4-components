@@ -27,7 +27,9 @@ const __NO_DURATION := 0.0
 
 ## How long the bounce should take (in seconds).
 @export_range(0.0, 1_000_000, 0.01, "hide_slider", "suffix:s") var duration \
-	:= 1.0
+	:= 1.0:
+	set(d):
+		duration = max(0, d)
 
 ## How far to move the node from its original position (in pixels).
 @export var displacement := Vector2.ZERO
