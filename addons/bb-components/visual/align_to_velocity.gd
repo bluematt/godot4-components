@@ -102,3 +102,7 @@ func disable() -> void:
 ## Return whether the component is enabled.
 func is_enabled() -> bool:
 	return get_enabled()
+
+## Return the current rotation (in degrees).
+func get_rotation() -> float:
+	return __rotation
