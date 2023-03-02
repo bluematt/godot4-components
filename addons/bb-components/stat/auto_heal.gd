@@ -21,7 +21,7 @@ signal autoheal_enabled(status: bool)
 ## Emitted when autohealing is about to begin.
 signal autoheal_counting_down(time_left: float)
 
-@export var health_stat_node:BBHealth
+@export var health_node:BBHealth
 
 ## Whether autohealing is enabled.  Initiate autohealing if enabled.
 @export var enabled := false:
@@ -53,9 +53,9 @@ signal autoheal_counting_down(time_left: float)
 @onready var __heal_timer := %HealTimer
 
 func _ready() -> void:
-	if health_stat_node == null:
-		health_stat_node = get_parent() as BBHealth
-	assert(health_stat_node, ("No health_stat_node:BBHealth component " + 
+	if health_node == null:
+		health_node = get_parent() as BBHealth
+	assert(health_node, ("No health_stat_node:BBHealth component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a BBHealth component.") % [str(get_path())])
 	
@@ -67,31 +67,31 @@ func _ready() -> void:
 	# Heal when the heal timer times out.
 	__heal_timer.timeout.connect(func():
 		if enabled:
-			health_stat_node.heal(autoheal_amount))
+			health_node.heal(autoheal_amount))
 	
 	# Stop autohealing on damage, and start the autohealing timer.
-	health_stat_node.damaged.connect(func(_amount:float):
+	health_node.damaged.connect(func(_amount:float):
 		__stop_autoheal()
 		__initiate_autoheal())
 
 	# Stop autohealing on death, and prevent further autohealing.
-	health_stat_node.died.connect(func():
+	health_node.died.connect(func():
 		__stop_autoheal()
 		__prevent_autoheal())
 
 	# Stop autohealing when health is fully restored.
-	health_stat_node.healed_fully.connect(func():
+	health_node.healed_fully.connect(func():
 		__stop_autoheal()
 		__prevent_autoheal())
 		
 	# Allow autohealing to resume if revived.
-	health_stat_node.revived.connect(func():
+	health_node.revived.connect(func():
 		__initiate_autoheal())
 
 # Initiate the autohealing process timer.
 func __initiate_autoheal() -> void:
 	if not enabled: return
-	if health_stat_node.is_dead() or health_stat_node.is_maxed(): return
+	if health_node.is_dead() or health_node.is_maxed(): return
 	
 	__delay_timer.start(autoheal_delay)
 	
@@ -102,7 +102,7 @@ func __prevent_autoheal() -> void:
 # Start autohealing.
 func __start_autoheal() -> void:
 	if not enabled: return
-	if health_stat_node.is_dead(): return
+	if health_node.is_dead(): return
 
 	__heal_timer.start(autoheal_rate)
 	autoheal_started.emit()
@@ -117,13 +117,57 @@ func _process(_delta: float) -> void:
 	if not __delay_timer.is_stopped():
 		autoheal_counting_down.emit(get_delay_time_remaining())
 
+## Set the stat node.
+func set_health(new_health : BBHealth) -> void:
+	health_node = new_health
+	
+## Get the stat node.
+func get_health() -> BBHealth:
+	return health_node
+
+## Set enabled.
+func set_enabled(is_enabled : bool) -> void:
+	enabled = is_enabled
+	
+## Get enabled.
+func get_enabled() -> bool:
+	return enabled
+
+## Set the autoheal amount.
+func set_autoheal_amount(amount : float) -> void:
+	autoheal_amount = amount
+
+## Get the autoheal amount.
+func get_autoheal_amount() -> float:
+	return autoheal_amount
+
+## Set the autoheal rate.
+func set_autoheal_rate(rate : float) -> void:
+	autoheal_rate = rate
+
+## Get the autoheal rate.
+func get_autoheal_rate() -> float:
+	return autoheal_rate
+
+## Set the autoheal delay.
+func set_autoheal_delay(delay : float) -> void:
+	autoheal_delay = delay
+
+## Get the autoheal delay.
+func get_autoheal_delay() -> float:
+	return autoheal_delay
+
 ## Enable autoheal.
 func enable() -> void:
-	enabled = true
+	set_enabled(true)
 
 ## Disable autoheal.
 func disable() -> void:
-	enabled = false
+	set_enabled(false)
+	
+## Return whether the component is enabled.
+func is_enabled() -> bool:
+	return get_enabled()
 
 ## Return the amount of time left before autohealing commences (in seconds).
 func get_delay_time_remaining() -> float:
