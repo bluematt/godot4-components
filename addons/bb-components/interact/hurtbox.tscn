@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://c0bnnbkjshije"]
 
 [ext_resource type="Script" path="res://addons/bb-components/interact/hurtbox.gd" id="1_6ywm7"]
 
-[node name="InteractHurtbox" type="Area2D"]
+[node name="HurtboxComponent" type="Area2D"]
 script = ExtResource("1_6ywm7")

@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://deme483gsi0cp"]
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/placeholder.gd" id="1_j3br5"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/effect/bounce.tscn" id="2_qlhew"]
+[ext_resource type="PackedScene" uid="uid://b60ntufmlqxoj" path="res://addons/bb-components/effect/bounce.tscn" id="2_qlhew"]
 [ext_resource type="PackedScene" path="res://addons/bb-components/visual/look_at_node.tscn" id="3_us2ml"]
 
 [node name="VisualLookAtNodeExample" type="Node2D"]

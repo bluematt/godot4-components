@@ -23,13 +23,13 @@ enum Loop {
 const __NO_DURATION := 0.0
 
 ## The node to bounce.
-@export var target_node:Node2D
+@export var target_node : Node2D
 
 ## How long the bounce should take (in seconds).
 @export_range(0.0, 1_000_000, 0.01, "hide_slider", "suffix:s") var duration \
 	:= 1.0
 
-## How far to move the node.
+## How far to move the node from its original position (in pixels).
 @export var displacement := Vector2.ZERO
 
 ## The transition type.
@@ -93,4 +93,40 @@ func play() -> void:
 func stop() -> void:
 	__tween.stop()
 	stopped.emit()
-	
+
+## Enable (and start) the bounce animation.
+func enable() -> void:
+	enabled = true
+
+## Disable (and stop) the bounce animation.
+func disable() -> void:
+	enabled = false
+
+## Set the enabled flag.
+func set_enabled(enable : bool) -> void:
+	enabled = enable
+
+## Get the enabled flag.
+func get_enabled() -> bool:
+	return enabled
+
+## Return whether the bounce animation is enabled.
+func is_enabled() -> bool:
+	return enabled
+
+## Set the duration of the animation.
+func set_duration(time : float) -> void:
+	duration = time
+
+## Get the duration of the animation.
+func get_duration() -> float:
+	return duration
+
+## Set the displacement.
+func set_displacement(distance : Vector2) -> void:
+	displacement = distance
+
+## Get the displacement.
+func get_displacement() -> Vector2:
+	return displacement
+

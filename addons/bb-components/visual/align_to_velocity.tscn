@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://d4csmcxgmlfau"]
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/align_to_velocity.gd" id="1_eu3ci"]
 
-[node name="VisualAlignToVelocity" type="Node"]
+[node name="AlignToVelocityComponent" type="Node"]
 script = ExtResource("1_eu3ci")
