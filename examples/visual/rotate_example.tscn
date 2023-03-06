@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwrje02gbp1vc"]
+
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_njh1k"]
+[ext_resource type="PackedScene" uid="uid://bofrnheasj7xl" path="res://addons/bb-components/visual/rotate.tscn" id="2_x42au"]
+
+[sub_resource type="GDScript" id="GDScript_3o13h"]
+script/source = "extends Node2D
+
+@onready var block_45 := %BlockMinus45
+
+func _on_check_button_toggled(button_pressed: bool) -> void:
+	block_45.get_node(\"RotateComponent\").set_enabled(button_pressed)
+"
+
+[node name="RotateExample" type="Node2D"]
+script = SubResource("GDScript_3o13h")
+
+[node name="Block360" parent="." instance=ExtResource("1_njh1k")]
+position = Vector2(342, 310)
+dimensions = Vector2(256, 256)
+color = Color(0.27451, 0.564706, 0.376471, 1)
+label_text = "360°/s"
+label_size = 32
+
+[node name="RotateComponent" parent="Block360" instance=ExtResource("2_x42au")]
+rotation_speed = 360.0
+
+[node name="BlockMinus45" parent="." instance=ExtResource("1_njh1k")]
+unique_name_in_owner = true
+position = Vector2(812, 314)
+dimensions = Vector2(128, 256)
+color = Color(0.564706, 0.364706, 0.509804, 1)
+label_text = "-45°/s"
+label_size = 32
+
+[node name="RotateComponent" parent="BlockMinus45" instance=ExtResource("2_x42au")]
+rotation_speed = -45.0
+enabled = false
+
+[node name="Block1" parent="." instance=ExtResource("1_njh1k")]
+position = Vector2(592, 313)
+color = Color(0.45098, 0.537255, 0.666667, 1)
+label_text = "1°/s"
+label_size = 32
+
+[node name="RotateComponent" parent="Block1" instance=ExtResource("2_x42au")]
+rotation_speed = 1.0
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 760.0
+offset_top = 450.0
+offset_right = 870.0
+offset_bottom = 481.0
+text = "Enabled"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
