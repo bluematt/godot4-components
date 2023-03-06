@@ -36,6 +36,8 @@ While efforts has been made to make the components robust and performant enough 
 - <img src="addons/bb-components/visual/look_at_cursor.svg" width="20" height="20"> `LookAtCursorComponent` - Rotate a `Node2D` to "look" at the cursor.
 - <img src="addons/bb-components/visual/look_at_node.svg" width="20" height="20"> `LookAtNodeComponent` - Rotate a `Node2D` to "look" at another `Node2D`.
 - <img src="addons/bb-components/visual/align_to_velocity.svg" width="20" height="20"> `AlignToVelocityComponent` - Align a `Node2D`'s rotation to follow a `VelocityComponent`.
+- <img src="addons/bb-components/visual/rotate.svg" width="20" height="20"> `RotateComponent` - Rotate a `Node2D` at a constant angular speed.
+
 ## Effects
 
 - <img src="addons/bb-components/effect/bounce.svg" width="20" height="20"> `BounceComponent` - Add a simple bouncing effect to a `Node2D`.
