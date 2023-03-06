@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://covtxgjurltfe"]
+
+[ext_resource type="Script" path="res://addons/bb-components/movement/controls_four_way.gd" id="1_80jy4"]
+
+[node name="ControlsFourWayComponent" type="Node"]
+script = ExtResource("1_80jy4")

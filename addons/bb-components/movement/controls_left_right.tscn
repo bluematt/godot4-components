@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://db1dvqo1sj7gx"]
+
+[ext_resource type="Script" path="res://addons/bb-components/movement/controls_left_right.gd" id="1_2ndp6"]
+
+[node name="ControlsLeftRightComponent" type="Node"]
+script = ExtResource("1_2ndp6")

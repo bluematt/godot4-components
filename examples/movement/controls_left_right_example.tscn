@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ts5ourgusrf7"]
+
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_imf4k"]
+[ext_resource type="PackedScene" uid="uid://bp2ld3pp61lu3" path="res://addons/bb-components/movement/velocity.tscn" id="2_qa0qy"]
+[ext_resource type="PackedScene" uid="uid://db1dvqo1sj7gx" path="res://addons/bb-components/movement/controls_left_right.tscn" id="3_j4ctw"]
+
+[node name="MovementControlsLeftRightExample" type="Node2D"]
+position = Vector2(-1, 0)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(578, 334)
+
+[node name="PlaceholderComponent" parent="CharacterBody2D" instance=ExtResource("1_imf4k")]
+dimensions = Vector2(128, 128)
+label_text = "character"
+
+[node name="VelocityComponent" parent="CharacterBody2D" instance=ExtResource("2_qa0qy")]
+
+[node name="ControlsLeftRightComponent" parent="CharacterBody2D/VelocityComponent" instance=ExtResource("3_j4ctw")]

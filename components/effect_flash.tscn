@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://7clulrcpiwcv"]
-
-[ext_resource type="Script" path="res://components/effect_flash.gd" id="1_otqr3"]
-
-[node name="EffectFlash" type="Node"]
-script = ExtResource("1_otqr3")

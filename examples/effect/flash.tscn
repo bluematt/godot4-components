@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://l3l8lyf8neap"]
+
+[ext_resource type="PackedScene" uid="uid://blyi21koawuhc" path="res://addons/bb-components/effect/flash.tscn" id="1_hlf4v"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_qsyqh"]
+
+[sub_resource type="GDScript" id="GDScript_2vwvn"]
+script/source = "extends CanvasGroup
+
+func _on_area_2d_mouse_entered() -> void:
+	$FlashComponent.flash()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krqpl"]
+size = Vector2(256, 256)
+
+[node name="FlashExample" type="CanvasGroup"]
+script = SubResource("GDScript_2vwvn")
+
+[node name="FlashComponent" parent="." instance=ExtResource("1_hlf4v")]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(554, 310)
+
+[node name="PlaceholderComponent" parent="Area2D" instance=ExtResource("1_qsyqh")]
+dimensions = Vector2(256, 256)
+color = Color(0.431373, 0.643137, 0.470588, 1)
+label_text = "Poke me"
+label_size = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_krqpl")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

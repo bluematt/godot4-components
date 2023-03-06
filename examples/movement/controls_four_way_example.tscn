@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8qvp12xd8umq"]
+
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_3iun0"]
+[ext_resource type="PackedScene" uid="uid://bp2ld3pp61lu3" path="res://addons/bb-components/movement/velocity.tscn" id="2_p50vw"]
+[ext_resource type="PackedScene" uid="uid://covtxgjurltfe" path="res://addons/bb-components/movement/controls_four_way.tscn" id="3_f1f8r"]
+
+[node name="MovementControlsFourWayExample" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(578, 334)
+
+[node name="PlaceholderComponent" parent="CharacterBody2D" instance=ExtResource("1_3iun0")]
+dimensions = Vector2(128, 128)
+label_text = "character"
+
+[node name="VelocityComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character_node") instance=ExtResource("2_p50vw")]
+character_node = NodePath("")
+acceleration_coefficient = 0.2
+deceleration_coefficient = 0.1
+
+[node name="MovementControlsFourWay" parent="CharacterBody2D/VelocityComponent" instance=ExtResource("3_f1f8r")]

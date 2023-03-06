@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciurp5y4uuium"]
-
-[ext_resource type="Script" path="res://components/visual_align_to_velocity.gd" id="1_eu3ci"]
-
-[node name="VisualAlignToVelocity" type="Node"]
-script = ExtResource("1_eu3ci")

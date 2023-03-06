@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://8r0ch0jm0pvs"]
-
-[ext_resource type="Script" path="res://components/movement_controls_left_right.gd" id="1_rd2ep"]
-
-[node name="MovementControlsLeftRight" type="Node"]
-script = ExtResource("1_rd2ep")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://db2751w46beum"]
+
+[ext_resource type="Script" path="res://addons/bb-components/stat/auto_heal.gd" id="1_ac72s"]
+
+[node name="AutoHealComponent" type="Node"]
+script = ExtResource("1_ac72s")
+
+[node name="DelayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="HealTimer" type="Timer" parent="."]
+unique_name_in_owner = true

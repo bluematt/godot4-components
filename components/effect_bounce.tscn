@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ubutra0q1mw"]
-
-[ext_resource type="Script" path="res://components/effect_bounce.gd" id="1_7mlni"]
-
-[node name="EffectBounce" type="Node"]
-script = ExtResource("1_7mlni")

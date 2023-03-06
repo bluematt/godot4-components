@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfti3id475yj6"]
+
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_1eowi"]
+[ext_resource type="PackedScene" uid="uid://c0bnnbkjshije" path="res://addons/bb-components/interact/hurtbox.tscn" id="2_mwlxd"]
+[ext_resource type="PackedScene" uid="uid://cr7dy2kajsd7q" path="res://addons/bb-components/effect/flash_on_hit.tscn" id="5_t02w5"]
+[ext_resource type="PackedScene" uid="uid://cju27arc61q8n" path="res://addons/bb-components/stat/health.tscn" id="5_ymfum"]
+[ext_resource type="PackedScene" uid="uid://covtxgjurltfe" path="res://addons/bb-components/movement/controls_four_way.tscn" id="6_leanc"]
+[ext_resource type="PackedScene" uid="uid://bte6ku8hukv1p" path="res://addons/bb-components/interact/hitbox.tscn" id="6_t8m3d"]
+[ext_resource type="PackedScene" uid="uid://bp2ld3pp61lu3" path="res://addons/bb-components/movement/velocity.tscn" id="7_ch0sa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5b1ia"]
+size = Vector2(128, 128)
+
+[sub_resource type="GDScript" id="GDScript_m6gx6"]
+script/source = "extends CharacterBody2D
+
+func _on_health_component_damaged(amount) -> void:
+	if amount > 0.0:
+		print(\"I was hit for %s damage!\" % amount)
+
+func _on_health_component_died() -> void:
+	print(\"I'm dead! Argh...\")
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogcit"]
+size = Vector2(32, 64)
+
+[node name="HitboxHurtboxExample" type="Node2D"]
+
+[node name="Trap" parent="." instance=ExtResource("1_1eowi")]
+position = Vector2(749, 334)
+dimensions = Vector2(128, 128)
+color = Color(0.564706, 0.184314, 0.176471, 1)
+label_text = "IT'S A TRAP!"
+
+[node name="HitboxComponent" parent="Trap" instance=ExtResource("6_t8m3d")]
+position = Vector2(749, 334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trap/HitboxComponent"]
+position = Vector2(-749, -334)
+shape = SubResource("RectangleShape2D_5b1ia")
+
+[node name="Character" type="CharacterBody2D" parent="."]
+position = Vector2(262, 334)
+script = SubResource("GDScript_m6gx6")
+
+[node name="Hero" parent="Character" instance=ExtResource("1_1eowi")]
+dimensions = Vector2(32, 64)
+color = Color(0.301961, 0.564706, 0.4, 1)
+label_text = "HERO"
+
+[node name="HealthComponent" parent="Character" instance=ExtResource("5_ymfum")]
+max_health = 5.0
+
+[node name="HurtboxComponent" parent="Character" node_paths=PackedStringArray("health_node") instance=ExtResource("2_mwlxd")]
+health_node = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtboxComponent"]
+shape = SubResource("RectangleShape2D_ogcit")
+
+[node name="FlashOnHitComponent" parent="Character/HurtboxComponent" node_paths=PackedStringArray("flash_node") instance=ExtResource("5_t02w5")]
+flash_node = NodePath("../..")
+
+[node name="VelocityComponent" parent="Character" instance=ExtResource("7_ch0sa")]
+max_speed = 200.0
+acceleration_coefficient = 0.5
+deceleration_coefficient = 0.5
+
+[node name="ControlsFourWayComponent" parent="Character/VelocityComponent" instance=ExtResource("6_leanc")]
+
+[connection signal="damaged" from="Character/HealthComponent" to="Character" method="_on_health_component_damaged"]
+[connection signal="died" from="Character/HealthComponent" to="Character" method="_on_health_component_died"]
