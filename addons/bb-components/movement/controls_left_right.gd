@@ -1,34 +1,33 @@
 @icon("./controls_left_right.svg")
 class_name BBControlsLeftRight
-extends Node
+extends "res://addons/bb-components/controls_component.gd"
 
-## Applies left and right movement to a [BBVelocity] component.
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/controls_left_right.md
-
-## The default input action for left movement.
-const DEFAULT_ACTION_LEFT := &"ui_left"
-
-## The default input action for right movement.
-const DEFAULT_ACTION_RIGHT := &"ui_right"
-
-## The [BBVelocity] component to control.
-@export var velocity_node: BBVelocity
-
-@export_group("Input actions", "input_action_")
+## Apply left/right movement to a [BBVelocity].
 
 ## The input action to move left.
-@export var input_action_left:InputEventAction
+@export var input_action_left:InputEventAction:
+	set=set_input_action_left, get=get_input_action_left
+
+## Set the [InputEventAction] to move left.
+func set_input_action_left(_event_action : InputEventAction) -> void:
+	input_action_left = _event_action
+	
+# Get the [InputEventAction] to move left.
+func get_input_action_left() -> InputEventAction: return input_action_left
 
 ## The input action to move right.
-@export var input_action_right:InputEventAction
+@export var input_action_right:InputEventAction:
+	set=set_input_action_right, get=get_input_action_right
+
+## Set the [InputEventAction] to move right.
+func set_input_action_right(_event_action : InputEventAction) -> void:
+	input_action_right = _event_action
+	
+# Get the [InputEventAction] to move right.
+func get_input_action_right() -> InputEventAction: return input_action_right
 
 func _ready() -> void:
-	if null == velocity_node:
-		velocity_node = get_parent() as BBVelocity
-	assert(velocity_node, ("No velocity_node:BBVelocity component " + 
-		"specified in %s. Select one, or reparent this component as a child " +
-		"of a BBVelocity component.") % [str(get_path())])
+	super()
 
 	if null == input_action_left:
 		reset_action_left()
@@ -45,44 +44,20 @@ func _ready() -> void:
 		"specified in %s.") % [str(get_path())])
 
 func _process(_delta: float) -> void:
-	velocity_node.set_direction_x(Input.get_axis(
+	velocity_node.set_x_direction(Input.get_axis(
 		input_action_left.action, input_action_right.action))
-
-## Set the [member velocity_node].
-func set_velocity(new_velocity : BBVelocity) -> void:
-	velocity_node = new_velocity
-
-## Return the [member velocity_node].
-func get_velocity() -> BBVelocity:
-	return velocity_node
-
-## Set the [InputEventAction] to move left.
-func set_input_action_left(new_action : InputEventAction) -> void:
-	input_action_left = new_action
-	
-# Get the [InputEventAction] to move left.
-func get_input_action_left() -> InputEventAction:
-	return input_action_left
-	
-## Set the [InputEventAction] to move right.
-func set_input_action_right(new_action : InputEventAction) -> void:
-	input_action_right = new_action
-	
-# Get the [InputEventAction] to move right.
-func get_input_action_right() -> InputEventAction:
-	return input_action_right
 	
 ## Set the action to move left.
-func set_action_left(new_action : StringName) -> void:
-	input_action_left.set_action(new_action)
+func set_action_left(_action : StringName) -> void:
+	input_action_left.set_action(_action)
 
 ## Get the action to move left.
 func get_action_left() -> StringName:
 	return input_action_left.get_action()
 
 ## Set the action to move right.
-func set_action_right(new_action : StringName) -> void:
-	input_action_right.set_action(new_action)
+func set_action_right(_action : StringName) -> void:
+	input_action_right.set_action(_action)
 
 ## Get the action to move right.
 func get_action_right() -> StringName:

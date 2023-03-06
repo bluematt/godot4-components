@@ -2,15 +2,13 @@
 class_name BBStat
 extends Node
 
-## Keep track of an arbitrary numerical statistic (stat).
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/stat.md
+## Keep track of an arbitrary numerical statistic.
 
 # The lowest the stat can be.
 const __LOWEST_LIMIT_STAT := 0.0
 
 ## Emitted when the stat changes.
-signal changed(new_value : float)
+signal changed(stat : float)
 
 ## Emitted when the stat is recovered.  Passes in the actual amount of
 ## recovery up to [member max_stat].
@@ -35,12 +33,28 @@ signal succeeded()
 signal failed(deficit : float)
 
 ## The maximum allowed stat.
-@export var max_stat := 100.0
+@export var max_stat := 100.0:
+	set=set_max_stat, get=get_max_stat
+
+## Set the maximum stat.
+func set_max_stat(_max_stat : float) -> void:
+	max_stat = _max_stat
+
+## Get the maximum stat.
+func get_max_stat() -> float:
+	return max_stat
 
 # The current stat.
 @onready var stat := max_stat:
-	set(v):
-		stat = clampf(v, __LOWEST_LIMIT_STAT, max_stat)
+	set=set_stat, get=get_stat
+
+## Set the stat.
+func set_stat(_stat : float) -> void:
+	stat = clampf(_stat, __LOWEST_LIMIT_STAT, max_stat)
+
+## Get the stat.
+func get_stat() -> float:
+	return stat
 
 ## Recover an amount of the stat.
 func recover(amount : float) -> void:
@@ -79,22 +93,6 @@ func expend(amount: float) -> bool:
 		failed.emit(old_stat - amount)
 	
 	return success
-
-## Set the maximum stat.
-func set_max_stat(value : float) -> void:
-	max_stat = value
-
-## Get the maximum stat.
-func get_max_stat() -> float:
-	return max_stat
-
-## Set the stat.
-func set_stat(value : float) -> void:
-	stat = value
-
-## Get the stat.
-func get_stat() -> float:
-	return stat
 
 ## Return whether the stat has been exhausted.
 func is_exhausted() -> bool:

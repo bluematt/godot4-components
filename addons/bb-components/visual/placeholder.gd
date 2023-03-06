@@ -4,8 +4,6 @@ class_name BBPlaceholder
 extends Node2D
 
 ## A visual placeholder component.
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/placeholder.md
 
 # The minimum width taken up by a label.
 const __MINIMUM_LABEL_WIDTH := 64.0 # pixels
@@ -44,41 +42,63 @@ signal label_changed(new_label : String)
 
 ## The dimensions of the placeholder.
 @export var dimensions := Vector2(64.0, 64.0):
-	set(s):
-		dimensions = s
-		queue_redraw()
-		dimensions_changed.emit(dimensions)
+	set=set_dimensions, get=get_dimensions
+
+func set_dimensions(_dimensions : Vector2) -> void:
+	if _dimensions.x < 2: _dimensions.x = 2
+	if _dimensions.y < 2: _dimensions.y = 2
+	dimensions = _dimensions
+	queue_redraw()
+	dimensions_changed.emit(dimensions)
+
+func get_dimensions() -> Vector2:
+	return dimensions
 
 ## The background colour.
 @export_color_no_alpha var color := Color.SLATE_GRAY:
-	set(c):
-		color = c
-		queue_redraw()
-		color_changed.emit(color)
+	set=set_color, get=get_color
+
+func set_color(new_color: Color) -> void:
+	color = new_color
+	queue_redraw()
+	color_changed.emit(color)
+	
+func get_color() -> Color:
+	return color
 
 ## The texture to display.  The texture will stretch to fill the placeholder
 ## dimensions.
 @export var texture:Texture:
-	set(t):
-		texture = t
-		queue_redraw()
-		texture_changed.emit(texture)
-		
+	set=set_texture, get=get_texture
+
+func set_texture(_texture : Texture) -> void:
+	texture = _texture
+	queue_redraw()
+	texture_changed.emit(texture)
+	
+func get_texture() -> Texture:
+	return texture
+	
 @export_group("Label", "label_")
 
 ## The label to display.
 @export_placeholder("e.g. player 1") var label_text := "":
-	set(t):
-		label_text = t
-		queue_redraw()
-		label_changed.emit(label_text)
+	set=set_label_text, get=get_label_text
+	
+func set_label_text(_label_text : String) -> void: label_text = _label_text
+	
+func get_label_text() -> String: return label_text
 
 ## The label text size.
 @export_range(8, 32, 1) var label_size := 16:
-	set(s):
-		label_size = clampi(s, 8, 32)
-		queue_redraw()
-		label_changed.emit(label_text)
+	set=set_label_size, get=get_label_size
+
+func set_label_size(_label_size : int) -> void:
+	label_size = clampi(_label_size, 8, 32)
+	queue_redraw()
+	label_changed.emit(label_text)
+
+func get_label_size() -> int: return label_size
 
 func _draw() -> void:
 	## Determine the size of the placeholder.
@@ -124,38 +144,12 @@ func _draw() -> void:
 			HORIZONTAL_ALIGNMENT_CENTER, text_width, font_size, 
 			__LABEL_LINES_MAX, __LABEL_COLOR_TEXT)
 
-func set_dimensions(new_dimensions : Vector2) -> void:
-	if new_dimensions.x < 2: new_dimensions.x = 2
-	if new_dimensions.y < 2: new_dimensions.y = 2
-	dimensions = new_dimensions
-
-func get_dimensions() -> Vector2:
-	return dimensions
-
-func set_color(new_color: Color) -> void:
-	color = new_color
-	
-func get_color() -> Color:
-	return color
-
-func set_texture(new_texture : Texture) -> void:
-	texture = new_texture
-	
-func get_texture() -> Texture:
-	return texture
-	
 func clear_texture() -> void:
 	texture = null
-	
-func set_label(new_text : String, new_size : int) -> void:
-	set_label_text(new_text)
-	set_label_size(new_size)
-
-func set_label_text(new_text : String) -> void:
-	label_text = new_text
-
-func set_label_size(new_size : int) -> void:
-	label_size = new_size
+		
+func set_label(_text : String, _size : int) -> void:
+	set_label_text(_text)
+	set_label_size(_size)
 
 func clear_label() -> void:
 	set_label_text("")

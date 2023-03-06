@@ -1,10 +1,8 @@
 @icon("./auto_recover.svg")
 class_name BBAutoRecover
-extends Node
+extends "res://addons/bb-components/base_component.gd"
 
-## Give a [StatComponent] the ability to autorecover over time.
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/auto_recover.md
+## Give autorecovery capability to a [BBHealth].
 
 # The autorecover rate which triggers autorecovery.
 const __TRIGGER_LIMIT_AUTORECOVER_RATE := 0.0
@@ -22,30 +20,49 @@ signal autorecovery_enabled(status : bool)
 signal autorecovery_counting_down(time_left : float)
 
 ## The [BBStat] to autorecover.
-@export var stat_node:BBStat
+@export var stat_node:BBStat:
+	set=set_stat_node, get=get_stat_node
 
-## Whether autorecovery is enabled.  Initiate autorecovery if enabled.
-@export var enabled := false:
-	set(is_enabled):
-		enabled = is_enabled
-		autorecovery_enabled.emit(enabled)
-
-		if enabled:
-			call_deferred("__initiate_autorecovery")
-		else:
-			call_deferred("__prevent_autorecovery")
-			call_deferred("__stop_autorecovery")
+## Set [member stat_node].
+func set_stat_node(_node : BBStat) -> void: stat_node = _node
+	
+## Get [member stat_node].
+func get_stat_node() -> BBStat: return stat_node
 
 @export_group("Autorecovery", "autorecover_")
 
 ## The amount of autorecovery per autorecover_rate` tick.
-@export var autorecover_amount := 0.0
+@export var autorecover_amount := 0.0:
+	set=set_autorecover_amount, get=get_autorecover_amount
+
+## Set [member autorecover_amount].
+func set_autorecover_amount(_autorecover_amount : float) -> void:
+	autorecover_amount = _autorecover_amount
+
+## Get [member autorecover_amount].
+func get_autorecover_amount() -> float: return autorecover_amount
 
 ## The rate of autorecovery (in seconds).
-@export var autorecover_rate := 0.0
+@export var autorecover_rate := 0.0:
+	set=set_autorecover_rate, get=get_autorecover_rate
+
+## Set [member autorecover_rate].
+func set_autorecover_rate(_autorecover_rate : float) -> void:
+	autorecover_rate = _autorecover_rate
+
+## Get [member autorecover_rate].
+func get_autorecover_rate() -> float: return autorecover_rate
 
 ## The delay before autorecovery starts (in seconds).
-@export var autorecover_delay := 0.0
+@export var autorecover_delay := 0.0:
+	set=set_autorecover_delay, get=get_autorecover_delay
+
+## Set [member autorecover_delay].
+func set_autorecover_delay(_autorecover_delay : float) -> void:
+	autorecover_delay = _autorecover_delay
+
+## Get [member autorecover_delay].
+func get_autorecover_delay() -> float: return autorecover_delay
 
 # A timer to determine when autorecovery can start.
 @onready var __delay_timer := %DelayTimer
@@ -57,6 +74,11 @@ func _ready() -> void:
 	assert(stat_node, ("No stat_node:Stat component specified in %s. Select " +
 		"one, or reparent this component as a child of a Stat component.") 
 		% [str(get_path())])
+		
+	# Lambda for DRY signal callbacks...
+	var disable_autorecovery := func():
+		__stop_autorecovery()
+		__prevent_autorecovery()
 	
 	# Start the recovery timer when the delay timer times out.
 	__delay_timer.timeout.connect(func():
@@ -70,13 +92,19 @@ func _ready() -> void:
 			
 	# Stop autorecovery on expenditure, and restart the delay timer.
 	stat_node.expended.connect(func(_amount:float):
-		__stop_autorecovery()
-		__initiate_autorecovery())
+		disable_autorecovery.call())
 		
 	# Stop autorecovery when the stat is fully restored.
 	stat_node.recovered_fully.connect(func():
-		__stop_autorecovery()
-		__prevent_autorecovery())
+		disable_autorecovery.call())
+		
+	# Start autorecovery when the component is enabled.
+	was_enabled.connect(func():
+		__initiate_autorecovery())
+		
+	# Stop autorecovery when the component is disabled.
+	was_disabled.connect(func():
+		disable_autorecovery.call())
 
 # Initiate the autorecovery process timer.
 func __initiate_autorecovery() -> void:
@@ -107,62 +135,9 @@ func _process(_delta: float) -> void:
 	if not __delay_timer.is_stopped():
 		autorecovery_counting_down.emit(get_delay_time_remaining())
 
-## Set the stat node.
-func set_stat(new_stat : BBStat) -> void:
-	stat_node = new_stat
-	
-## Get the stat node.
-func get_stat() -> BBStat:
-	return stat_node
-
-## Set enabled.
-func set_enabled(is_enabled : bool) -> void:
-	enabled = is_enabled
-	
-## Get enabled.
-func get_enabled() -> bool:
-	return enabled
-	
-## Set the autorecovery amount.
-func set_autorecover_amount(amount : float) -> void:
-	autorecover_amount = amount
-
-## Get the autorecovery amount.
-func get_autorecover_amount() -> float:
-	return autorecover_amount
-
-## Set the autorecovery rate.
-func set_autorecover_rate(rate : float) -> void:
-	autorecover_rate = rate
-
-## Get the autorecovery rate.
-func get_autorecover_rate() -> float:
-	return autorecover_rate
-
-## Set the autorecovery delay.
-func set_autorecover_delay(delay : float) -> void:
-	autorecover_delay = delay
-
-## Get the autorecovery delay.
-func get_autorecover_delay() -> float:
-	return autorecover_delay
-
-## Enable autorecovery.
-func enable() -> void:
-	set_enabled(true)
-
-## Disable autorecovery.
-func disable() -> void:
-	set_enabled(false)
-
-## Return whether the component is enabled.
-func is_enabled() -> bool:
-	return get_enabled()
-
 ## Return the amount of time left before autorecovery commences (in seconds).
 func get_delay_time_remaining() -> float:
 	if not __delay_timer.is_stopped():
 		return __delay_timer.time_left
 
 	return 0.0
-

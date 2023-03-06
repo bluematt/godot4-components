@@ -17,8 +17,6 @@ script/source = "extends CharacterBody2D
 func _on_health_component_damaged(amount) -> void:
 	if amount > 0.0:
 		print(\"I was hit for %s damage!\" % amount)
-	else:
-		print(\"I was hit!\")
 
 func _on_health_component_died() -> void:
 	print(\"I'm dead! Argh...\")
@@ -55,14 +53,14 @@ label_text = "HERO"
 [node name="HealthComponent" parent="Character" instance=ExtResource("5_ymfum")]
 max_health = 5.0
 
-[node name="HurtboxComponent" parent="Character" node_paths=PackedStringArray("health_stat_node") instance=ExtResource("2_mwlxd")]
-health_stat_node = NodePath("../HealthComponent")
+[node name="HurtboxComponent" parent="Character" node_paths=PackedStringArray("health_node") instance=ExtResource("2_mwlxd")]
+health_node = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtboxComponent"]
 shape = SubResource("RectangleShape2D_ogcit")
 
-[node name="FlashOnHitComponent" parent="Character/HurtboxComponent" node_paths=PackedStringArray("target_node") instance=ExtResource("5_t02w5")]
-target_node = NodePath("../..")
+[node name="FlashOnHitComponent" parent="Character/HurtboxComponent" node_paths=PackedStringArray("flash_node") instance=ExtResource("5_t02w5")]
+flash_node = NodePath("../..")
 
 [node name="VelocityComponent" parent="Character" instance=ExtResource("7_ch0sa")]
 max_speed = 200.0

@@ -2,15 +2,19 @@
 class_name BBFlashOnHit
 extends BBFlash
 
-## Add a [BBFlash] effect to a [Node2D], triggered by a collision with a [BBHurtbox] component.
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/flash_on_hit.md
+## Add a [BBFlash] effect to a [Node2D], triggered by a collision between a [BBHitbox] and a [BBHurtbox].
 
 ## The [BBHurtbox] component which notifies when to flash.
-@export var hurtbox_node : BBHurtbox
+@export var hurtbox_node : BBHurtbox:
+	set=set_hurtbox_node, get=get_hurtbox_node
+
+## Set the [BBHurtbox] node.
+func set_hurtbox_node(_node : BBHurtbox): hurtbox_node = _node
+
+## Get the [BBHurtbox] node.
+func get_hurtbox_node() -> BBHurtbox: return hurtbox_node
 
 func _ready() -> void:
-	# Call [member BBFlash._ready].
 	super()
 	
 	if null == hurtbox_node:
@@ -21,10 +25,3 @@ func _ready() -> void:
 
 	hurtbox_node.damaged.connect(func(_damage: float): flash())
 
-## Set the [BBHurtbox] node.
-func set_hurtbox(new_hurtbox : BBHurtbox):
-	hurtbox_node = new_hurtbox
-
-## Get the [BBHurtbox] node.
-func get_hurtbox() -> BBHurtbox:
-	return hurtbox_node

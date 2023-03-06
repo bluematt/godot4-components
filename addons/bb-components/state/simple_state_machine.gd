@@ -2,9 +2,7 @@
 class_name BBSimpleStateMachine
 extends Node
 
-## A simple state machine for Godot 4.
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/simple_state_machine.md
+## Manage state with simple named functions.
 
 # No data.
 const __NO_DATA := null

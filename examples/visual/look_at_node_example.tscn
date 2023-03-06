@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/placeholder.gd" id="1_j3br5"]
 [ext_resource type="PackedScene" uid="uid://b60ntufmlqxoj" path="res://addons/bb-components/effect/bounce.tscn" id="2_qlhew"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/look_at_node.tscn" id="3_us2ml"]
+[ext_resource type="PackedScene" uid="uid://drib2wtjs6inl" path="res://addons/bb-components/visual/look_at_node.tscn" id="3_us2ml"]
 
 [node name="VisualLookAtNodeExample" type="Node2D"]
 
@@ -29,8 +29,8 @@ dimensions = Vector2(32, 128)
 color = Color(0.403922, 0.564706, 0.313726, 1)
 label_text = "instant"
 
-[node name="LookAtNodeComponent" parent="FollowerInstant" node_paths=PackedStringArray("target_node") instance=ExtResource("3_us2ml")]
-target_node = NodePath("../../Target")
+[node name="LookAtNodeComponent" parent="FollowerInstant" node_paths=PackedStringArray("follow_node") instance=ExtResource("3_us2ml")]
+follow_node = NodePath("../../Target")
 
 [node name="FollowerInterpolated" type="Node2D" parent="."]
 position = Vector2(668, 546)
@@ -43,6 +43,6 @@ dimensions = Vector2(32, 128)
 color = Color(0.188235, 0.498039, 0.564706, 1)
 label_text = "smoothed"
 
-[node name="LookAtNodeComponent" parent="FollowerInterpolated" node_paths=PackedStringArray("target_node") instance=ExtResource("3_us2ml")]
-target_node = NodePath("../../Target")
+[node name="LookAtNodeComponent" parent="FollowerInterpolated" node_paths=PackedStringArray("follow_node") instance=ExtResource("3_us2ml")]
+follow_node = NodePath("../../Target")
 smoothing = 0.01

@@ -1,10 +1,8 @@
 @icon("./auto_heal.svg")
 class_name BBAutoHeal
-extends Node
+extends "res://addons/bb-components/base_component.gd"
 
-## Give a [HealthComponent] the ability to autoheal over time.
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/auto_heal.md
+## Give autoheal capability to a [BBHealth].
 
 # The autoheal rate which triggers autohealing.
 const __TRIGGER_LIMIT_AUTOHEAL_RATE := 0.0
@@ -21,30 +19,51 @@ signal autoheal_enabled(status: bool)
 ## Emitted when autohealing is about to begin.
 signal autoheal_counting_down(time_left: float)
 
-@export var health_node:BBHealth
+@export var health_node:BBHealth:
+	set=set_health_node, get=get_health_node
 
-## Whether autohealing is enabled.  Initiate autohealing if enabled.
-@export var enabled := false:
-	set(is_enabled):
-		enabled = is_enabled
-		autoheal_enabled.emit(enabled)
-
-		if enabled:
-			call_deferred("__initiate_autoheal")
-		else:
-			call_deferred("__prevent_autoheal")
-			call_deferred("__stop_autoheal")
+## Set [member health_node].
+func set_health_node(_node : BBHealth) -> void:
+	health_node = _node
+	
+## Get [member health_node].
+func get_health_node() -> BBHealth:
+	return health_node
 
 @export_group("Autoheal", "autoheal_")
 
 ## The amount of autohealing per `autoheal_rate` tick.
-@export var autoheal_amount := 0.0
+@export var autoheal_amount := 0.0:
+	set=set_autoheal_amount, get=get_autoheal_amount
+	
+## Set [member autoheal_amount].
+func set_autoheal_amount(_autoheal_amount : float) -> void:
+	autoheal_amount = _autoheal_amount
+
+## Get [member autoheal_amount].
+func get_autoheal_amount() -> float: return autoheal_amount
 
 ## The rate of autohealing, in seconds.
-@export var autoheal_rate := 0.0
+@export var autoheal_rate := 0.0:
+	set=set_autoheal_rate, get=get_autoheal_rate
+
+## Set [member autoheal_rate].
+func set_autoheal_rate(_autoheal_rate : float) -> void:
+	autoheal_rate = _autoheal_rate
+
+## Get [member autoheal_rate].
+func get_autoheal_rate() -> float: return autoheal_rate
 
 ## A delay before any autohealing, in seconds.
-@export var autoheal_delay := 0.0
+@export var autoheal_delay := 0.0:
+	set=set_autoheal_delay, get=get_autoheal_delay
+
+## Set [member autoheal_delay].
+func set_autoheal_delay(_autoheal_delay : float) -> void:
+	autoheal_delay = _autoheal_delay
+
+## Get [member autoheal_delay].
+func get_autoheal_delay() -> float: return autoheal_delay
 
 # A timer to determine when autohealing can start.
 @onready var __delay_timer := %DelayTimer
@@ -58,6 +77,11 @@ func _ready() -> void:
 	assert(health_node, ("No health_stat_node:BBHealth component " + 
 		"specified in %s. Select one, or reparent this component as a child " +
 		"of a BBHealth component.") % [str(get_path())])
+		
+	# Lambda for DRY signal callbacks...
+	var disable_autoheal := func():
+		__stop_autoheal()
+		__prevent_autoheal()
 	
 	# Start the heal timer if the heal start timer times out.
 	__delay_timer.timeout.connect(func():
@@ -71,22 +95,27 @@ func _ready() -> void:
 	
 	# Stop autohealing on damage, and start the autohealing timer.
 	health_node.damaged.connect(func(_amount:float):
-		__stop_autoheal()
-		__initiate_autoheal())
+		disable_autoheal.call())
 
 	# Stop autohealing on death, and prevent further autohealing.
 	health_node.died.connect(func():
-		__stop_autoheal()
-		__prevent_autoheal())
+		disable_autoheal.call())
 
 	# Stop autohealing when health is fully restored.
 	health_node.healed_fully.connect(func():
-		__stop_autoheal()
-		__prevent_autoheal())
+		disable_autoheal.call())
 		
 	# Allow autohealing to resume if revived.
 	health_node.revived.connect(func():
 		__initiate_autoheal())
+		
+		# Start autorecovery when the component is enabled.
+	was_enabled.connect(func():
+		__initiate_autoheal())
+		
+	# Stop autorecovery when the component is disabled.
+	was_disabled.connect(func():
+		disable_autoheal.call())
 
 # Initiate the autohealing process timer.
 func __initiate_autoheal() -> void:
@@ -116,58 +145,6 @@ func __stop_autoheal() -> void:
 func _process(_delta: float) -> void:
 	if not __delay_timer.is_stopped():
 		autoheal_counting_down.emit(get_delay_time_remaining())
-
-## Set the stat node.
-func set_health(new_health : BBHealth) -> void:
-	health_node = new_health
-	
-## Get the stat node.
-func get_health() -> BBHealth:
-	return health_node
-
-## Set enabled.
-func set_enabled(is_enabled : bool) -> void:
-	enabled = is_enabled
-	
-## Get enabled.
-func get_enabled() -> bool:
-	return enabled
-
-## Set the autoheal amount.
-func set_autoheal_amount(amount : float) -> void:
-	autoheal_amount = amount
-
-## Get the autoheal amount.
-func get_autoheal_amount() -> float:
-	return autoheal_amount
-
-## Set the autoheal rate.
-func set_autoheal_rate(rate : float) -> void:
-	autoheal_rate = rate
-
-## Get the autoheal rate.
-func get_autoheal_rate() -> float:
-	return autoheal_rate
-
-## Set the autoheal delay.
-func set_autoheal_delay(delay : float) -> void:
-	autoheal_delay = delay
-
-## Get the autoheal delay.
-func get_autoheal_delay() -> float:
-	return autoheal_delay
-
-## Enable autoheal.
-func enable() -> void:
-	set_enabled(true)
-
-## Disable autoheal.
-func disable() -> void:
-	set_enabled(false)
-	
-## Return whether the component is enabled.
-func is_enabled() -> bool:
-	return get_enabled()
 
 ## Return the amount of time left before autohealing commences (in seconds).
 func get_delay_time_remaining() -> float:

@@ -2,80 +2,77 @@
 class_name BBFlash
 extends Node
 
-## Add a flash effect to a [Node2D].
-##
-## @tutorial(Documentation): https://github.com/bluematt/godot4-components/blob/main/doc/flash.md
+## Add a triggerable flash effect to a [Node2D].
 
-## Emitted when the flash occurs.
+## Emitted when a flash occurs.
 signal flashed()
 
-## The node to flash.
-@export var target_node : Node2D
+## The [Node2D] to flash.
+@export var flash_node : Node2D:
+	set=set_flash_node, get=get_flash_node
 
+## Set [member flash_node].
+func set_flash_node(_node : Node2D) -> void: flash_node = _node
+
+## Get [member flash_node].
+func get_flash_node() -> Node2D: return flash_node
+	
 ## The duration of the flash (in seconds).
 @export var duration := 0.2:
-	set(d):
-		duration = max(0, d)
+	set=set_duration, get=get_duration
 
-## The node's default color modulation.
-@export var default_modulation := Color.WHITE
+## Set [member duration].
+func set_duration(_duration : float) -> void: duration = max(0, _duration)
+
+## Get [member duration].
+func get_duration() -> float: return duration
 
 ## The node's flash color modulation.
-@export var flash_modulation := Color.RED
+@export var modulation := Color.RED:
+	set=set_modulation, get=get_modulation
+
+## Set [member modulation].
+func set_modulation(_modulation : Color) -> void: modulation = _modulation
+
+## Get [member modulation].
+func get_modulation() -> Color: return modulation
 
 ## The saturation multiplier for the flash color.
-@export var saturation := 1.0
+@export var saturation := 1.0:
+	set=set_saturation, get=get_saturation
+
+## Set [member saturation].
+func set_saturation(_saturation : float) -> void: saturation = _saturation
+
+## Get [member saturation].
+func get_saturation() -> float: return saturation
+
+# The tween that manages the flash.
+var __tween : Tween
+	
+# The node's default colour modulation.
+var default_modulation := Color.WHITE
 
 func _ready() -> void:
-	if null == target_node:
-		target_node = get_parent() as Node2D
-	assert(target_node, ("No target_node:Node2D node specified in %s. Select " +
+	if null == flash_node:
+		flash_node = get_parent() as Node2D
+	assert(flash_node, ("No flash_node:Node2D node specified in %s. Select " +
 		"one, or reparent this component as a child of a Node2D node.") 
 		% [str(get_path())])
 
+	default_modulation = flash_node.modulate
+
 ## Activate the flash effect.
 func flash():
+	# Remove any existing tweens.
+	if __tween and __tween.is_running(): __tween.kill()
+
+	# Reset the node's modulation to the start colour.
+	flash_node.modulate = modulation * saturation
+
+	# Create a new flash effect.
+	__tween = get_tree().create_tween()
+	__tween.tween_property(flash_node, "modulate", default_modulation, duration)
+	__tween.play()
+
 	flashed.emit()
-	target_node.modulate = flash_modulation * saturation
-	var tween := get_tree().create_tween()
-	tween.tween_property(target_node, "modulate", default_modulation, duration)
-
-## Set the target node.
-func set_target(new_target : Node2D) -> void:
-	target_node = new_target
-
-## Get the target node.
-func get_target() -> Node2D:
-	return target_node
-
-## Set the duration of the animation.
-func set_duration(time : float) -> void:
-	duration = time
-
-## Get the duration of the animation.
-func get_duration() -> float:
-	return duration
-
-## Set the default modulation colour.
-func set_default_modulation(new_modulation : Color) -> void:
-	default_modulation = new_modulation
-
-## Get the default modulation colour.
-func get_default_modulation() -> Color:
-	return default_modulation
-
-## Set the flash modulation colour.
-func set_flash_modulation(new_modulation : Color) -> void:
-	flash_modulation = new_modulation
-
-## Get the flash modulation colour.
-func get_flash_modulation() -> Color:
-	return flash_modulation
-
-## Set the saturation.
-func set_saturation(new_saturation : float) -> void:
-	saturation = new_saturation
-
-## Get the saturation.
-func get_saturation() -> float:
-	return saturation
