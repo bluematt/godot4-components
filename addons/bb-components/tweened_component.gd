@@ -20,6 +20,8 @@ signal finished()
 signal loop_finished(loop_count: int)
 signal step_finished(idx: int)
 
+@export_category("TweenedComponent")
+
 ## The tween's transition type.
 @export var transition : Tween.TransitionType = Tween.TRANS_SINE:
 	set=set_transition, get=get_transition
