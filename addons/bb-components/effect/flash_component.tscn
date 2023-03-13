@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xcnuiee80j68"]
+
+[ext_resource type="Script" path="res://addons/bb-components/effect/flash_component.gd" id="1_ekm1s"]
+
+[node name="FlashComponent" type="Node"]
+script = ExtResource("1_ekm1s")

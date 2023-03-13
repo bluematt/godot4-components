@@ -41,8 +41,8 @@ While efforts has been made to make the components robust and performant enough 
 ## Effects
 
 - <img src="addons/bb-components/effect/bounce_component.svg" width="20" height="20"> `BounceComponent` - Add a simple bouncing effect to a `Node2D`.
-- <img src="addons/bb-components/effect/flash.svg" width="20" height="20"> `FlashComponent` - Add a triggerable flash effect to a `Node2D`.
-- <img src="addons/bb-components/effect/flash.svg" width="20" height="20"> `FlashOnHitComponent` - Add a `FlashComponent` effect to a `Node2D`, triggered by a collision between a `HitboxComponent` and a `HurtboxComponent`.
+- <img src="addons/bb-components/effect/flash_component.svg" width="20" height="20"> `FlashComponent` - Add a triggerable flash effect to a `Node2D`.
+- <img src="addons/bb-components/effect/flash_component.svg" width="20" height="20"> `FlashOnHitComponent` - Add a `FlashComponent` effect to a `Node2D`, triggered by a collision between a `HitboxComponent` and a `HurtboxComponent`.
 
 ## Interactions
 
