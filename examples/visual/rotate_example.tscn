@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwrje02gbp1vc"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_njh1k"]
-[ext_resource type="PackedScene" uid="uid://bofrnheasj7xl" path="res://addons/bb-components/visual/rotate.tscn" id="2_x42au"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_njh1k"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/rotate_component.tscn" id="2_x42au"]
 
 [sub_resource type="GDScript" id="GDScript_3o13h"]
 script/source = "extends Node2D

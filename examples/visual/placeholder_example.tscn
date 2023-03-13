@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bphxw8iqexebn"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_obupx"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_obupx"]
 [ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://addons/bb-components/icon.svg" id="2_068et"]
 
 [node name="PlaceholderExample" type="Node2D"]

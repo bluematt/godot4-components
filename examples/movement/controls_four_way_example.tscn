@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8qvp12xd8umq"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_3iun0"]
-[ext_resource type="PackedScene" uid="uid://bp2ld3pp61lu3" path="res://addons/bb-components/movement/velocity.tscn" id="2_p50vw"]
-[ext_resource type="PackedScene" uid="uid://covtxgjurltfe" path="res://addons/bb-components/movement/controls_four_way.tscn" id="3_f1f8r"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_3iun0"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/movement/velocity_component.tscn" id="2_p50vw"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/movement/controls_four_way_component.tscn" id="3_f1f8r"]
 
 [node name="MovementControlsFourWayExample" type="Node2D"]
 

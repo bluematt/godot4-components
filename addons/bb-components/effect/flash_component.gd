@@ -11,22 +11,12 @@ signal flashed()
 @export var duration := 0.2:
 	set(duration_):
 		duration = max(0, duration_)
-	get:
-		return duration
 
 ## The node's flash color modulation.
-@export var modulation := Color.RED:
-	set(modulation_):
-		modulation = modulation_
-	get:
-		return modulation
+@export var modulation := Color.RED
 
 ## The saturation multiplier for the flash color.
-@export var saturation := 1.0:
-	set(saturation_):
-		saturation = saturation_
-	get:
-		return saturation
+@export var saturation := 1.0
 
 ## The [Node2D] to flash.
 var _target_node : Node2D

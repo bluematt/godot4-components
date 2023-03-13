@@ -20,4 +20,4 @@ func _ready() -> void:
 		% [str(get_path())])
 
 func _process(_delta: float) -> void:
-	__look_at(follow_node.global_position)
+	_look_at(follow_node.global_position)

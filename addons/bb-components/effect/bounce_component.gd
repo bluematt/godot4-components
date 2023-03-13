@@ -7,11 +7,7 @@ extends "res://addons/bb-components/tweened_component.gd"
 @export_category("BounceComponent")
 
 ## How far to move the node from its original position (in pixels).
-@export var displacement := Vector2.ZERO:
-	set(displacement_):
-		displacement = displacement_
-	get:
-		return displacement
+@export var displacement := Vector2.ZERO
 
 # The node to bounce.
 var _target_node : Node2D
@@ -22,7 +18,7 @@ var _original_position : Vector2
 func _ready() -> void:
 	super()
 
-	# Assign the target node to bounce.	
+	# Assign the target node.	
 	_target_node = get_parent() as Node2D
 	assert(_target_node, "BounceComponent must be a child of a Node2D node in %s." % [str(get_path())])
 

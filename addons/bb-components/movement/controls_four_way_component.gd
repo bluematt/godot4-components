@@ -2,7 +2,7 @@
 class_name BBControlsFourWay
 extends "res://addons/bb-components/controls_component.gd"
 
-## Apply four-way movement to a [BBVelocity].
+## Apply four-way movement to a [VelocityComponent].
 
 ## The input action to move up.
 @export var input_action_up:InputEventAction:

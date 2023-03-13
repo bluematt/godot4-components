@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bofrnheasj7xl"]
-
-[ext_resource type="Script" path="res://addons/bb-components/visual/rotate.gd" id="1_crrh3"]
-
-[node name="RotateComponent" type="Node"]
-script = ExtResource("1_crrh3")

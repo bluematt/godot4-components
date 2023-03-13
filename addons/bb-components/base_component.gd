@@ -1,5 +1,6 @@
 @icon("./icon.svg")
 extends Node
+class_name BaseComponent
 
 ## A base for components.
 
@@ -12,35 +13,30 @@ signal was_disabled()
 
 ## Whether the component is enabled.
 @export var enabled := true:
-	set=set_enabled,
-	get=get_enabled
+	set(enabled_):
+		var previous_state := enabled
+		enabled = enabled_
 
-## Set [member enabled].
-func set_enabled(_enabled : bool) -> void:
-	var previous_state := enabled
-	enabled = _enabled
-
-	# State change signals.
-	if previous_state != enabled:
-		if enabled:
-			was_enabled.emit()
-		else:
-			was_disabled.emit()
-
-## Get [member enabled].
-func get_enabled() -> bool:
-	return enabled
+		# State change signals.
+		if previous_state != enabled:
+			if enabled:
+				was_enabled.emit()
+			else:
+				was_disabled.emit()
+	get:
+		return enabled
 
 ## Enable the component.
 func enable() -> void:
-	set_enabled(true)
+	enabled = true
 
 ## Disable the component.	
 func disable() -> void:
-	set_enabled(false)
+	enabled = false
 
 ## Return whether the component is enabled.
 func is_enabled() -> bool:
-	return get_enabled()
+	return enabled
 
-func _ready() -> void: pass
+func _ready() -> void:
+	pass

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cju27arc61q8n"]
-
-[ext_resource type="Script" path="res://addons/bb-components/stat/health.gd" id="1_idlj6"]
-
-[node name="HealthComponent" type="Node"]
-script = ExtResource("1_idlj6")

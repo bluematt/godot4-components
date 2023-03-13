@@ -8,8 +8,6 @@ extends FlashComponent
 @export var hurtbox_component : BBHurtbox:
 	set(hurtbox_component_):
 		hurtbox_component = hurtbox_component as BBHurtbox
-	get:
-		return hurtbox_component
 
 func _ready() -> void:
 	super()

@@ -2,7 +2,7 @@
 class_name BBControlsLeftRight
 extends "res://addons/bb-components/controls_component.gd"
 
-## Apply left/right movement to a [BBVelocity].
+## Apply left/right movement to a [VelocityComponent].
 
 ## The input action to move left.
 @export var input_action_left:InputEventAction:

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://db2751w46beum"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/bb-components/stat/auto_heal.gd" id="1_ac72s"]
+[ext_resource type="Script" path="res://addons/bb-components/stat/auto_heal_component.gd" id="1_ac72s"]
 
 [node name="AutoHealComponent" type="Node"]
 script = ExtResource("1_ac72s")

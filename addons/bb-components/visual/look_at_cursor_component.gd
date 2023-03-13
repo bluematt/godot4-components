@@ -8,4 +8,4 @@ func _ready() -> void:
 	super()
 
 func _process(_delta: float) -> void:
-	__look_at(object_node.get_global_mouse_position())
+	_look_at(object_node.get_global_mouse_position())

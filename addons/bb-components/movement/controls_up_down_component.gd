@@ -2,7 +2,7 @@
 class_name BBControlsUpDown
 extends "res://addons/bb-components/controls_component.gd"
 
-## Apply up/down movement to a [BBVelocity].
+## Apply up/down movement to a [VelocityComponent].
 
 ## The input action to move up.
 @export var input_action_up:InputEventAction:

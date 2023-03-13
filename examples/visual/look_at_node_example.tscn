@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://addons/bb-components/visual/placeholder.gd" id="1_j3br5"]
-[ext_resource type="PackedScene" uid="uid://b60ntufmlqxoj" path="res://addons/bb-components/effect/bounce_component.tscn" id="2_qlhew"]
-[ext_resource type="PackedScene" uid="uid://drib2wtjs6inl" path="res://addons/bb-components/visual/look_at_node.tscn" id="3_us2ml"]
+[ext_resource type="Script" path="res://addons/bb-components/visual/placeholder_component.gd" id="1_j3br5"]
+[ext_resource type="PackedScene" uid="uid://d31sg5ru86g2f" path="res://addons/bb-components/effect/bounce_component.tscn" id="2_qlhew"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/look_at_node_component.tscn" id="3_us2ml"]
 
 [node name="VisualLookAtNodeExample" type="Node2D"]
 

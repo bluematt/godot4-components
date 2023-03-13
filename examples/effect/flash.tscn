@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://blyi21koawuhc" path="res://addons/bb-components/effect/flash_component.tscn" id="1_hlf4v"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_qsyqh"]
+[ext_resource type="PackedScene" uid="uid://xcnuiee80j68" path="res://addons/bb-components/effect/flash_component.tscn" id="1_hlf4v"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_qsyqh"]
 
 [sub_resource type="GDScript" id="GDScript_2vwvn"]
 script/source = "extends CanvasGroup

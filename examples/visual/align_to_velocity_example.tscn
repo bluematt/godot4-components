@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://qb5vr2vv3dnf"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_8tdh3"]
-[ext_resource type="PackedScene" uid="uid://bp2ld3pp61lu3" path="res://addons/bb-components/movement/velocity.tscn" id="2_88103"]
-[ext_resource type="PackedScene" uid="uid://covtxgjurltfe" path="res://addons/bb-components/movement/controls_four_way.tscn" id="3_omfo5"]
-[ext_resource type="PackedScene" uid="uid://d4csmcxgmlfau" path="res://addons/bb-components/visual/align_to_velocity.tscn" id="4_1rgfu"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_8tdh3"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/movement/velocity_component.tscn" id="2_88103"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/movement/controls_four_way_component.tscn" id="3_omfo5"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/align_to_velocity_component.tscn" id="4_1rgfu"]
 
 [node name="AlignToVelocityExample" type="Node2D"]
 

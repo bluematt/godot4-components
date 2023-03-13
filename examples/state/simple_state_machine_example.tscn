@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder.tscn" id="1_q4h0t"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_q4h0t"]
 [ext_resource type="Script" path="res://examples/state/SimpleStateMachine.gd" id="3_4yy22"]
 
 [node name="SimpleStateMachineExample" type="Node2D"]

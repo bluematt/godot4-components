@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5d0drqtaeyff"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://addons/bb-components/visual/placeholder.gd" id="1_mpaet"]
-[ext_resource type="PackedScene" uid="uid://d2heo222lte6p" path="res://addons/bb-components/visual/look_at_cursor.tscn" id="2_ljbff"]
+[ext_resource type="Script" path="res://addons/bb-components/visual/placeholder_component.gd" id="1_mpaet"]
+[ext_resource type="PackedScene" path="res://addons/bb-components/visual/look_at_cursor_component.tscn" id="2_ljbff"]
 
 [node name="LookAtCursorExample" type="Node2D"]
 

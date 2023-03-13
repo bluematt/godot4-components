@@ -1,4 +1,5 @@
-extends "res://addons/bb-components/base_component.gd"
+extends BaseComponent
+class_name AnimatedComponent
 
 ## A base for animated components.
 
@@ -6,13 +7,7 @@ extends "res://addons/bb-components/base_component.gd"
 
 ## The smoothing to be applied to the animation.
 @export_range(0.0, 1.0) var smoothing := 1.0:
-	set=set_smoothing,
-	get=get_smoothing
-
-## Set [member smoothing].
-func set_smoothing(_smoothing : float) -> void:
-	smoothing = clampf(_smoothing, 0.0, 1.0)
-
-## Get [member smoothing].
-func get_smoothing() -> float:
-	return smoothing
+	set(smoothing_):
+		smoothing = clampf(smoothing_, 0.0, 1.0)
+	get:
+		return smoothing
