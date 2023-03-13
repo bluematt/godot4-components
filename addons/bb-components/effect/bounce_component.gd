@@ -1,4 +1,4 @@
-@icon("./bounce.svg")
+@icon("./bounce_component.svg")
 class_name BounceComponent
 extends "res://addons/bb-components/tweened_component.gd"
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 	# Assign the target node to bounce.	
 	_target_node = get_parent() as Node2D
-	assert(_target_node, "BounceComponent %s should be a child of a Node2D node." % [str(get_path())])
+	assert(_target_node, "BounceComponent must be a child of a Node2D node in %s." % [str(get_path())])
 
 	# Record the target node's original position so that we can tween back to it.
 	_original_position = _target_node.position

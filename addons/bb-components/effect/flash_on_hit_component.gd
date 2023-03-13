@@ -1,27 +1,25 @@
-@icon("./flash.svg")
-class_name BBFlashOnHit
-extends BBFlash
+@icon("./flash_component.svg")
+class_name FlashOnHitComponent
+extends FlashComponent
 
-## Add a [BBFlash] effect to a [Node2D], triggered by a collision between a [BBHitbox] and a [BBHurtbox].
+## Add a [FlashComponent] effect to a [Node2D], triggered by a collision between a [BBHitbox] and a [BBHurtbox].
 
 ## The [BBHurtbox] component which notifies when to flash.
-@export var hurtbox_node : BBHurtbox:
-	set=set_hurtbox_node, get=get_hurtbox_node
-
-## Set the [BBHurtbox] node.
-func set_hurtbox_node(_node : BBHurtbox): hurtbox_node = _node
-
-## Get the [BBHurtbox] node.
-func get_hurtbox_node() -> BBHurtbox: return hurtbox_node
+@export var hurtbox_component : BBHurtbox:
+	set(hurtbox_component_):
+		hurtbox_component = hurtbox_component as BBHurtbox
+	get:
+		return hurtbox_component
 
 func _ready() -> void:
 	super()
 	
-	if null == hurtbox_node:
-		hurtbox_node = get_parent() as BBHurtbox
-	assert(hurtbox_node, ("No hurtbox_node:BBHurtbox component " + 
-		"specified in %s. Select one, or reparent this component as a child " +
-		"of a BBHurtbox component.") % [str(get_path())])
+	# Make sure a [member hurtbox_component] is specified
+	assert(hurtbox_component, "No hurtbox_node:BBHurtbox component specified in %s." % [str(get_path())])
 
-	hurtbox_node.damaged.connect(func(_damage: float): flash())
+	# Connect the [member hurtbox_component]'s damaged signal.
+	hurtbox_component.damaged.connect(_on_hurtbox_damaged)
 
+# Callback when the [member hurtbox_component] is damaged.
+func _on_hurtbox_damaged(_damage: float) -> void:
+	flash()
