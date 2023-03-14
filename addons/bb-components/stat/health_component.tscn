@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://do07o63dd1gmr"]
 
 [ext_resource type="Script" path="res://addons/bb-components/stat/health_component.gd" id="1_idlj6"]
 

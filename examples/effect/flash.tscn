@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://dwjyhyo0n8n10"]
 
 [ext_resource type="PackedScene" uid="uid://xcnuiee80j68" path="res://addons/bb-components/effect/flash_component.tscn" id="1_hlf4v"]
 [ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_qsyqh"]
@@ -6,8 +6,12 @@
 [sub_resource type="GDScript" id="GDScript_2vwvn"]
 script/source = "extends CanvasGroup
 
-func _on_area_2d_mouse_entered() -> void:
+func _ready() -> void:
+	$Area2D.mouse_entered.connect(on_mouse_entered)
+
+func on_mouse_entered() -> void:
 	$FlashComponent.flash()
+	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krqpl"]
@@ -30,5 +34,3 @@ label_size = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("RectangleShape2D_krqpl")
-
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

@@ -1,48 +1,41 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://f8ij07nd8dwb"]
 
-[ext_resource type="Script" path="res://addons/bb-components/visual/placeholder_component.gd" id="1_j3br5"]
+[ext_resource type="PackedScene" uid="uid://o2meujfbgldc" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_rul0n"]
+[ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://addons/bb-components/icon.svg" id="2_qb613"]
 [ext_resource type="PackedScene" uid="uid://d31sg5ru86g2f" path="res://addons/bb-components/effect/bounce_component.tscn" id="2_qlhew"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/look_at_node_component.tscn" id="3_us2ml"]
+[ext_resource type="PackedScene" uid="uid://cv17fdco5fsnx" path="res://addons/bb-components/visual/look_at_node_component.tscn" id="3_us2ml"]
 
 [node name="VisualLookAtNodeExample" type="Node2D"]
 
-[node name="Target" type="Node2D" parent="."]
+[node name="LookAtMe" parent="." instance=ExtResource("1_rul0n")]
 position = Vector2(166, 108)
-script = ExtResource("1_j3br5")
 dimensions = Vector2(128, 128)
 color = Color(0.564706, 0.278431, 0.160784, 1)
-label_text = "target"
+texture = ExtResource("2_qb613")
+label_text = "look at me"
+label_size = 24
 
-[node name="BounceComponent" parent="Target" instance=ExtResource("2_qlhew")]
+[node name="BounceComponent" parent="LookAtMe" instance=ExtResource("2_qlhew")]
 displacement = Vector2(800, 0)
 easing = 2
 loop = 1
 
-[node name="FollowerInstant" type="Node2D" parent="."]
+[node name="Follower1" parent="." instance=ExtResource("1_rul0n")]
 position = Vector2(482, 548)
-rotation = -1.5708
-
-[node name="PlaceholderComponent" type="Node2D" parent="FollowerInstant"]
-rotation = 1.5708
-script = ExtResource("1_j3br5")
-dimensions = Vector2(32, 128)
+dimensions = Vector2(64, 128)
 color = Color(0.403922, 0.564706, 0.313726, 1)
-label_text = "instant"
+label_text = "fast"
 
-[node name="LookAtNodeComponent" parent="FollowerInstant" node_paths=PackedStringArray("follow_node") instance=ExtResource("3_us2ml")]
-follow_node = NodePath("../../Target")
+[node name="LookAtNodeComponent" parent="Follower1" node_paths=PackedStringArray("look_target_node") instance=ExtResource("3_us2ml")]
+look_target_node = NodePath("../../LookAtMe")
+turning_speed = 10.0
 
-[node name="FollowerInterpolated" type="Node2D" parent="."]
+[node name="Follower2" parent="." instance=ExtResource("1_rul0n")]
 position = Vector2(668, 546)
-rotation = -1.5708
-
-[node name="PlaceholderComponent" type="Node2D" parent="FollowerInterpolated"]
-rotation = 1.5708
-script = ExtResource("1_j3br5")
-dimensions = Vector2(32, 128)
+dimensions = Vector2(64, 128)
 color = Color(0.188235, 0.498039, 0.564706, 1)
-label_text = "smoothed"
+label_text = "slow"
 
-[node name="LookAtNodeComponent" parent="FollowerInterpolated" node_paths=PackedStringArray("follow_node") instance=ExtResource("3_us2ml")]
-follow_node = NodePath("../../Target")
-smoothing = 0.01
+[node name="LookAtNodeComponent" parent="Follower2" node_paths=PackedStringArray("look_target_node") instance=ExtResource("3_us2ml")]
+look_target_node = NodePath("../../LookAtMe")
+turning_speed = 2.0

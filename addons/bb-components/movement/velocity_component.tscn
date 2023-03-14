@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://b6sgc0adskdkh"]
 
 [ext_resource type="Script" path="res://addons/bb-components/movement/velocity_component.gd" id="1_qc414"]
 

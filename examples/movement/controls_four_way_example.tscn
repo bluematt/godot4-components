@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dftv2irpkndkq"]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_3iun0"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/movement/velocity_component.tscn" id="2_p50vw"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/movement/controls_four_way_component.tscn" id="3_f1f8r"]
+[ext_resource type="PackedScene" uid="uid://o2meujfbgldc" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_3iun0"]
+[ext_resource type="PackedScene" uid="uid://b6sgc0adskdkh" path="res://addons/bb-components/movement/velocity_component.tscn" id="2_p50vw"]
+[ext_resource type="PackedScene" uid="uid://dwipaaog4ondl" path="res://addons/bb-components/movement/controls_four_way_component.tscn" id="3_f1f8r"]
 
 [node name="MovementControlsFourWayExample" type="Node2D"]
 
@@ -13,9 +13,8 @@ position = Vector2(578, 334)
 dimensions = Vector2(128, 128)
 label_text = "character"
 
-[node name="VelocityComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character_node") instance=ExtResource("2_p50vw")]
-character_node = NodePath("")
+[node name="VelocityComponent" parent="CharacterBody2D" instance=ExtResource("2_p50vw")]
 acceleration_coefficient = 0.2
 deceleration_coefficient = 0.1
 
-[node name="MovementControlsFourWay" parent="CharacterBody2D/VelocityComponent" instance=ExtResource("3_f1f8r")]
+[node name="ControlsFourWayComponent" parent="CharacterBody2D/VelocityComponent" instance=ExtResource("3_f1f8r")]

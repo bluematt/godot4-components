@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://b02mpo88xu50k"]
 
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_obupx"]
+[ext_resource type="PackedScene" uid="uid://o2meujfbgldc" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_obupx"]
 [ext_resource type="Texture2D" uid="uid://dnbyx1m6qu6l5" path="res://addons/bb-components/icon.svg" id="2_068et"]
 
 [node name="PlaceholderExample" type="Node2D"]
@@ -19,6 +19,13 @@ position = Vector2(576, 128)
 dimensions = Vector2(256, 128)
 color = Color(0.298039, 0.564706, 0.196078, 1)
 label_text = "GREEN!"
+label_size = 24
+
+[node name="WithLabel2" parent="." instance=ExtResource("1_obupx")]
+position = Vector2(768, 96)
+dimensions = Vector2(256, 128)
+color = Color(0.380392, 0.486275, 0.564706, 0.498039)
+label_text = "MISTY!"
 label_size = 24
 
 [node name="WithTexture" parent="." instance=ExtResource("1_obupx")]

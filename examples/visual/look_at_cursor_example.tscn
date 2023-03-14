@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://htljnwouyp37"]
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/placeholder_component.gd" id="1_mpaet"]
-[ext_resource type="PackedScene" path="res://addons/bb-components/visual/look_at_cursor_component.tscn" id="2_ljbff"]
+[ext_resource type="PackedScene" uid="uid://d17i74fk7ohqd" path="res://addons/bb-components/visual/look_at_cursor_component.tscn" id="2_ljbff"]
 
 [node name="LookAtCursorExample" type="Node2D"]
 
@@ -13,7 +13,8 @@ color = Color(0.564706, 0, 0.0862745, 1)
 label_text = "very slow"
 
 [node name="LookAtCursorComponent" parent="VerySlowLook" instance=ExtResource("2_ljbff")]
-smoothing = 0.01
+turning_speed = 0.5
+enabled = true
 
 [node name="DelayedLook" type="Node2D" parent="."]
 position = Vector2(547, 486)
@@ -23,16 +24,19 @@ color = Color(0, 0.564706, 0.0196078, 1)
 label_text = "slow"
 
 [node name="LookAtCursorComponent" parent="DelayedLook" instance=ExtResource("2_ljbff")]
-smoothing = 0.05
+turning_speed = 1.0
+enabled = true
 
-[node name="InstantLook" type="Node2D" parent="."]
+[node name="FastLook" type="Node2D" parent="."]
 position = Vector2(969, 246)
 script = ExtResource("1_mpaet")
 dimensions = Vector2(128, 32)
 color = Color(0, 0.0196078, 0.564706, 1)
-label_text = "instant"
+label_text = "fast"
 
-[node name="LookAtCursorComponent" parent="InstantLook" instance=ExtResource("2_ljbff")]
+[node name="LookAtCursorComponent" parent="FastLook" instance=ExtResource("2_ljbff")]
+turning_speed = 10.0
+enabled = true
 
 [node name="DontLook" type="Node2D" parent="."]
 position = Vector2(379, 334)

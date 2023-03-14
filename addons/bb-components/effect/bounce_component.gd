@@ -1,19 +1,19 @@
 @icon("./bounce_component.svg")
+extends TweenedComponent
 class_name BounceComponent
-extends "res://addons/bb-components/tweened_component.gd"
 
 ## Add a simple bouncing effect to a [Node2D].
-
-@export_category("BounceComponent")
+##
+## Attach the component to a [Node2D] to make it bounce.
 
 ## How far to move the node from its original position (in pixels).
 @export var displacement := Vector2.ZERO
 
 # The node to bounce.
-var _target_node : Node2D
+var _target_node: Node2D
 
 # The original position of the node.
-var _original_position : Vector2
+var _original_position: Vector2
 
 func _ready() -> void:
 	super()

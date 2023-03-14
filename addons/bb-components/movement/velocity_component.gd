@@ -1,4 +1,4 @@
-@icon("./velocity.svg")
+@icon("./velocity_component.svg")
 class_name VelocityComponent
 extends Node
 
@@ -8,48 +8,44 @@ extends Node
 const DECELERATION_TARGET_VELOCITY := Vector2.ZERO
 
 ## The maximum speed (pixels per second).
-@export var max_speed := 64.0:
-	set(max_speed_):
-		max_speed = max(0.0, max_speed_)
+@export_range(0.0, 1000.0, 0.01, "or_greater", "hide_slider") var max_speed := 64.0
+
+## The acceleration coefficient (0.0-1.0).  1.0 is instantaneous (full speed at
+## [i]t=0[/i]).
+@export_range(0.0, 1.0) var acceleration_coefficient := 1.0
 
 ## The deceleration coefficient (0.0-1.0).  1.0 is instantaneous (full speed at
 ## [i]t=0[/i]).
-@export_range(0.0, 1.0) var acceleration_coefficient := 1.0:
-	set(acceleration_coefficient_):
-		acceleration_coefficient = clampf(acceleration_coefficient_, 0.0, 1.0)
-
-@export_range(0.0, 1.0) var deceleration_coefficient := 1.0:
-	set(deceleration_coefficient_):
-		deceleration_coefficient = clampf(deceleration_coefficient_, 0.0, 1.0)
-
-# The [CharacterBody2D] to move.
-var _character_node:CharacterBody2D
+@export_range(0.0, 1.0) var deceleration_coefficient := 1.0
 
 ## The direction of the velocity.
 var direction := Vector2.ZERO
 
-func _ready() -> void:
-	_character_node = get_parent() as CharacterBody2D
-	assert(_character_node, "VelocityComponent must be a child of a CharacterBody2D node in %s." % [str(get_path())])
+## The [CharacterBody2D] to move.
+var character_node:CharacterBody2D
 
-func _physics_process(_delta : float) -> void:
+func _ready() -> void:
+	character_node = get_parent() as CharacterBody2D
+	assert(character_node, "VelocityComponent must be a child of a CharacterBody2D node in %s." % [str(get_path())])
+
+func _physics_process(_delta: float) -> void:
 	# Accelerate if we have somewhere to go.
 	if direction: # bool(Vector2.ZERO) == false
-		__accelerate()
+		_accelerate()
 	else:
 		# Decelerate if we're still moving.
-		if _character_node.velocity:
-			__decelerate()
+		if character_node.velocity:
+			_decelerate()
 
-	_character_node.move_and_slide()
+	character_node.move_and_slide()
 
 # Accelerate the [member character_node].
-func __accelerate() -> void:
+func _accelerate() -> void:
 	var acceleration_rate := max_speed * acceleration_coefficient
 	var speed = direction.normalized() * max_speed
-	_character_node.velocity = _character_node.velocity.move_toward(speed, acceleration_rate)
+	character_node.velocity = character_node.velocity.move_toward(speed, acceleration_rate)
 
 # Decelerate the [member character_node].
-func __decelerate() -> void:
+func _decelerate() -> void:
 	var deceleration_rate := max_speed * deceleration_coefficient
-	_character_node.velocity = _character_node.velocity.move_toward(DECELERATION_TARGET_VELOCITY, deceleration_rate)
+	character_node.velocity = character_node.velocity.move_toward(DECELERATION_TARGET_VELOCITY, deceleration_rate)

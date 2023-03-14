@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://d17i74fk7ohqd"]
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/look_at_cursor_component.gd" id="1_doh3x"]
 
 [node name="LookAtCursorComponent" type="Node"]
 script = ExtResource("1_doh3x")
+smoothing = null
+enabled = null

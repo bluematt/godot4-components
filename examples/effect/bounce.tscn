@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://cl4kdf7ydlfb8"]
 
 [ext_resource type="Script" path="res://addons/bb-components/visual/placeholder_component.gd" id="1_ndgfl"]
 [ext_resource type="PackedScene" path="res://addons/bb-components/visual/placeholder_component.tscn" id="1_nm4x8"]

@@ -40,3 +40,7 @@ func is_enabled() -> bool:
 
 func _ready() -> void:
 	pass
+
+# Returns a nice smoothed value independent of frame rate.
+func _smoothed(value: float, delta: float) -> float:
+	return 1.0 - exp(-delta * value)

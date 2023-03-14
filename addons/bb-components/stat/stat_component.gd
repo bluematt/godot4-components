@@ -1,25 +1,25 @@
-@icon("./stat.svg")
-class_name BBStat
+@icon("./stat_component.svg")
 extends Node
+class_name StatComponent
 
 ## Keep track of an arbitrary numerical statistic.
 
-# The lowest the stat can be.
-const __LOWEST_LIMIT_STAT := 0.0
+## The lowest the stat can be.
+const LOWEST_LIMIT_STAT := 0.0
 
 ## Emitted when the stat changes.
-signal changed(stat : float)
+signal changed(stat: float)
 
 ## Emitted when the stat is recovered.  Passes in the actual amount of
 ## recovery up to [member max_stat].
-signal recovered(amount : float)
+signal recovered(amount: float)
 
 ## Emitted when fully recovered.
 signal recovered_fully()
 
 ## Emitted when the stat is expended.  Passes in the actual amount of
 ## expenditure.
-signal expended(amount : float)
+signal expended(amount: float)
 
 ## Emitted when the stat reaches 0.
 signal exhausted()
@@ -30,34 +30,18 @@ signal succeeded()
 ## Emitted when the stat is expended, and the amount expended was not available.
 ## Passes in the deficit difference between the amount of stat expended, and the
 ## stat available.
-signal failed(deficit : float)
+signal failed(deficit: float)
 
 ## The maximum allowed stat.
-@export var max_stat := 100.0:
-	set=set_max_stat, get=get_max_stat
-
-## Set the maximum stat.
-func set_max_stat(_max_stat : float) -> void:
-	max_stat = _max_stat
-
-## Get the maximum stat.
-func get_max_stat() -> float:
-	return max_stat
+@export_range(0.0, 1000.0, 0.01, "or_greater", "hide_slider") var max_stat := 100.0
 
 # The current stat.
 @onready var stat := max_stat:
-	set=set_stat, get=get_stat
-
-## Set the stat.
-func set_stat(_stat : float) -> void:
-	stat = clampf(_stat, __LOWEST_LIMIT_STAT, max_stat)
-
-## Get the stat.
-func get_stat() -> float:
-	return stat
+	set(stat_):
+		stat = clampf(stat_, LOWEST_LIMIT_STAT, max_stat)
 
 ## Recover an amount of the stat.
-func recover(amount : float) -> void:
+func recover(amount: float) -> void:
 	var old_stat := stat
 
 	stat += amount
@@ -96,7 +80,7 @@ func expend(amount: float) -> bool:
 
 ## Return whether the stat has been exhausted.
 func is_exhausted() -> bool:
-	return stat <= __LOWEST_LIMIT_STAT
+	return stat <= LOWEST_LIMIT_STAT
 	
 ## Return whether the stat is maxed out.
 func is_maxed() -> bool:

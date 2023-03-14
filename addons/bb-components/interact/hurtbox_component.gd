@@ -1,30 +1,20 @@
-@icon("./hurtbox.svg")
-class_name BBHurtbox
+@icon("./hurtbox_component.svg")
 extends Area2D
+class_name HurtboxComponent
 
-## Receive damage from a [BBHitbox] component.
+## Receive damage from a [HitboxComponent] component.
 
-## Emitted when hit by a [BBHitbox].
+## Emitted when hit by a [HitboxComponent].
 signal damaged(amount: float)
 
-## The [BBHealth] to manipulate.
-@export var health_node:BBHealth:
-	set=set_health_node, get=get_health_node
-
-## Set the health node.
-func set_health_node(_node : BBHealth) -> void: health_node = _node
-
-## Get the health node.
-func get_health_node() -> BBHealth: return health_node
+## The [HealthComponent] to manipulate.
+@export var health_component: HealthComponent
 
 func _ready() -> void:
-	if null == health_node:
-		health_node = get_parent() as BBHealth
-	assert(health_node, ("No health_node:BBHealth component specified in %s." +
-		"Select one, or reparent this component as a child of a BBHealth " +
-		"component.") % [str(get_path())])
-		
-## Apply some damage to the [BBHealth] component.
+	# Make sure a [member health_component] is specified
+	assert(health_component, "No health_component:HealthComponent specified in %s." % [str(get_path())])
+
+## Apply some damage to the [HealthComponent] component.
 func apply_damage(amount: float) -> void:
-	health_node.damage(amount)
+	health_component.damage(amount)
 	damaged.emit(amount)

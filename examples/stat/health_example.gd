@@ -1,7 +1,7 @@
 extends Control
 
-@onready var health := %HealthComponent as BBHealth
-@onready var autoheal := %AutoHealComponent as BBAutoHeal
+@onready var health := %HealthComponent as HealthComponent
+@onready var autoheal := %AutoHealComponent as AutoHealComponent
 
 func _ready() -> void:
 	_update_status()
@@ -21,19 +21,19 @@ func _on_heal_all_button_pressed() -> void:
 func _on_revive_50_percent_pressed() -> void:
 	health.revive(health.max_health * 0.5)
 	
-func _on_health_component_changed(value : float) -> void:
+func _on_health_component_changed(value: float) -> void:
 	_update_status()
 	
 func _on_health_component_died() -> void:
 	%StatusLabel.text = "Status: DEAD!"
 
-func _on_check_box_toggled(button_pressed : bool) -> void:
+func _on_check_box_toggled(button_pressed: bool) -> void:
 	autoheal.enabled = button_pressed
 
 func _on_health_component_revived() -> void:
 	%StatusLabel.text = "Status: ALIVE AGAIN!"
 
-func _on_auto_heal_component_autoheal_counting_down(time_left : float) -> void:
+func _on_auto_heal_component_autoheal_counting_down(time_left: float) -> void:
 	%DelayRemaining.max_value = autoheal.autoheal_delay
 	%DelayRemaining.value = time_left
 
@@ -43,7 +43,7 @@ func _on_auto_heal_component_autoheal_started() -> void:
 func _on_auto_heal_component_autoheal_stopped() -> void:
 	%HealthProgress.modulate = Color.WHITE
 
-func _on_auto_heal_component_autoheal_enabled(status : bool) -> void:
+func _on_auto_heal_component_autoheal_enabled(status: bool) -> void:
 	%AutohealCheckbox.button_pressed = status
 
 func _update_status() -> void:

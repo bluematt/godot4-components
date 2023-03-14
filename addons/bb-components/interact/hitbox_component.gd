@@ -1,24 +1,16 @@
-@icon("./hitbox.svg")
-class_name BBHitbox
+@icon("./hitbox_component.svg")
 extends Area2D
+class_name HitboxComponent
 
-## Inflict damage on a [BBHurtbox] component.
+## Inflict damage on a [HurtboxComponent] component.
 
-## Emitted when the hitbox hits a [BBHurtbox].
-signal hit(hurtbox: BBHurtbox, amount: float)
+## Emitted when the hitbox hits a [HurtboxComponent].
+signal hit(hurtbox: HurtboxComponent, amount: float)
 
 ## The amount of damage this hitbox applies.
-@export var damage_amount := 1.0:
-	set=set_damage_amount, get=get_damage_amount
+@export_range(0.0, 1000.0, 0.01, "or_greater", "hide_slider") var damage_amount := 1.0
 
-## Set the damage amount.
-func set_damage_amount(_damage_amount : float) -> void:
-	damage_amount = max(_damage_amount, 0.0)
-
-## Get the damage amount.
-func get_damage_amount() -> float: return damage_amount
-
-func _on_hurtbox_entered(hurtbox : BBHurtbox) -> void:
+func _on_hurtbox_entered(hurtbox: HurtboxComponent) -> void:
 	hurtbox.apply_damage(damage_amount)
 	hit.emit(hurtbox, damage_amount)
 
